@@ -54,12 +54,13 @@ struct RecurringEventsView: View {
             
             Spacer()
             
-            NavigationLink(destination: ChooseGoalView(),
-                           label: { Text("Next")
+            NavigationLink(destination: ChooseGoalView(launchedByMainScreen: .constant(false))) {
+                           Text("Next")
                             .foregroundColor(.blue)
-                            .font(.title3) })
+                            .font(.title3) }
             
         }
+        .navigationBarBackButtonHidden(true)
         .padding()
         .navigationTitle("Personalization")
         .sheet(isPresented: $addMoreEventsAlert) {

@@ -8,14 +8,60 @@
 import Foundation
 import StepperView
 
+struct Task: Identifiable {
+    var id = UUID()
+    var date: Date
+    var action: String
+    var amount: Double
+    var units: String
+    
+}
+
 
 struct GoalModel: Identifiable {
-    var id          = UUID()
-    var name        : String
-    var metric1     : Int
-    var metric2     : Int?
-    var startDate   : Date
-    var deadline    : Date
+    var id              = UUID()
+    var name            : String
+    var daily           = true
+    var daysOfPractice  = 7
+    var desiredResult   : Int
+    var mesurableUnits  = "Pages"
+    var trainingDays    : DateComponents = []
+    var startDate       : Date
+    var deadline        : Date
+    
+    
+    var totalNumberOfTasks: Int {
+        let totalTimeInDays = goalTimeInSeconds / 86_400
+        let coef = Double(daysOfPractice) / Double(7)
+        let numberOfTasks = Int(totalTimeInDays * coef)
+        return numberOfTasks
+        
+    }
+    
+    var dailyGoal: Double {
+        let totalTimeInDays = goalTimeInSeconds / 86_400
+        let dailyGoal = Double(desiredResult) / totalTimeInDays
+        let coef = 7 / daysOfPractice
+        return Double(coef) * dailyGoal
+    }
+    
+    var weeklyGoal: Double {
+        dailyGoal * Double(daysOfPractice)
+    }
+    
+    var tasks: [Task] {
+        var tasks = [Task]()
+        var date = startDate
+        for _ in 0..<totalNumberOfTasks {
+            let task = Task(date: date, action: name, amount: dailyGoal, units: mesurableUnits)
+            tasks.append(task)
+            
+            //add check is new date is not one of the days used doesn't want to practice
+            let newDate = Date(timeIntervalSince1970: (date.timeIntervalSince1970 + 86_400))
+            date = newDate
+        }
+        return tasks
+    }
     
     var goalTimeInSeconds: TimeInterval {
         let startNumber = startDate.timeIntervalSince1970
@@ -24,12 +70,17 @@ struct GoalModel: Identifiable {
         return goalTimeInSeconds
     }
     
+
+}
+
+// MARK:  Stepper View
+extension GoalModel {
     var stepAmount: Double {
         goalTimeInSeconds / Double(numberOfSteps)
     }
     
     var numberOfSteps: Int {
-        goalTimeInSeconds / 4 < 864000 ? 4 : 6
+        goalTimeInSeconds / 4 < 864_000 ? 4 : 6
     }
     
     var steps: [StepperTextView] {
@@ -79,9 +130,8 @@ struct GoalModel: Identifiable {
     }
 }
 
-
 struct MocGoals {
     static let goals = [
-        GoalModel(name: "Reading", metric1: 5, metric2: 200, startDate: Date().addingTimeInterval(-2592000), deadline: Date().addingTimeInterval(2592000)),
-        GoalModel(name: "Gaining Weight", metric1: 68, metric2: 75, startDate: Date().addingTimeInterval(-459200), deadline: Date().addingTimeInterval(459200))]
+        GoalModel(name: "Reading", desiredResult: 1000, startDate: Date().addingTimeInterval(-2_592_000), deadline: Date().addingTimeInterval(2_592_000)),
+        GoalModel(name: "Gaining Weight", desiredResult: 7, startDate: Date().addingTimeInterval(-459_200), deadline: Date().addingTimeInterval(459_200))]
 }

@@ -48,6 +48,7 @@ struct AddEventsSheet: View {
             
             Spacer()
         }
+        
         .padding()
     }
 }

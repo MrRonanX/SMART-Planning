@@ -11,6 +11,7 @@ import StepperView
 struct TimelineView: View {
     
     @State var goals: [GoalModel] = MocGoals.goals
+    @State var showAddGoalsView = false
   
     var body: some View {
         NavigationView {
@@ -35,19 +36,21 @@ struct TimelineView: View {
                             .padding()
                     }
                 Spacer()
-                
+  
+                NavigationLink(destination: ChooseGoalView (launchedByMainScreen: $showAddGoalsView), isActive: $showAddGoalsView) { EmptyView()}
             }
+    
             .navigationTitle("Goal Timelines")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        showAddGoalsView = true
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
             }
-        }  
+        }
     }
 }
 

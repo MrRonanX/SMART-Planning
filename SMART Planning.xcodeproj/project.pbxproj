@@ -24,6 +24,9 @@
 		341EEE8026650F19001EFD32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */; };
 		341EEE882665124D001EFD32 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* MockData.swift */; };
 		341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE8926651806001EFD32 /* RecurringEventsView.swift */; };
+		3461280D268C62140035AF81 /* WeeklyPerformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280C268C62140035AF81 /* WeeklyPerformance.swift */; };
+		34612810268C65930035AF81 /* PlanningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280F268C65930035AF81 /* PlanningTabView.swift */; };
+		34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */; };
 		E28260BBD401064547E5A562 /* Pods_SMART_Planning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,9 @@
 		341EEE8126650F19001EFD32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		341EEE872665124D001EFD32 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		341EEE8926651806001EFD32 /* RecurringEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringEventsView.swift; sourceTree = "<group>"; };
+		3461280C268C62140035AF81 /* WeeklyPerformance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPerformance.swift; sourceTree = "<group>"; };
+		3461280F268C65930035AF81 /* PlanningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTabView.swift; sourceTree = "<group>"; };
+		34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksView.swift; sourceTree = "<group>"; };
 		9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.release.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.release.xcconfig"; sourceTree = "<group>"; };
 		F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.debug.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +100,9 @@
 		34079ABB2688196500F9AC7F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3461280F268C65930035AF81 /* PlanningTabView.swift */,
+				34D2E7F7269463A70021F7D5 /* DailyTasks */,
+				3461280B268C61FE0035AF81 /* WeeklyTasks */,
 				34079AC62689C4E100F9AC7F /* Timeline */,
 				34079ABD268819C300F9AC7F /* ChooseGoal */,
 				34079ABC2688199C00F9AC7F /* RecurringEvents */,
@@ -193,6 +202,22 @@
 				341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3461280B268C61FE0035AF81 /* WeeklyTasks */ = {
+			isa = PBXGroup;
+			children = (
+				3461280C268C62140035AF81 /* WeeklyPerformance.swift */,
+			);
+			path = WeeklyTasks;
+			sourceTree = "<group>";
+		};
+		34D2E7F7269463A70021F7D5 /* DailyTasks */ = {
+			isa = PBXGroup;
+			children = (
+				34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */,
+			);
+			path = DailyTasks;
 			sourceTree = "<group>";
 		};
 		4E6528F13B9924FEB12EC9C6 /* Pods */ = {
@@ -327,6 +352,8 @@
 			files = (
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,
 				341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */,
+				34612810268C65930035AF81 /* PlanningTabView.swift in Sources */,
+				3461280D268C62140035AF81 /* WeeklyPerformance.swift in Sources */,
 				34079AB82688165C00F9AC7F /* GoalLabel.swift in Sources */,
 				34079ACA2689C50500F9AC7F /* TimelineView.swift in Sources */,
 				34079AD1268AE86D00F9AC7F /* StepperTextView.swift in Sources */,
@@ -334,6 +361,7 @@
 				341EEE882665124D001EFD32 /* MockData.swift in Sources */,
 				341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */,
 				34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */,
+				34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */,
 				34079ACE2689DB9600F9AC7F /* String + ext.swift in Sources */,
 				34079AD7268AE91F00F9AC7F /* Date + ext.swift in Sources */,
 				34079AC52689B19200F9AC7F /* GoalView.swift in Sources */,

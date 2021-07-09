@@ -12,7 +12,7 @@
 import SwiftUI
 
 struct GoalView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     @State var numberOfBooks = 2
     @State var numberOfPages = 100
     @State var deadlineDate  = Date()
@@ -57,8 +57,8 @@ struct GoalView: View {
                 .datePickerStyle(GraphicalDatePickerStyle())
             
             Button("Save") {
-                let goal = GoalModel(name: "Reading", metric1: numberOfBooks + 1, metric2: numberOfPages, startDate: Date(), deadline: deadlineDate)
-                
+                let goal = GoalModel(name: "Reading", desiredResult: (numberOfBooks + 1) * numberOfPages, startDate: Date(), deadline: deadlineDate)
+                presentationMode.wrappedValue.dismiss()
                 
             }
             

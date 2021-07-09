@@ -9,12 +9,26 @@ import SwiftUI
 
 @main
 struct SMARTPlanningApp: App {
+    
+    @StateObject var settings = ViewPresenter()
+    
     var body: some Scene {
         WindowGroup {
-            TimelineView()
+            if !settings.goalIsSet {
+                IntroView()
+                    .environmentObject(settings)
+            } else {
+                PlanningTabView()
+            }
+            
         }
     }
 }
+
+final class ViewPresenter: ObservableObject {
+    @Published var goalIsSet = false
+}
+
 
 extension View {
     func correctDate(strDate: String) -> String {

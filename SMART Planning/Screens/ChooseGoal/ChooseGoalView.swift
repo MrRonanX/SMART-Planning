@@ -21,16 +21,18 @@ import SwiftUI
 
 
 struct ChooseGoalView: View {
-    
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var settings: ViewPresenter
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible()),
                                GridItem(.flexible()),
                                GridItem(.flexible())]
     
     #warning("Create view model")
-    #warning("Create goal model")
     
     @State private var isShowingGoalView = false
+    @State private var goToMainView = false
+    @Binding var launchedByMainScreen: Bool
     
     //set a goal here
     @State private var goal = 0
@@ -62,22 +64,38 @@ struct ChooseGoalView: View {
             Spacer()
             
         }
-        .sheet(isPresented: $isShowingGoalView) {
-            #warning("Create a goal view")
-            GoalView()
-        }
+        .sheet(isPresented: $isShowingGoalView, onDismiss: pushMainScreen) { GoalView() }
         .padding()
+        .navigationBarBackButtonHidden(true)
         .navigationTitle("Goals")
+        
+        .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    if launchedByMainScreen {
+                    Button("Done") {
+                        launchedByMainScreen = false
+                    }
+                }
+            }
+        }
     }
     
     func showGoalView(goal: Int) {
         self.goal = goal
         isShowingGoalView = true
     }
+    
+    func pushMainScreen() {
+        #warning("save goal")
+        
+        if !launchedByMainScreen {
+            settings.goalIsSet = true
+        }
+    }
 }
 
 struct ChooseGoalView_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseGoalView()
+        ChooseGoalView(launchedByMainScreen: .constant(false))
     }
 }

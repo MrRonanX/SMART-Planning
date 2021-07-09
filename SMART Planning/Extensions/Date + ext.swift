@@ -19,4 +19,14 @@ extension Date {
         
         return str
     }
+    
+    func days(from date: Date) -> Int {
+        Calendar.current.dateComponents([.day], from: date, to: self).day!
+    }
+    func adding(days: Int) -> Date {
+        Calendar.current.date(byAdding: .day, value: days, to: self)!
+    }
+    func adding(weeks: Int) -> Date {
+        Calendar.current.date(byAdding: .weekOfYear, value: weeks, to: self)!
+    }
 }
