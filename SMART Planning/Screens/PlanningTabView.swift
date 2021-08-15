@@ -20,7 +20,7 @@ struct PlanningTabView: View {
                     Image(systemName: "calendar")
                     Text("Daily Tasks")
                 }
-            WeeklyPerformance()
+            PerformanceView()
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle")
                     Text("Weekly Tasks")

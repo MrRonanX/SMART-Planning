@@ -9,21 +9,30 @@ import SwiftUI
 
 struct GoalLabel: View {
     
-    var goalImage: String
+    var goal: GoalCreationModel
     var size: CGFloat
     
     var body: some View {
-        ZStack {
-            Image(systemName: "\(goalImage).circle")
+        VStack {
+            Image(goal.image)
+                .renderingMode(.template)
                 .resizable()
                 .scaledToFit()
-                .frame(width: size / 5)
+                .frame(width: size / 7)
+                .foregroundColor(Color(goal.randomColor))
+                .clipShape(Circle())
+            
+            Text(goal.title)
+                .font(.headline)
+                .lineLimit(2)
+                .minimumScaleFactor(0.75)
+                .multilineTextAlignment(.center)
         }
     }
 }
 
 struct GoalLabel_Previews: PreviewProvider {
     static var previews: some View {
-        GoalLabel(goalImage: "1", size: 375)
+        GoalLabel(goal: GoalCreationModel(title: "Learn A New Skill", action: "Learn", image: "graduationHat", unit: "courses", icon: "graduationHat"), size: 375)
     }
 }

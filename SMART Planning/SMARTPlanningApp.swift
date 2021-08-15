@@ -14,13 +14,12 @@ struct SMARTPlanningApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if !settings.goalIsSet {
-                IntroView()
-                    .environmentObject(settings)
-            } else {
+//            if !settings.goalIsSet {
+//                IntroView()
+//                    .environmentObject(settings)
+//            } else {
                 PlanningTabView()
-            }
-            
+//            }
         }
     }
 }
