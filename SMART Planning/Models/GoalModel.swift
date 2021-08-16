@@ -6,17 +6,26 @@
 //
 
 import SwiftUI
-import StepperView
 
 struct Task: Identifiable {
-    var id          = UUID()
-    var date        : Date
-    var action      : String
-    var amount      : Double
-    var units       : String
-    var color       : String
-    var icon        : String
-    var isCompleted = false
+    var id                  = UUID()
+    var date                : Date
+    var action              : String
+    var trainingAmount      : Double
+    var resultBeforeTraining: Double
+    var resultAfterTraining : Double
+    var units               : String
+    var color               : String
+    var icon                : String
+    var isCompleted         = Bool.random()
+}
+
+extension Task: Comparable {
+    static func < (lhs: Task, rhs: Task) -> Bool {
+        lhs.date < rhs.date
+    }
+    
+    
 }
 
 
@@ -56,11 +65,13 @@ struct GoalModel: Identifiable {
     var tasks: [Task] {
         var tasks = [Task]()
         var date = startDate
+        var currentProgress = baseProgress
         for _ in 0..<totalNumberOfTasks {
             for day in trainingDays {
                 if day == Calendar.current.component(.weekday, from: date) {
-                    let task = Task(date: date, action: practiceAction, amount: dailyGoal, units: measurableUnits, color: goalColor, icon: goalIcon)
+                    let task = Task(date: date, action: practiceAction, trainingAmount: dailyGoal, resultBeforeTraining: currentProgress, resultAfterTraining: currentProgress + dailyGoal, units: measurableUnits, color: goalColor, icon: goalIcon)
                     tasks.append(task)
+                    currentProgress += dailyGoal
                     break
                 }
             }
@@ -74,23 +85,6 @@ struct GoalModel: Identifiable {
     var numberOfDays: TimeInterval {
         Double(deadline.days(from: startDate))
     }
-    
-    
-//    var weeklyPerformance: String {
-//        let day = Calendar.current.component(.weekday, from: Date())
-//        let daysTillSaturday = 7 - day
-//        let saturday = daysTillSaturday + day
-//        let sunday = saturday - 6
-//        let sundayDate =
-//
-//
-//
-//        let weekrange =
-//    }
-    
-    
-    
-    
 }
 
 // MARK:  Stepper View
@@ -160,20 +154,7 @@ extension GoalModel {
         }
         return localIndicators
     }
-    
-    var lifeCycles: [StepLifeCycle] {
-        var localLifeCycles = [StepLifeCycle]()
-        var time = 0.0
-        
-        for _ in 1...numberOfSteps {
-            let stepDate = startDate.adding(days: Int(time))
-            let todayDate = Date()
-            
-            todayDate > stepDate ? localLifeCycles.append(.completed) : localLifeCycles.append(.pending)
-            time += daysPerStep
-        }
-        return localLifeCycles
-    }
+
     
     var spacing: Spacing {
         if numberOfSteps >= 8 {
@@ -186,6 +167,47 @@ extension GoalModel {
             return .fiveSteps
         } else {
             return .fourSteps
+        }
+    }
+    
+    func weeklyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
+        let sunday = Date().startOfWeek
+        let week = (0...6).map { sunday.adding(days: $0)}
+        
+        var thisWeekTasks: [Task] = []
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            for task in tasks {
+                if let _ = week.firstIndex(where: { task.date.toString(.deadlineNextYear) == $0.toString(.deadlineNextYear)}) {
+                    thisWeekTasks.append(task)
+                }
+                
+                if thisWeekTasks.count == daysOfPractice {
+                    break
+                }
+            }
+//            if name == "Gaining Weight" {
+//                print("😱😱😱 \(thisWeekTasks)")
+//            }
+            let baseProgress = thisWeekTasks.min()?.resultBeforeTraining ?? 213231.0
+            let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 342433.3
+            let numberOfTasks = thisWeekTasks.count
+            let numberOfCompletedTasks = thisWeekTasks.filter { $0.isCompleted }.count
+            let thisWeekMileStone = thisWeekTasks.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+            let currentProgress = thisWeekTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+            
+//            if name == "Gaining Weight" {
+//                print("😱😱😱 baseProgress \(baseProgress)")
+//                print("😱😱😱 desiredProgress \(desiredProgress)")
+//                print("😱😱😱 numberOfTasks \(numberOfTasks)")
+//                print("😱😱😱 numberOfCompletedTasks \(numberOfCompletedTasks)")
+//                print("😱😱😱 thisWeekMileStone \(thisWeekMileStone)")
+//                print("😱😱😱 currentProgress \(currentProgress)")
+//            }
+    
+            completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisWeekMileStone, currentProgress)
+            
         }
     }
 }

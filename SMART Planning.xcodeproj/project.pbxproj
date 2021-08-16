@@ -24,6 +24,7 @@
 		341EEE8026650F19001EFD32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */; };
 		341EEE882665124D001EFD32 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* MockData.swift */; };
 		341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE8926651806001EFD32 /* RecurringEventsView.swift */; };
+		3422486826CA63F3006CFC05 /* RectangleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* RectangleProgressView.swift */; };
 		3461280D268C62140035AF81 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280C268C62140035AF81 /* PerformanceView.swift */; };
 		34612810268C65930035AF81 /* PlanningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280F268C65930035AF81 /* PlanningTabView.swift */; };
 		346407ED26C13F7100B8506A /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407EC26C13F7100B8506A /* ProgressView.swift */; };
@@ -69,6 +70,7 @@
 		341EEE8126650F19001EFD32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		341EEE872665124D001EFD32 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		341EEE8926651806001EFD32 /* RecurringEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringEventsView.swift; sourceTree = "<group>"; };
+		3422486726CA63F3006CFC05 /* RectangleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleProgressView.swift; sourceTree = "<group>"; };
 		3461280C268C62140035AF81 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		3461280F268C65930035AF81 /* PlanningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTabView.swift; sourceTree = "<group>"; };
 		346407EC26C13F7100B8506A /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				341EEE872665124D001EFD32 /* MockData.swift */,
 				346407F226C53C1C00B8506A /* Goal.xcdatamodeld */,
 				346407FE26C5432100B8506A /* Persistance.swift */,
+				3422486726CA63F3006CFC05 /* RectangleProgressView.swift */,
 			);
 			path = "SMART Planning";
 			sourceTree = "<group>";
@@ -350,7 +353,6 @@
 				341EEE7126650F18001EFD32 /* Sources */,
 				341EEE7226650F18001EFD32 /* Frameworks */,
 				341EEE7326650F18001EFD32 /* Resources */,
-				13531FC8767DE7675B4D9F5A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -406,23 +408,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		13531FC8767DE7675B4D9F5A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		4103BCA42D5F02C5C29F7206 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +440,7 @@
 				3464081926C7C42000B8506A /* FormButton.swift in Sources */,
 				3464081B26C7C49000B8506A /* Colors.swift in Sources */,
 				346407FC26C5409B00B8506A /* TrainingDays+CoreDataProperties.swift in Sources */,
+				3422486826CA63F3006CFC05 /* RectangleProgressView.swift in Sources */,
 				346407FB26C5409B00B8506A /* TrainingDays+CoreDataClass.swift in Sources */,
 				346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */,
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,

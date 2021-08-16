@@ -95,11 +95,12 @@ fileprivate struct GoalTarget: View {
             }
             .frame(width: size.width / 3 - 40)
             .clipped()
+            .onChange(of: viewModel.selectedAction) { _ in viewModel.isTargetEdited = true}
             
             TextField("Desired Result", text: $viewModel.selectedMetric)
                 .keyboardType(.numberPad)
                 .overlay(textFieldBorder)
-                .onChange(of: Int(viewModel.selectedMetric), perform: { _ in viewModel.convertSingularsAndPlurals() })
+                .onChange(of: Int(viewModel.selectedMetric)) { _ in viewModel.convertSingularsAndPlurals() }
             
             Picker("", selection: $viewModel.selectedUnit) {
                 ForEach(viewModel.measurementUnits, id:\.self) {
@@ -108,6 +109,8 @@ fileprivate struct GoalTarget: View {
             }
             .frame(width: size.width / 3 - 40)
             .clipped()
+            .onChange(of: viewModel.selectedUnit) { _ in viewModel.isTargetEdited = true}
+
         }
         .pickerStyle(WheelPickerStyle())
     }

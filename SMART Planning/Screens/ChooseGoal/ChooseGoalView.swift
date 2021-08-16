@@ -85,5 +85,5 @@ struct GoalCreationModel: Identifiable {
                                GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins"),
                                GoalCreationModel(title: "Enlightment", action: "Do", image: "idea", unit: "mediations", icon: "idea"),
                                GoalCreationModel(title: "Learn A New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat"),
-                               GoalCreationModel(title: "Set You Goal", action: "Read", image: "award", unit: "", icon: "graduationHat")]
+                               GoalCreationModel(title: "Set You Goal", action: "", image: "award", unit: "", icon: "graduationHat")]
 }

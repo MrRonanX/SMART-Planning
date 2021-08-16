@@ -77,7 +77,7 @@ struct TaskCellView: View {
                 .foregroundColor(task.isCompleted ? .green : .secondary)
                 .padding(.horizontal, 5)
             
-            Text("\(task.action)  \(Int(task.amount))  \(task.units)")
+            Text("\(task.action)  \(Int(task.trainingAmount))  \(task.units)")
             
             Spacer()
             

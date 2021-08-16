@@ -15,15 +15,17 @@ final class GoalViewModel: ObservableObject {
     let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 4)
     
     // MARK:  - Goal View
-    @Published var selectedMetric       = ""
-    @Published var selectedUnit         = ""
+    #warning("Make sure metric isn't 0")
+    @Published var selectedMetric       = "2"
+    @Published var selectedUnit         = "pages"
     @Published var selectedAction       = "Read"
-    @Published var measurementUnits     = ["pages", "times", "dollars", "kilograms", "kilometers", "miles", "meditations", "pounds", "pictures", "courses", "lessons", "credits"]
+    @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations", "pounds", "pictures", "courses", "lessons", "credits"]
     @Published var deadlineDate         = Date()
     @Published var days                 = Days.days
     
     @Published var goalTitle            = ""
     @Published var description          = "Description (Optional)"
+    @Published var isTargetEdited       = false
     
     @Published var convertedToSingulars = false
     @Published var isShowingPopOver     = false
@@ -34,12 +36,12 @@ final class GoalViewModel: ObservableObject {
     
     var measurementActions = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete", "Lose", "Make", "Draw", "Do", "Find"]
     
-    var targetTitle: String { targetIsEmpty ? "Your target:" : selectedAction + " " + selectedMetric + " " + selectedUnit }
-    var targetIsEmpty: Bool { selectedMetric.isEmpty && selectedUnit.isEmpty ? true : false }
+    var targetTitle: String { isTargetEdited ? "Your target:" : selectedAction + " " + selectedMetric + " " + selectedUnit }
     
     var deadlineTitle: String {
         let isToday = Calendar.current.isDateInToday(deadlineDate)
-        return isToday ? "Deadline is not set" : "Deadline: \(deadlineDate.toString(.deadline))"
+        let title = Date().isDateThisYear(deadlineDate) ? deadlineDate.toString(.deadline) : deadlineDate.toString(.deadlineNextYear)
+        return isToday ? "Deadline is not set" : "Deadline: \(title)"
     }
     
     var dateRange: ClosedRange<Date> {
@@ -70,6 +72,8 @@ final class GoalViewModel: ObservableObject {
     
     
     func convertSingularsAndPlurals() {
+        isTargetEdited = true
+        
         if convertedToSingulars {
             measurementUnits = measurementUnits.map { $0 + "s"}
             selectedUnit = selectedUnit + "s"
@@ -131,6 +135,7 @@ final class GoalViewModel: ObservableObject {
         selectedAction  = goal.action
         goalTitle       = goal.title
         selectedColor   = goal.randomColor
+        
         
         isShowingGoalView = true
     }

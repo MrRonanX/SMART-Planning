@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import StepperView
 
 struct TimelineView: View {
     
