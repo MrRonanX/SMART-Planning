@@ -44,7 +44,7 @@ extension UIColor {
         }
     }
     
-    static var iconBackground: UIColor{
+    static var iconBackground: UIColor {
         return UIColor { (traitCollection) -> UIColor in
             switch traitCollection.userInterfaceStyle {
             case .unspecified:
@@ -55,6 +55,21 @@ extension UIColor {
                 return .secondarySystemBackground
             @unknown default:
                 return .systemBackground
+            }
+        }
+    }
+    
+    static var tabButtonColor: UIColor {
+        return UIColor { (traitCollection) -> UIColor in
+            switch traitCollection.userInterfaceStyle {
+            case .unspecified:
+                return .tertiarySystemBackground
+            case .light:
+                return .tertiarySystemBackground
+            case .dark:
+                return .systemGray
+            @unknown default:
+                return .tertiarySystemBackground
             }
         }
     }

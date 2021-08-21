@@ -15,23 +15,20 @@ struct TimelineView: View {
     var body: some View {
         NavigationView {
             ScrollViewIfNeeded(numberOfGoals: goals.count) {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
                     ForEach(goals) { goal in
                         HStack {
                             Image(goal.goalIcon)
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
+                                .iconStyle(with: 30)
                                 .foregroundColor(Color(goal.goalColor))
-                            
+
                             Text(goal.name)
                                 .font(.title3)
                                 .bold()
                         }
                         
-                        ProgressView(numberOfSteps: goal.numberOfSteps, topText: goal.dateText, completionStage: goal.indicators, bottomText: goal.goalText, itemSpacing: goal.spacing, itemColor: goal.goalColor)
-                        
+                        StepperView(numberOfSteps: goal.numberOfSteps, topText: goal.dateText, completionStage: goal.indicators, bottomText: goal.goalText, itemSpacing: goal.spacing, itemColor: goal.goalColor)
+                            .padding(.bottom)
                     }
                     .padding(.horizontal)
                     
@@ -52,6 +49,7 @@ struct TimelineView: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func loadGoals() {
@@ -61,11 +59,13 @@ struct TimelineView: View {
     }
 }
 
+
 struct TimelineView_Previews: PreviewProvider {
     static var previews: some View {
         TimelineView()
     }
 }
+
 
 struct ScrollViewIfNeeded<Content: View>: View {
     
@@ -86,6 +86,8 @@ struct ScrollViewIfNeeded<Content: View>: View {
             }
     }
 }
+
+
 
 
 

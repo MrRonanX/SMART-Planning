@@ -24,8 +24,6 @@ extension Task: Comparable {
     static func < (lhs: Task, rhs: Task) -> Bool {
         lhs.date < rhs.date
     }
-    
-    
 }
 
 
@@ -44,6 +42,9 @@ struct GoalModel: Identifiable {
     var startDate       : Date
     var deadline        : Date
     
+    var complementaryColor: String {
+        goalColor + "Complementary"
+    }
     
     var totalNumberOfTasks: Int {
         let coef = Double(daysOfPractice) / 7.0
@@ -63,10 +64,11 @@ struct GoalModel: Identifiable {
     }
     
     var tasks: [Task] {
+        
         var tasks = [Task]()
         var date = startDate
         var currentProgress = baseProgress
-        for _ in 0..<totalNumberOfTasks {
+        for _ in 0..<Int(numberOfDays) {
             for day in trainingDays {
                 if day == Calendar.current.component(.weekday, from: date) {
                     let task = Task(date: date, action: practiceAction, trainingAmount: dailyGoal, resultBeforeTraining: currentProgress, resultAfterTraining: currentProgress + dailyGoal, units: measurableUnits, color: goalColor, icon: goalIcon)
@@ -187,28 +189,74 @@ extension GoalModel {
                     break
                 }
             }
-//            if name == "Gaining Weight" {
-//                print("😱😱😱 \(thisWeekTasks)")
-//            }
+
             let baseProgress = thisWeekTasks.min()?.resultBeforeTraining ?? 213231.0
             let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 342433.3
             let numberOfTasks = thisWeekTasks.count
             let numberOfCompletedTasks = thisWeekTasks.filter { $0.isCompleted }.count
             let thisWeekMileStone = thisWeekTasks.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
             let currentProgress = thisWeekTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
-            
-//            if name == "Gaining Weight" {
-//                print("😱😱😱 baseProgress \(baseProgress)")
-//                print("😱😱😱 desiredProgress \(desiredProgress)")
-//                print("😱😱😱 numberOfTasks \(numberOfTasks)")
-//                print("😱😱😱 numberOfCompletedTasks \(numberOfCompletedTasks)")
-//                print("😱😱😱 thisWeekMileStone \(thisWeekMileStone)")
-//                print("😱😱😱 currentProgress \(currentProgress)")
-//            }
     
             completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisWeekMileStone, currentProgress)
             
         }
+    }
+    
+    func monthlyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
+        let datesOfMoths = Date().datesOfMoths()
+        let ratio = Double(daysOfPractice) / 7.0
+        let maximumAmountOfTasks = Int(floor(Double(datesOfMoths.count) * ratio))
+
+
+        var thisMonthTasks: [Task] = []
+    
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            for task in tasks {
+                if let _ = datesOfMoths.firstIndex(where: { task.date.toString(.deadlineNextYear) == $0.toString(.deadlineNextYear)}) {
+                    thisMonthTasks.append(task)
+                }
+                
+                if thisMonthTasks.count == maximumAmountOfTasks {
+                    break
+                }
+            }
+
+            let baseProgress = thisMonthTasks.min()?.resultBeforeTraining ?? 0
+            let desiredProgress = thisMonthTasks.max()?.resultAfterTraining ?? 0
+            let numberOfTasks = thisMonthTasks.count
+            let numberOfCompletedTasks = thisMonthTasks.filter { $0.isCompleted }.count
+            let thisMonthMileStone = thisMonthTasks.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+            let currentProgress = thisMonthTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+    
+            completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisMonthMileStone, currentProgress)
+            
+        }
+    }
+    
+    
+    func totalPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            
+            let numberOfTasks = tasks.count
+            let numberOfCompletedTasks = tasks.filter { $0.isCompleted }.count
+            let currentProgress = tasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+            
+            completed(baseProgress, desiredResult, numberOfTasks, numberOfCompletedTasks, desiredResult, currentProgress)
+        }
+    }
+    
+    
+    func datesBetween(_ startDate: Date, and endDate: Date) -> [Date] {
+        var date = startDate
+        var array = [Date]()
+        
+        while date <= endDate {
+            array.append(date)
+            date = date.adding(days: 1)
+        }
+        
+        return array
     }
 }
 
@@ -217,7 +265,7 @@ struct MocGoals {
     static let goals = [
         GoalModel(name: "Reading", goalIcon: Icons.banknote.rawValue, goalColor: Colors.brandBlue.rawValue, desiredResult: 1000, startDate: Date().adding(days: -35), deadline: Date().adding(days: 210)),
         GoalModel(name: "Gaining Weight", goalIcon: Icons.book.rawValue, goalColor: Colors.brandGrassGreen.rawValue, desiredResult: 7, startDate: Date().adding(days: -10), deadline: Date().adding(days: 10)),
-        GoalModel(name: "Reading", goalIcon: Icons.briefcase.rawValue, goalColor: Colors.brandMagenta.rawValue, desiredResult: 1000, startDate: Date().adding(days: -35), deadline: Date().adding(days: 110)),
+        GoalModel(name: "Learn a language", goalIcon: Icons.briefcase.rawValue, goalColor: Colors.brandMagenta.rawValue, desiredResult: 1000, startDate: Date().adding(days: -35), deadline: Date().adding(days: 110)),
         GoalModel(name: "Reading", goalIcon: Icons.chat.rawValue, goalColor: Colors.brandOceanBlue.rawValue, desiredResult: 1000, startDate: Date().adding(days: -35), deadline: Date().adding(days: 140)),
         GoalModel(name: "Reading", goalIcon: Icons.currency.rawValue, goalColor: Colors.brandPink.rawValue, desiredResult: 1000, startDate: Date().adding(days: -35), deadline: Date().adding(days: 170)),
         GoalModel(name: "Reading", goalIcon: Icons.gym.rawValue, goalColor: Colors.brandTurquoise.rawValue, desiredResult: 1000, startDate: Date().adding(days: -35), deadline: Date().adding(days: 200)),

@@ -12,6 +12,13 @@ enum ViewType: String {
     case icons = "Icons"
 }
 
+struct PopOverContent: Identifiable {
+    var id = UUID()
+    var content: String
+    var isSelected = false
+    var index = Int.random(in: 0...Colors.allCases.count - 1 )
+}
+
 struct IconsAndColorsView: View {
     @ObservedObject var viewModel: GoalViewModel
     
@@ -31,17 +38,17 @@ struct IconsAndColorsView: View {
         switch viewType {
         case .colors:
             itemHeight = 25
-            presentedItems = Colors.allCases.map { $0.rawValue == vm.selectedColor ? PopOverContent(content: $0.rawValue, isSelected: true) : PopOverContent(content: $0.rawValue) }
+            presentedItems = Colors.allCases.map { $0.color == vm.selectedColor ? PopOverContent(content: $0.color, isSelected: true) : PopOverContent(content: $0.color) }
             
         case .icons:
             itemHeight = 35
-            presentedItems = Icons.allCases.map { $0.rawValue == vm.selectedIcon ? PopOverContent(content: $0.rawValue, isSelected: true) : PopOverContent(content: $0.rawValue) }
+            presentedItems = Icons.allCases.map { $0.icon == vm.selectedIcon ? PopOverContent(content: $0.icon, isSelected: true) : PopOverContent(content: $0.icon) }
         }
     }
     
     var body: some View {
         VStack {
-            Spacer(minLength: viewType == .colors ? screenSize * 0.3 : screenSize * 0.2 )
+            Spacer(minLength: viewType == .colors ? screenSize * 0.4 : screenSize * 0.3 )
             VStack {
                 Text(viewType.rawValue)
                 ScrollView {
@@ -49,10 +56,7 @@ struct IconsAndColorsView: View {
                         ForEach(presentedItems) { item in
                             
                             Image(viewType == .colors ? "circle" : item.content)
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: itemHeight, height: itemHeight)
+                                .iconStyle(with: itemHeight)
                                 .padding()
                                 .foregroundColor(color(for: item))
                                 .background(item.isSelected ? Color(.tertiarySystemFill) : Color(.secondarySystemBackground))
@@ -70,8 +74,10 @@ struct IconsAndColorsView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture(perform: dismissView)
-        .transition(.move(edge: .bottom).combined(with: .opacity))
-        .animation(.easeInOut)
+        .transition(AnyTransition.move(edge: .bottom) )
+
+//        .transition(.move(edge: .bottom).combined(with: .opacity))
+        .animation(.easeInOut(duration: 0.7))
         .zIndex(2)
     }
     
@@ -93,7 +99,7 @@ struct IconsAndColorsView: View {
         case .colors:
             return Color(item.content)
         case .icons:
-            return Color(Colors.allCases[item.index].rawValue)
+            return Color(Colors.allCases[item.index].color)
         }
     }
     
@@ -109,9 +115,17 @@ struct IconsAndColorsView_Previews: PreviewProvider {
     }
 }
 
-struct PopOverContent: Identifiable {
-    var id = UUID()
-    var content: String
-    var isSelected = false
-    var index = Int.random(in: 0...Colors.allCases.count - 1 )
+
+struct FullScreenBlackTransparencyView: View {
+    
+    var body: some View {
+        Color(.black)
+            .ignoresSafeArea()
+            .opacity(0.9)
+            .transition(AnyTransition.opacity.animation(.easeOut(duration: 0.5)))
+//            .transition(.opacity)
+//            .animation(.easeInOut)
+            .zIndex(1)
+            .accessibilityHidden(true)
+    }
 }

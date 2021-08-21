@@ -17,6 +17,7 @@ extension Date {
         case year = "y"
     }
     
+    
     func toString(_ format: DateFormat = .stepper) -> String {
 
         let dateFormatter = DateFormatter()
@@ -29,21 +30,26 @@ extension Date {
         return str
     }
     
+    
     func days(from beginning: Date) -> Int {
         Calendar.current.dateComponents([.day], from: beginning, to: self).day!
     }
+    
     
     func adding(days: Int) -> Date {
         Calendar.current.date(byAdding: .day, value: days, to: self)!
     }
     
+    
     func adding(weeks: Int) -> Date {
         Calendar.current.date(byAdding: .weekOfYear, value: weeks, to: self)!
     }
     
+    
     func isDateThisYear(_ date: Date) -> Bool {
         date.toString(.year) == self.toString(.year)
     }
+    
     
     var startOfWeek: Date {
         if let date = Calendar.current.date(from: Calendar.current.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) {
@@ -53,5 +59,28 @@ extension Date {
         }
         print("Error date")
         return Date()
+    }
+    
+    
+    func year(using calendar: Calendar = .current) -> Int {
+        calendar.component(.year, from: self)
+    }
+    
+    
+    func month(using calendar: Calendar = .current) -> Int {
+        calendar.component(.month, from: self)
+    }
+    
+    
+    func datesOfMoths() -> [Date] {
+        let year = self.year()
+        let month = self.month()
+        let currentTime = Calendar.current.component(.hour, from: self)
+        let range = Calendar.current.range(of: .day, in: .month, for: self)!
+        let dates = range.compactMap { day -> Date? in
+            let date = DateComponents(calendar: .current, timeZone: .current, year: year, month: month, day: day, hour: currentTime)
+            return Calendar.current.date(from: date)
+        }
+        return dates
     }
 }

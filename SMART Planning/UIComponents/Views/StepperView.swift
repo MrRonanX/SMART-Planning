@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProgressView: View {
+struct StepperView: View {
     
     var numberOfSteps: Int
     var topText: [Text]
@@ -88,6 +88,6 @@ struct GoalIndicator: View {
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView(numberOfSteps: 7, topText: Array(repeating: Text("Sep, 7"), count: 7), completionStage: Array(repeating: true, count: 7), bottomText: Array(repeating: Text("3 kg"), count: 7), itemSpacing: .sevenSteps, itemColor: Colors.brandMagenta.rawValue)
+        StepperView(numberOfSteps: 7, topText: Array(repeating: Text("Sep, 7"), count: 7), completionStage: Array(repeating: true, count: 7), bottomText: Array(repeating: Text("3 kg"), count: 7), itemSpacing: .sevenSteps, itemColor: Colors.brandMagenta.rawValue)
     }
 }

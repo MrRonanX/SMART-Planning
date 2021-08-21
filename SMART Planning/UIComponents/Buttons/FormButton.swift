@@ -17,10 +17,7 @@ struct FormButton: View {
     var body: some View {
         HStack {
             Image(buttonType == .colors ? "circle" : viewModel.selectedIcon)
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .frame(width: iconSize, height: iconSize)
+                .iconStyle(with: iconSize)
                 .foregroundColor(Color(viewModel.selectedColor))
                 .padding()
                 .background(Color(.iconBackground))

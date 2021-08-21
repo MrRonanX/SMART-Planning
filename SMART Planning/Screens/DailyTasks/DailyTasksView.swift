@@ -82,10 +82,7 @@ struct TaskCellView: View {
             Spacer()
             
             Image(task.icon)
-                .renderingMode(.template)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 25, height: 25)
+                .iconStyle(with: 25)
                 .foregroundColor(Color(task.color))
                 .padding(.horizontal, 5)
             Text(task.date.toString(.list) == Date().toString(.list) ? "" : task.date.toString(.list))

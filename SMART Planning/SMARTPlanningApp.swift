@@ -17,8 +17,9 @@ struct SMARTPlanningApp: App {
 //            if !settings.goalIsSet {
 //                IntroView()
 //                    .environmentObject(settings)
+//                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
 //            } else {
-                PlanningTabView()
+                PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
 //            }
         }
     }

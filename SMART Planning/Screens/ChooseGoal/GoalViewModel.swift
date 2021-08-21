@@ -19,7 +19,7 @@ final class GoalViewModel: ObservableObject {
     @Published var selectedMetric       = "2"
     @Published var selectedUnit         = "pages"
     @Published var selectedAction       = "Read"
-    @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations", "pounds", "pictures", "courses", "lessons", "credits"]
+
     @Published var deadlineDate         = Date()
     @Published var days                 = Days.days
     
@@ -29,14 +29,16 @@ final class GoalViewModel: ObservableObject {
     
     @Published var convertedToSingulars = false
     @Published var isShowingPopOver     = false
+    @Published var isShowingDatePicker  = false
     @Published var selectedColor        = "brandBlue"
     @Published var selectedIcon         = "macbook"
     
     @Published var popOver: ViewType    = .colors
+    @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations", "pounds", "pictures", "courses", "lessons", "credits"]
     
     var measurementActions = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete", "Lose", "Make", "Draw", "Do", "Find"]
     
-    var targetTitle: String { isTargetEdited ? "Your target:" : selectedAction + " " + selectedMetric + " " + selectedUnit }
+    var targetTitle: String { isTargetEdited ?  selectedAction + " " + selectedMetric + " " + selectedUnit : "Your target:" }
     
     var deadlineTitle: String {
         let isToday = Calendar.current.isDateInToday(deadlineDate)
@@ -45,7 +47,7 @@ final class GoalViewModel: ObservableObject {
     }
     
     var dateRange: ClosedRange<Date> {
-        let now = Date()
+        let now = Date().adding(days: -1)
         let nextYear = now.adding(days: 365)
         let range = now ... nextYear
         return range

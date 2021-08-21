@@ -34,9 +34,11 @@ struct ChooseGoalView: View {
                         }
                 }
             }
+            //NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) { EmptyView() }
+                
         }
-        .sheet(isPresented: $viewModel.isShowingGoalView, onDismiss: pushMainScreen) { GoalView(viewModel: viewModel) }
         .padding()
+        .fullScreenCover(isPresented: $viewModel.isShowingGoalView) { GoalView(viewModel: viewModel) }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Goals")
         .toolbar {
@@ -71,19 +73,20 @@ struct GoalCreationModel: Identifiable {
     var image: String
     var unit: String
     var icon: String
+    var illustration: String
     
-    let randomColor = Colors.allCases.randomElement()?.rawValue ?? "brandBlue"
+    let randomColor = Colors.allCases.randomElement()?.color ?? "brandBlue"
     
     
-    static let premadeGoals = [GoalCreationModel(title: "Reading", action: "Read", image: "book", unit: "pages", icon: "book"),
-                               GoalCreationModel(title: "Getting Fit", action: "Train", image: "gym", unit: "times", icon: "gym"),
-                               GoalCreationModel(title: "Become Smarter", action: "Pass", image: "bookA", unit: "courses", icon: "bookA"),
-                               GoalCreationModel(title: "Gain Muscles", action: "Gain", image: "weightLift", unit: "kilograms", icon: "weightLift"),
-                               GoalCreationModel(title: "Lose Weight", action: "Lose", image: "dumbbell", unit: "kilograms", icon: "dumbbell"),
-                               GoalCreationModel(title: "Learn A Language", action: "Learn", image: "chats", unit: "lessons", icon: "chats"),
-                               GoalCreationModel(title: "Improve Your Art", action: "Paint", image: "paintBrush", unit: "pictures", icon: "paintBrush"),
-                               GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins"),
-                               GoalCreationModel(title: "Enlightment", action: "Do", image: "idea", unit: "mediations", icon: "idea"),
-                               GoalCreationModel(title: "Learn A New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat"),
-                               GoalCreationModel(title: "Set You Goal", action: "", image: "award", unit: "", icon: "graduationHat")]
+    static let premadeGoals = [GoalCreationModel(title: "Reading", action: "Read", image: "book", unit: "pages", icon: "book", illustration: Illustrations.reading.image),
+                               GoalCreationModel(title: "Getting Fit", action: "Train", image: "gym", unit: "times", icon: "gym", illustration: Illustrations.gettingFit.image),
+                               GoalCreationModel(title: "Become Smarter", action: "Pass", image: "bookA", unit: "courses", icon: "bookA", illustration: Illustrations.becomeSmarter.image),
+                               GoalCreationModel(title: "Gain Muscles", action: "Gain", image: "weightLift", unit: "kilograms", icon: "weightLift", illustration: Illustrations.gainMuscles.image),
+                               GoalCreationModel(title: "Lose Weight", action: "Lose", image: "dumbbell", unit: "kilograms", icon: "dumbbell", illustration: Illustrations.loseWeight.image),
+                               GoalCreationModel(title: "Learn A Language", action: "Learn", image: "chats", unit: "lessons", icon: "chats", illustration: Illustrations.learnLanguage.image),
+                               GoalCreationModel(title: "Improve Your Art", action: "Paint", image: "paintBrush", unit: "pictures", icon: "paintBrush", illustration: Illustrations.improveArt.image),
+                               GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins", illustration: Illustrations.saveMoney.image),
+                               GoalCreationModel(title: "Enlightenment", action: "Do", image: "idea", unit: "mediations", icon: "idea", illustration: Illustrations.enlightenment.image),
+                               GoalCreationModel(title: "Learn A New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learnNewSkill.image),
+                               GoalCreationModel(title: "Set You Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.setYourGoal.image)]
 }

@@ -14,12 +14,12 @@ struct GoalLabel: View {
     
     var body: some View {
         VStack {
-            Image(goal.image)
-                .renderingMode(.template)
+            Image(goal.illustration)
+                //.iconStyle(with: size / 7)
                 .resizable()
                 .scaledToFit()
-                .frame(width: size / 7)
-                .foregroundColor(Color(goal.randomColor))
+                .frame(width: size / 7, height: size / 7)
+                //.foregroundColor(Color(goal.randomColor))
                 .clipShape(Circle())
             
             Text(goal.title)
@@ -33,6 +33,6 @@ struct GoalLabel: View {
 
 struct GoalLabel_Previews: PreviewProvider {
     static var previews: some View {
-        GoalLabel(goal: GoalCreationModel(title: "Learn A New Skill", action: "Learn", image: "graduationHat", unit: "courses", icon: "graduationHat"), size: 375)
+        GoalLabel(goal: GoalCreationModel(title: "Learn A New Skill", action: "Learn", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learnNewSkill.image), size: 375)
     }
 }

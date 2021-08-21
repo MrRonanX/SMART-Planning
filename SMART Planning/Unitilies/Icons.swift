@@ -5,7 +5,7 @@
 //  Created by Roman Kavinskyi on 8/14/21.
 //
 
-import Foundation
+import SwiftUI
 
 enum Icons: String, CaseIterable {
     case briefcase = "briefcase"
@@ -45,4 +45,27 @@ enum Icons: String, CaseIterable {
     case eat = "eat"
     case communication = "communication"
     case cocktail = "cocktail"
+    
+    var icon: String {
+        self.rawValue
+    }
+}
+
+enum Illustrations: String {
+    case becomeSmarter = "becomeSmarter"
+    case enlightenment = "enlightenment"
+    case gainMuscles = "gainMuscles"
+    case gettingFit = "gettingFit"
+    case idea = "idea"
+    case improveArt = "improveArt"
+    case learnLanguage = "learnLanguage"
+    case learnNewSkill = "learnNewSkill"
+    case loseWeight = "loseWeight"
+    case reading = "reading"
+    case saveMoney = "saveMoney"
+    case setYourGoal = "setYourGoal"
+    
+    var image: String {
+        self.rawValue
+    }
 }
