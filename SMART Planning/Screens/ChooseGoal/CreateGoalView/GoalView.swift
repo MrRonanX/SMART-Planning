@@ -13,59 +13,56 @@ struct GoalView: View {
     @ObservedObject var viewModel: GoalViewModel
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geo in
-                ZStack {
-                    FormWithoutHeader {
-                        
-                        Section {
-                            TextField("Your Goal", text:  $viewModel.goalTitle, onCommit: dismissKeyboard)
-                            TextEditor(text: $viewModel.description)
-                                .frame(height: 100, alignment: .top)
-                                .foregroundColor(viewModel.description == "Description (Optional)" ? .gray : Color(.label))
-                                .onAppear(perform: viewModel.addObservers)
-                        }
-                        
-                        HStack {
-                            FormButton(buttonType: .icons, tapAction: viewModel.iconsTapped)
-                            FormButton(buttonType: .colors, tapAction: viewModel.colorsTapped)
-                        }
-                        .padding(.leading, -20)
-                        .listRowBackground(Color(.rowBackground))
-                        
-                        Section {
-                            ExpandableCell()
-                            Text(viewModel.targetTitle)
-                            GoalTarget(size: geo.size)
-                            Text(viewModel.deadlineTitle)
-                            DatePicker("Deadline", selection: $viewModel.deadlineDate, in: viewModel.dateRange, displayedComponents: .date)
-                                .datePickerStyle(GraphicalDatePickerStyle())
-                        }
-                        
-                        
-                    }
-                    .zIndex(0)
-                    .environmentObject(viewModel)
+        GeometryReader { geo in
+            ZStack {
+                FormWithoutHeader {
                     
-                    if viewModel.isShowingPopOver {
-                        FullScreenBlackTransparencyView()
-                        IconsAndColorsView(viewModel, size: geo.size)
+                    Section {
+                        TextField("Your Goal", text:  $viewModel.goalTitle, onCommit: dismissKeyboard)
+                        TextEditor(text: $viewModel.description)
+                            .frame(height: 100, alignment: .top)
+                            .foregroundColor(viewModel.description == "Description (Optional)" ? .gray : Color(.label))
+                            .onAppear(perform: viewModel.addObservers)
+                    }
+                    
+                    HStack {
+                        FormButton(buttonType: .icons, tapAction: viewModel.iconsTapped)
+                        FormButton(buttonType: .colors, tapAction: viewModel.colorsTapped)
+                    }
+                    .padding(.leading, -20)
+                    .listRowBackground(Color(.rowBackground))
+                    
+                    Section {
+                        DaySelectionCell()
+                        Text(viewModel.targetTitle)
+                        GoalTargetCell(size: geo.size)
+                    }
+                    
+                    Section(header: Text("")) {
+                        NotificationCell()
+                        Text(viewModel.deadlineTitle)
+                        DatePicker("Deadline", selection: $viewModel.deadlineDate, in: viewModel.dateRange, displayedComponents: .date)
+                            .datePickerStyle(GraphicalDatePickerStyle())
+                            .accentColor(Color(viewModel.selectedColor))
                     }
                 }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarTitle(viewModel.goalTitle)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: saveGoal) { Text("Save") }
-                }
+
+                .zIndex(0)
+                .environmentObject(viewModel)
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: dismissView) { Text("Back") }
+                if viewModel.isShowingPopOver {
+                    FullScreenBlackTransparencyView()
+                    IconsAndColorsView(viewModel, size: geo.size)
                 }
-                
             }
-        }.accentColor(Color(viewModel.selectedColor))
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle(viewModel.goalTitle)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: saveGoal) { Text("Save") }
+            }
+        }
     }
     
     
@@ -111,3 +108,5 @@ struct GoalView_Previews: PreviewProvider {
         GoalView(viewModel: GoalViewModel())
     }
 }
+
+

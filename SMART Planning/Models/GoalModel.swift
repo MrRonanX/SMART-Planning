@@ -27,20 +27,22 @@ extension Task: Comparable {
 }
 
 
-struct GoalModel: Identifiable {
-    var id              = UUID()
-    var name            : String
-    var daily           = true
-    var daysOfPractice  = 6
-    var baseProgress    = 0.0
-    var practiceAction  = "Read"
-    var goalIcon        : String
-    var goalColor       : String
-    var desiredResult   : Double
-    var measurableUnits = "Pages"
-    var trainingDays    = [1, 2, 3, 4, 5, 7]
-    var startDate       : Date
-    var deadline        : Date
+struct GoalModel: Identifiable, Codable {
+    var id                  = UUID()
+    var name                : String
+    var daysOfPractice      = 6
+    var baseProgress        = 0.0
+    var practiceAction      = "Read"
+    var goalIcon            : String
+    var goalColor           : String
+    var desiredResult       : Double
+    var measurableUnits     = "Pages"
+    var trainingDays        = [1, 2, 3, 4, 5, 7]
+    var startDate           : Date
+    var deadline            : Date
+    var notificationHour    = 20
+    var notificationMinute  = 10
+    
     
     var complementaryColor: String {
         goalColor + "Complementary"
@@ -89,7 +91,7 @@ struct GoalModel: Identifiable {
     }
 }
 
-// MARK:  Stepper View
+// MARK: -  Stepper View
 extension GoalModel {
     var daysPerStep: Double {
         numberOfDays / Double(numberOfSteps - 1)
@@ -147,13 +149,10 @@ extension GoalModel {
         for _ in 1...numberOfSteps {
             let stepDate = startDate.adding(days: Int(time))
             let todayDate = Date()
-            if todayDate > stepDate {
-                localIndicators.append(true)
-            } else {
-                localIndicators.append(false)
-            }
+            todayDate > stepDate ? localIndicators.append(true) : localIndicators.append(false)
             time += daysPerStep
         }
+        
         return localIndicators
     }
 
@@ -172,6 +171,11 @@ extension GoalModel {
         }
     }
     
+    
+}
+    
+ 
+extension GoalModel {
     func weeklyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
         let sunday = Date().startOfWeek
         let week = (0...6).map { sunday.adding(days: $0)}

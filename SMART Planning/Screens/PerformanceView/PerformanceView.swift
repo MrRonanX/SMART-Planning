@@ -14,7 +14,7 @@ struct PerformanceView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                SegmentedControl(tab: $viewModel.currentTab)
+                SegmentedControl(tab: $viewModel.currentTab, tabs: [.weekly, .monthly, .total])
                 if viewModel.currentTab != .total {
                 HStack {
                     Text(viewModel.performanceRangeTitle)

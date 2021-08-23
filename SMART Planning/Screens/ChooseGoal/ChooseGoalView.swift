@@ -15,10 +15,12 @@ struct ChooseGoalView: View {
     @Binding var launchedByMainScreen: Bool
  
     var body: some View {
+        NavigationView {
         GeometryReader { geo in
             body(for: geo.size.width)
             Spacer()
         }
+        }.accentColor(Color(viewModel.selectedColor))
     }
     
     
@@ -34,12 +36,9 @@ struct ChooseGoalView: View {
                         }
                 }
             }
-            //NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) { EmptyView() }
-                
+            NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) { EmptyView() }
         }
         .padding()
-        .fullScreenCover(isPresented: $viewModel.isShowingGoalView) { GoalView(viewModel: viewModel) }
-        .navigationBarBackButtonHidden(true)
         .navigationTitle("Goals")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

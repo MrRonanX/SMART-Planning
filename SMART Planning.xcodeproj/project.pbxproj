@@ -34,7 +34,7 @@
 		346407FA26C5409B00B8506A /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F626C5409B00B8506A /* Goal+CoreDataProperties.swift */; };
 		346407FB26C5409B00B8506A /* TrainingDays+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F726C5409B00B8506A /* TrainingDays+CoreDataClass.swift */; };
 		346407FC26C5409B00B8506A /* TrainingDays+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F826C5409B00B8506A /* TrainingDays+CoreDataProperties.swift */; };
-		346407FF26C5432100B8506A /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407FE26C5432100B8506A /* Persistance.swift */; };
+		346407FF26C5432100B8506A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407FE26C5432100B8506A /* PersistenceManager.swift */; };
 		3464080126C6811500B8506A /* Color + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080026C6811500B8506A /* Color + ext.swift */; };
 		3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080226C6836400B8506A /* VerticalAlignment.swift */; };
 		3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080426C6869C00B8506A /* GoalViewModel.swift */; };
@@ -53,8 +53,10 @@
 		34B9274726D1513D00020CD2 /* PerformanceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9274626D1513D00020CD2 /* PerformanceCellViewModel.swift */; };
 		34B9274B26D151B600020CD2 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9274A26D151B600020CD2 /* SegmentedControl.swift */; };
 		34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9274C26D151EC00020CD2 /* TabButton.swift */; };
-		34B9274F26D1710D00020CD2 /* ExpandableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9274E26D1710D00020CD2 /* ExpandableCell.swift */; };
+		34B9274F26D1710D00020CD2 /* DaySelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9274E26D1710D00020CD2 /* DaySelectionCell.swift */; };
 		34B9275226D1715F00020CD2 /* GoalTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275126D1715F00020CD2 /* GoalTargetCell.swift */; };
+		34B9275426D2189300020CD2 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275326D2189300020CD2 /* NotificationCell.swift */; };
+		34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275726D22C0400020CD2 /* NotificationManager.swift */; };
 		34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */; };
 		E28260BBD401064547E5A562 /* Pods_SMART_Planning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */; };
 /* End PBXBuildFile section */
@@ -90,7 +92,7 @@
 		346407F626C5409B00B8506A /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Goal+CoreDataProperties.swift"; path = "SMART Planning/CoreDataModels/Goal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		346407F726C5409B00B8506A /* TrainingDays+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TrainingDays+CoreDataClass.swift"; path = "SMART Planning/CoreDataModels/TrainingDays+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		346407F826C5409B00B8506A /* TrainingDays+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TrainingDays+CoreDataProperties.swift"; path = "SMART Planning/CoreDataModels/TrainingDays+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		346407FE26C5432100B8506A /* Persistance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		346407FE26C5432100B8506A /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		3464080026C6811500B8506A /* Color + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + ext.swift"; sourceTree = "<group>"; };
 		3464080226C6836400B8506A /* VerticalAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignment.swift; sourceTree = "<group>"; };
 		3464080426C6869C00B8506A /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
@@ -109,8 +111,10 @@
 		34B9274626D1513D00020CD2 /* PerformanceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceCellViewModel.swift; sourceTree = "<group>"; };
 		34B9274A26D151B600020CD2 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		34B9274C26D151EC00020CD2 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
-		34B9274E26D1710D00020CD2 /* ExpandableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCell.swift; sourceTree = "<group>"; };
+		34B9274E26D1710D00020CD2 /* DaySelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySelectionCell.swift; sourceTree = "<group>"; };
 		34B9275126D1715F00020CD2 /* GoalTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTargetCell.swift; sourceTree = "<group>"; };
+		34B9275326D2189300020CD2 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		34B9275726D22C0400020CD2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksView.swift; sourceTree = "<group>"; };
 		9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.release.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.release.xcconfig"; sourceTree = "<group>"; };
 		F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.debug.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.debug.xcconfig"; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 		341EEE7726650F18001EFD32 /* SMART Planning */ = {
 			isa = PBXGroup;
 			children = (
+				34B9275526D22BF000020CD2 /* Managers */,
 				341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */,
 				3464080F26C6E71800B8506A /* Unitilies */,
 				3464080726C688C600B8506A /* Models */,
@@ -264,7 +269,6 @@
 				341EEE7E26650F19001EFD32 /* Preview Content */,
 				341EEE872665124D001EFD32 /* MockData.swift */,
 				346407F226C53C1C00B8506A /* Goal.xcdatamodeld */,
-				346407FE26C5432100B8506A /* Persistance.swift */,
 			);
 			path = "SMART Planning";
 			sourceTree = "<group>";
@@ -340,8 +344,9 @@
 			isa = PBXGroup;
 			children = (
 				34B9275026D1712000020CD2 /* PerformanceCell */,
-				34B9274E26D1710D00020CD2 /* ExpandableCell.swift */,
+				34B9274E26D1710D00020CD2 /* DaySelectionCell.swift */,
 				34B9275126D1715F00020CD2 /* GoalTargetCell.swift */,
+				34B9275326D2189300020CD2 /* NotificationCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -353,6 +358,15 @@
 				34B9274626D1513D00020CD2 /* PerformanceCellViewModel.swift */,
 			);
 			path = PerformanceCell;
+			sourceTree = "<group>";
+		};
+		34B9275526D22BF000020CD2 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				34B9275726D22C0400020CD2 /* NotificationManager.swift */,
+				346407FE26C5432100B8506A /* PersistenceManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		34D2E7F7269463A70021F7D5 /* DailyTasks */ = {
@@ -496,11 +510,11 @@
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
 				346407F926C5409B00B8506A /* Goal+CoreDataClass.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
-				34B9274F26D1710D00020CD2 /* ExpandableCell.swift in Sources */,
+				34B9274F26D1710D00020CD2 /* DaySelectionCell.swift in Sources */,
 				34079AB1268740E600F9AC7F /* AddEventsSheet.swift in Sources */,
 				34B9274526D150F300020CD2 /* PerformanceViewCell.swift in Sources */,
 				34B9274026D1013900020CD2 /* Image + ext.swift in Sources */,
-				346407FF26C5432100B8506A /* Persistance.swift in Sources */,
+				346407FF26C5432100B8506A /* PersistenceManager.swift in Sources */,
 				341EEE882665124D001EFD32 /* MockData.swift in Sources */,
 				341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */,
 				34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */,
@@ -515,11 +529,13 @@
 				3464080B26C68BEF00B8506A /* View + ext.swift in Sources */,
 				34079AC52689B19200F9AC7F /* GoalView.swift in Sources */,
 				3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */,
+				34B9275426D2189300020CD2 /* NotificationCell.swift in Sources */,
 				34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */,
 				346407ED26C13F7100B8506A /* StepperView.swift in Sources */,
 				3464080126C6811500B8506A /* Color + ext.swift in Sources */,
 				3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */,
 				3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */,
+				34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */,
 				34079AD4268AE8A800F9AC7F /* StepperImageView.swift in Sources */,
 				341EEE7926650F18001EFD32 /* SMARTPlanningApp.swift in Sources */,
 			);
@@ -663,7 +679,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.kavinskyi.SMART-Planning";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -686,7 +702,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "co.kavinskyi.SMART-Planning";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

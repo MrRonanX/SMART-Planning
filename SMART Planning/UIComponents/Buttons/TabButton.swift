@@ -9,9 +9,9 @@ import SwiftUI
 
 struct TabButton: View {
     
-    var title: PerformanceViewType
+    var title: SegmentedControlType
     var animation: Namespace.ID
-    @Binding var currentTab: PerformanceViewType
+    @Binding var currentTab: SegmentedControlType
     
     var body: some View {
         

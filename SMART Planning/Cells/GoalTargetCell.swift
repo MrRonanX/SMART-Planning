@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GoalTarget: View {
+struct GoalTargetCell: View {
     @EnvironmentObject var viewModel: GoalViewModel
     var size: CGSize
     
@@ -18,7 +18,8 @@ struct GoalTarget: View {
                     Text("\($0)")
                 }
             }
-            .frame(width: size.width / 3 - 40)
+            .frame(width: size.width / 3 - 30)
+            .colorMultiply(Color(viewModel.selectedColor))
             .clipped()
             .onChange(of: viewModel.selectedAction) { _ in viewModel.isTargetEdited = true}
             
@@ -32,7 +33,8 @@ struct GoalTarget: View {
                     Text("\($0)")
                 }
             }
-            .frame(width: size.width / 3 - 40)
+            .frame(width: size.width / 3 - 30)
+            .colorMultiply(Color(viewModel.selectedColor))
             .clipped()
             .onChange(of: viewModel.selectedUnit) { _ in viewModel.isTargetEdited = true}
             
@@ -53,6 +55,6 @@ struct GoalTarget: View {
 
 struct GoalTargetCell_Previews: PreviewProvider {
     static var previews: some View {
-        GoalTarget(size: UIScreen.main.bounds.size).environmentObject(GoalViewModel())
+        GoalTargetCell(size: UIScreen.main.bounds.size).environmentObject(GoalViewModel())
     }
 }

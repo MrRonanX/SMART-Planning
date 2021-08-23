@@ -73,4 +73,19 @@ extension UIColor {
             }
         }
     }
+    
+    static var formTabButtonColor: UIColor {
+        return UIColor { (traitCollection) -> UIColor in
+            switch traitCollection.userInterfaceStyle {
+            case .unspecified:
+                return .systemGray6
+            case .light:
+                return .systemGray6
+            case .dark:
+                return .systemGray3
+            @unknown default:
+                return .systemGray6
+            }
+        }
+    }
 }

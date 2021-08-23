@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExpandableCell: View {
+struct DaySelectionCell: View {
     @EnvironmentObject var viewModel: GoalViewModel
     @State var isExpanded = false
     @State var rotationDegrees = 0.0
@@ -32,7 +32,7 @@ struct ExpandableCell: View {
         }
         .contentShape(Rectangle())
         .onTapGesture { withAnimation { isExpanded.toggle() } }
-        .animation(.default)
+        .animation(.linear(duration: 0.3))
         .onChange(of: isExpanded, perform: { _ in rotationDegrees += 180 })
         
         if isExpanded {
@@ -62,7 +62,7 @@ struct DayCircle: View {
     
     var body: some View {
         Circle()
-            .frame(width: 34, height: 34)
+            .frame(width: 40, height: 40)
             .foregroundColor(day.isSelected ? Color(viewModel.selectedColor) : .secondary)
             .overlay(
                 Text(day.title)
@@ -74,6 +74,6 @@ struct DayCircle: View {
 
 struct ExpandableCell_Previews: PreviewProvider {
     static var previews: some View {
-        ExpandableCell()
+        DaySelectionCell().environmentObject(GoalViewModel())
     }
 }

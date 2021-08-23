@@ -7,20 +7,11 @@
 
 import Foundation
 
-enum PerformanceViewType: String {
-    case weekly = "Weekly"
-    case monthly = "Monthly"
-    case total = "Total"
-    
-    var type: String {
-        self.rawValue
-    }
-}
 
 final class PerformanceViewModel: ObservableObject {
     
     @Published var goals = MocGoals.goals
-    @Published var currentTab: PerformanceViewType = .weekly
+    @Published var currentTab: SegmentedControlType = .weekly
     
     var performanceRangeTitle: String {
         switch currentTab {
@@ -29,7 +20,7 @@ final class PerformanceViewModel: ObservableObject {
         case .monthly:
             return monthRangeTitle
         case .total:
-            return ""
+          return ""
         }
     }
     

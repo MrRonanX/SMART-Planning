@@ -71,6 +71,19 @@ extension Date {
         calendar.component(.month, from: self)
     }
     
+    func day(using calendar: Calendar = .current) -> Int {
+        calendar.component(.day, from: self)
+    }
+    
+    func hour(using calendar: Calendar = .current) -> Int {
+        calendar.component(.hour, from: self)
+    }
+    
+    func minute(using calendar: Calendar = .current) -> Int {
+        calendar.component(.minute, from: self)
+    }
+
+    
     
     func datesOfMoths() -> [Date] {
         let year = self.year()

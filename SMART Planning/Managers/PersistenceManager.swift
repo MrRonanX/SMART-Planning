@@ -7,8 +7,8 @@
 
 import CoreData
 
-struct PersistenceController {
-    static let shared = PersistenceController()
+struct PersistenceManager {
+    static let shared = PersistenceManager()
 
     let container: NSPersistentContainer
     
@@ -40,6 +40,11 @@ struct PersistenceController {
             fatalError("Error Fetching Users")
         }
     }
+    
+//    func getSpecificGoal(goal: GoalModel) -> Goal {
+//        let request: NSFetchRequest<Goal> = Goal.fetchRequest()
+//
+//    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Goal")

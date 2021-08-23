@@ -34,9 +34,9 @@ struct TimelineView: View {
                     
                     Spacer()
                     
-                    NavigationLink(destination: ChooseGoalView (launchedByMainScreen: $showAddGoalsView), isActive: $showAddGoalsView) { EmptyView()}
+                    //NavigationLink(destination: ChooseGoalView (launchedByMainScreen: $showAddGoalsView), isActive: $showAddGoalsView) { EmptyView()}
                 }.onAppear(perform: loadGoals)
-                
+                .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }
                 .navigationTitle("Goal Timelines")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -50,6 +50,14 @@ struct TimelineView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    private func setNotifications() {
+        let notificationManager = NotificationManager.shared
+        notificationManager.notifications = goals
+        notificationManager.schedule()
+        notificationManager.listScheduledNotifications()
+            
     }
     
     func loadGoals() {

@@ -17,8 +17,12 @@ extension Goal {
     }
 
     @NSManaged public var id: UUID?
+    @NSManaged public var action: String?
+    @NSManaged public var color: String?
+    @NSManaged public var icon: String?
+    @NSManaged public var notificationHour: Int16
+    @NSManaged public var notificationMinute: Int16
     @NSManaged public var title: String?
-    @NSManaged public var daily: Bool
     @NSManaged public var daysOfPracticeAWeek: Int16
     @NSManaged public var desiredResult: Double
     @NSManaged public var baseProgress: Double
@@ -30,6 +34,26 @@ extension Goal {
     
     var wrappedID: UUID {
         id ?? UUID()
+    }
+    
+    var wrappedNotificationHour: Int {
+        Int(notificationHour)
+    }
+    
+    var wrappedNotificationMinute: Int {
+        Int(notificationMinute)
+    }
+    
+    var wrappedAction: String {
+        action ?? "Unknown action"
+    }
+    
+    var wrappedColor: String {
+        color ?? "brandBlue"
+    }
+    
+    var wrappedIcon: String {
+        icon ?? "book"
     }
     
     var wrappedTitle: String {

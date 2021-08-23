@@ -16,7 +16,7 @@ final class PerformanceCellViewModel: ObservableObject {
     @Published var finalProgress = 1.0
     @Published var numberOfCompletedTasks = 1
     @Published var numberOfTasks = 0
-    @Published var viewType: PerformanceViewType = .weekly {
+    @Published var viewType: SegmentedControlType = .weekly {
         didSet {
             switch viewType {
             case .weekly:
@@ -67,7 +67,7 @@ final class PerformanceCellViewModel: ObservableObject {
     }
     
     
-    init(_ goal: GoalModel, viewType: PerformanceViewType) {
+    init(_ goal: GoalModel, viewType: SegmentedControlType) {
         self.goal = goal
         self.viewType = viewType
     }
