@@ -57,6 +57,8 @@
 		34B9275226D1715F00020CD2 /* GoalTargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275126D1715F00020CD2 /* GoalTargetCell.swift */; };
 		34B9275426D2189300020CD2 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275326D2189300020CD2 /* NotificationCell.swift */; };
 		34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275726D22C0400020CD2 /* NotificationManager.swift */; };
+		34B9275B26D3CDF700020CD2 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275926D3CDF700020CD2 /* Exercise+CoreDataClass.swift */; };
+		34B9275C26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275A26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift */; };
 		34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */; };
 		E28260BBD401064547E5A562 /* Pods_SMART_Planning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */; };
 /* End PBXBuildFile section */
@@ -115,6 +117,8 @@
 		34B9275126D1715F00020CD2 /* GoalTargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalTargetCell.swift; sourceTree = "<group>"; };
 		34B9275326D2189300020CD2 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		34B9275726D22C0400020CD2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		34B9275926D3CDF700020CD2 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		34B9275A26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksView.swift; sourceTree = "<group>"; };
 		9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.release.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.release.xcconfig"; sourceTree = "<group>"; };
 		F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.debug.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.debug.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 		346407FD26C540A000B8506A /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				34B9275926D3CDF700020CD2 /* Exercise+CoreDataClass.swift */,
+				34B9275A26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift */,
 				346407F526C5409B00B8506A /* Goal+CoreDataClass.swift */,
 				346407F626C5409B00B8506A /* Goal+CoreDataProperties.swift */,
 				346407F726C5409B00B8506A /* TrainingDays+CoreDataClass.swift */,
@@ -491,9 +497,11 @@
 			files = (
 				3464081926C7C42000B8506A /* FormButton.swift in Sources */,
 				34B9274726D1513D00020CD2 /* PerformanceCellViewModel.swift in Sources */,
+				34B9275C26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift in Sources */,
 				34B9274B26D151B600020CD2 /* SegmentedControl.swift in Sources */,
 				3464081B26C7C49000B8506A /* Colors.swift in Sources */,
 				34B9273E26D0EC3F00020CD2 /* UIApplication + ext.swift in Sources */,
+				34B9275B26D3CDF700020CD2 /* Exercise+CoreDataClass.swift in Sources */,
 				346407FC26C5409B00B8506A /* TrainingDays+CoreDataProperties.swift in Sources */,
 				3422486826CA63F3006CFC05 /* RectangleProgressView.swift in Sources */,
 				346407FB26C5409B00B8506A /* TrainingDays+CoreDataClass.swift in Sources */,

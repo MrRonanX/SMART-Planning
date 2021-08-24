@@ -17,6 +17,7 @@ struct Task: Identifiable {
     var units               : String
     var color               : String
     var icon                : String
+    var parent              : UUID
     var isCompleted         = Bool.random()
 }
 
@@ -32,6 +33,7 @@ struct GoalModel: Identifiable, Codable {
     var name                : String
     var daysOfPractice      = 6
     var baseProgress        = 0.0
+    var currentProgress     = 0.0
     var practiceAction      = "Read"
     var goalIcon            : String
     var goalColor           : String
@@ -73,8 +75,22 @@ struct GoalModel: Identifiable, Codable {
         for _ in 0..<Int(numberOfDays) {
             for day in trainingDays {
                 if day == Calendar.current.component(.weekday, from: date) {
-                    let task = Task(date: date, action: practiceAction, trainingAmount: dailyGoal, resultBeforeTraining: currentProgress, resultAfterTraining: currentProgress + dailyGoal, units: measurableUnits, color: goalColor, icon: goalIcon)
-                    tasks.append(task)
+//                    let task = Exercise(context: PersistenceManager.shared.viewContext)
+//                    task.taskID = UUID()
+//                    task.date = date
+//                    task.action = practiceAction
+//                    task.trainingAmount = dailyGoal
+//                    task.resultBeforeTraining = currentProgress
+//                    task.resultAfterTraining = currentProgress + dailyGoal
+//                    task.units = measurableUnits
+//                    task.color = goalColor
+//                    task.icon = goalIcon
+//                    task.parent = id
+//                    task.isCompleted = false
+//                    task.goal = self
+                    
+//                    let task = Task(date: date, action: practiceAction, trainingAmount: dailyGoal, resultBeforeTraining: currentProgress, resultAfterTraining: currentProgress + dailyGoal, units: measurableUnits, color: goalColor, icon: goalIcon, parent: id)
+//                    tasks.append(task)
                     currentProgress += dailyGoal
                     break
                 }

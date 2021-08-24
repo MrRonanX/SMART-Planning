@@ -16,6 +16,7 @@ final class AppsViewModel: ObservableObject {
             name                : $0.wrappedTitle,
             daysOfPractice      : $0.wrappedDaysOfPractice,
             baseProgress        : $0.baseProgress,
+            currentProgress     : $0.currentProgress,
             practiceAction      : $0.wrappedAction,
             goalIcon            : $0.wrappedIcon,
             goalColor           : $0.wrappedColor,

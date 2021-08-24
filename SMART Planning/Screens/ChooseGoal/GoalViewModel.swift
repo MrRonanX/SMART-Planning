@@ -121,6 +121,7 @@ final class GoalViewModel: ObservableObject {
         goal.daysOfPracticeAWeek    = Int16(isDaily.count)
         goal.startDate              = Date()
         goal.deadline               = deadlineDate
+        goal.currentProgress        = 0.0
         
         for day in isDaily {
             let trainingDay         = TrainingDays(context: PersistenceManager.shared.viewContext)
