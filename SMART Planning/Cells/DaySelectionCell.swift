@@ -62,7 +62,7 @@ struct DayCircle: View {
     
     var body: some View {
         Circle()
-            .frame(width: 40, height: 40)
+            .frame(width: 35, height: 35)
             .foregroundColor(day.isSelected ? Color(viewModel.selectedColor) : .secondary)
             .overlay(
                 Text(day.title)

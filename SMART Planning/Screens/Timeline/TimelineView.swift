@@ -8,34 +8,34 @@
 import SwiftUI
 
 struct TimelineView: View {
+    @EnvironmentObject var brain: GoalsManager
     
-    @State var goals: [GoalModel] = []
     @State var showAddGoalsView = false
     
     var body: some View {
         NavigationView {
-            ScrollViewIfNeeded(numberOfGoals: goals.count) {
+            ScrollViewIfNeeded(numberOfGoals: brain.goals.count) {
                 VStack(alignment: .leading, spacing: 10) {
-                    ForEach(goals) { goal in
+                    ForEach(brain.goals) { goalModel in
                         HStack {
-                            Image(goal.goalIcon)
+                            Image(goalModel.goal.wrappedIcon)
                                 .iconStyle(with: 30)
-                                .foregroundColor(Color(goal.goalColor))
+                                .foregroundColor(Color(goalModel.goal.wrappedColor))
 
-                            Text(goal.name)
+                            Text(goalModel.goal.wrappedTitle)
                                 .font(.title3)
                                 .bold()
                         }
                         
-                        StepperView(numberOfSteps: goal.numberOfSteps, topText: goal.dateText, completionStage: goal.indicators, bottomText: goal.goalText, itemSpacing: goal.spacing, itemColor: goal.goalColor)
+                        StepperView(numberOfSteps: goalModel.numberOfSteps, topText: goalModel.dateText, completionStage: goalModel.indicators, bottomText: goalModel.goalText, itemSpacing: goalModel.spacing, itemColor: goalModel.goal.wrappedColor)
                             .padding(.bottom)
                     }
-                    .padding(.horizontal)
+                    
                     
                     Spacer()
-                    
-                    //NavigationLink(destination: ChooseGoalView (launchedByMainScreen: $showAddGoalsView), isActive: $showAddGoalsView) { EmptyView()}
-                }.onAppear(perform: loadGoals)
+                }
+                .padding(.horizontal)
+                .onAppear(perform: setNotifications)
                 .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }
                 .navigationTitle("Goal Timelines")
                 .toolbar {
@@ -53,8 +53,9 @@ struct TimelineView: View {
     }
     
     private func setNotifications() {
+        brain.loadData()
         let notificationManager = NotificationManager.shared
-        notificationManager.notifications = goals
+        notificationManager.notifications = brain.createNotificationObjects()
         notificationManager.schedule()
         notificationManager.listScheduledNotifications()
             
@@ -63,7 +64,7 @@ struct TimelineView: View {
     func loadGoals() {
         //        goals = PersistenceController.shared.getAllGoals().map { GoalModel(id: $0.wrappedID, name: $0.wrappedTitle, daily: $0.daily, daysOfPractice: $0.wrappedDaysOfPractice, baseProgress: $0.baseProgress, desiredResult: $0.desiredResult, mesurableUnits: $0.wrappedUnits, trainingDays: $0.wrappedTrainingDays, startDate: $0.wrappedStartDate , deadline: $0.wrappedDeadline)}
         
-        goals = MocGoals.goals
+        brain.loadData()
     }
 }
 

@@ -8,36 +8,42 @@
 import SwiftUI
 
 final class DailyTasksViewModel: ObservableObject {
-    @Published var tasks : [Task] = []
-    
-    var todayTasks: [Task] {
-        tasks.filter { Calendar.current.isDateInToday($0.date) }
+    @Published var id = UUID()
+    @Published var todayTasks: [Exercise] = []
+    @Published var weekTasks: [Exercise] = []
+    @Published var tasks: [Exercise] = [] {
+        willSet {
+            todayTasks = newValue.filter { Calendar.current.isDateInToday($0.wrappedDate) }
+            weekTasks = newValue.filter { $0.wrappedDate.midday() > Date().midday() }.filter { $0.wrappedDate < Date().adding(days: 7) }
+        }
     }
     
-    var weekTasks: [Task] {
-        tasks.filter { $0.date > Date() }.filter { $0.date < Date().adding(days: 7) }
-    }
-    
-    init () {
-        for goal in MocGoals.goals {
-            tasks.append(contentsOf: goal.tasks)
+    func taskCompleted(_ task: Exercise) {
+        let amount = task.trainingAmount
+        task.isCompleted.toggle()
+        
+        switch task.isCompleted {
+        case true:
+            task.goal?.currentProgress += amount
+        case false:
+            task.goal?.currentProgress -= amount
         }
         
-        tasks.sort { $0.date < $1.date }
+        PersistenceManager.shared.save()
+        id = UUID()
+        
     }
     
-    func taskCompleted(task: Task) {
-        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
-            withAnimation {
-                tasks[index].isCompleted.toggle()
-            }
-        }
+    func loadTasks(from model: GoalsManager) {
+        tasks = model.goals.flatMap { $0.tasks }.sorted { $0.wrappedDate < $1.wrappedDate }
     }
 }
 
 
 struct DailyTasksView: View {
+    @EnvironmentObject var brain: GoalsManager
     @StateObject var vm = DailyTasksViewModel()
+    
     
     var body: some View {
         NavigationView {
@@ -47,10 +53,10 @@ struct DailyTasksView: View {
                         GeometryReader { geo in
                             TaskCellView(task: task, size: geo.size)
                                 .contentShape(Rectangle())
-                                .onTapGesture { vm.taskCompleted(task: task) }
+                                .onTapGesture { vm.taskCompleted(task) }
                         }
                     }
-                }
+                }.id(vm.id)
                 
                 Section(header: SectionHeader(title: "Upcoming")) {
                     ForEach(vm.weekTasks) { task in
@@ -58,6 +64,7 @@ struct DailyTasksView: View {
                     }
                 }
             }
+            .onAppear { vm.loadTasks(from: brain)}
             .navigationTitle("Daily Tasks")
         }
     }
@@ -66,7 +73,7 @@ struct DailyTasksView: View {
 
 struct TaskCellView: View {
     
-    let task: Task
+    let task: Exercise
     var size: CGSize?
     
     var body: some View {
@@ -77,7 +84,9 @@ struct TaskCellView: View {
                 .foregroundColor(task.isCompleted ? .green : .secondary)
                 .padding(.horizontal, 5)
             
-            Text("\(task.action)  \(Int(task.trainingAmount))  \(task.units)")
+            Text("\(task.action)  \(task.trainingAmount, specifier: "%0.2f")  \(task.units)")
+                .foregroundColor(task.isCompleted ? .secondary : Color(.label))
+                .font(task.isCompleted ? .body.italic() : .body)
             
             Spacer()
             
@@ -85,15 +94,11 @@ struct TaskCellView: View {
                 .iconStyle(with: 25)
                 .foregroundColor(Color(task.color))
                 .padding(.horizontal, 5)
-            Text(task.date.toString(.list) == Date().toString(.list) ? "" : task.date.toString(.list))
+            Text(task.wrappedDate.toString(.list) == Date().toString(.list) ? "" : task.wrappedDate.toString(.list))
                 .font(.footnote)
                 .fontWeight(.semibold)
-                .foregroundColor(task.date.toString(.list) == Date().toString(.list) ? .green : .secondary)
+                .foregroundColor(task.wrappedDate.toString(.list) == Date().toString(.list) ? .green : .secondary)
         }
-        .overlay(
-            Color(.systemGray)
-                .frame(height: task.isCompleted ? 1 : 0, alignment: .center)
-        )
     }
 }
 

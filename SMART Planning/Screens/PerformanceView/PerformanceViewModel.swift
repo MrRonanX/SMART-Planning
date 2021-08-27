@@ -10,7 +10,7 @@ import Foundation
 
 final class PerformanceViewModel: ObservableObject {
     
-    @Published var goals = MocGoals.goals
+    @Published var goals = [GoalModel]()
     @Published var currentTab: SegmentedControlType = .weekly
     
     var performanceRangeTitle: String {
@@ -32,10 +32,14 @@ final class PerformanceViewModel: ObservableObject {
     }
     
     var monthRangeTitle: String {
-        let month = Date().datesOfMoths()
-        let firstDay = month.first?.toString(.deadline) ?? "Date Error"
-        let lastDay = month.last?.toString(.deadline) ?? "Date Error"
+        let month = Date().datesOfMoths(of: .deadline)
+        let firstDay = month.first ?? "Date Error"
+        let lastDay = month.last ?? "Date Error"
         
         return firstDay + " – " + lastDay
+    }
+    
+    func loadGoals(from brain: GoalsManager) {
+        goals = brain.goals
     }
 }

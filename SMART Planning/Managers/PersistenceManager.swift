@@ -21,7 +21,10 @@ struct PersistenceManager {
     }
     
     func save() {
-        guard viewContext.hasChanges else { fatalError("Fatal Error Saving Data") }
+        guard viewContext.hasChanges else {
+        print("😕😕😕 Saving context with no changes!!!!!!!!")
+            return
+        }
         do {
             try viewContext.save()
         } catch {
@@ -33,6 +36,16 @@ struct PersistenceManager {
     
     func getAllGoals() -> [Goal] {
         let request: NSFetchRequest<Goal> = Goal.fetchRequest()
+
+        do {
+            return try viewContext.fetch(request)
+        } catch {
+            fatalError("Error Fetching Users")
+        }
+    }
+    
+    func getAllTasks() -> [Exercise] {
+        let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
 
         do {
             return try viewContext.fetch(request)

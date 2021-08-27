@@ -9,15 +9,18 @@ import SwiftUI
 
 struct PerformanceViewCell: View {
     @ObservedObject var viewModel: PerformanceCellViewModel
+    var goalColor: String {
+        viewModel.goal.goal.wrappedColor
+    }
     
     var body: some View {
         VStack {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Image(viewModel.goal.goalIcon)
+                    Image(viewModel.goal.goal.wrappedIcon)
                         .iconStyle(with: 25)
-                        .foregroundColor(Color(viewModel.goal.goalColor))
-                    Text(viewModel.goal.name)
+                        .foregroundColor(Color(goalColor))
+                    Text(viewModel.goal.goal.wrappedTitle)
                         .font(.title3)
                         .fontWeight(.semibold)
                         .lineLimit(2)
@@ -30,19 +33,19 @@ struct PerformanceViewCell: View {
                 
                 HStack {
                     Image(systemName: viewModel.completedIcon)
-                        .performanceIconStyle(with: viewModel.goal.goalColor)
+                        .performanceIconStyle(with: goalColor)
                     Text(viewModel.completedText)
                     Spacer()
                 }
                 HStack {
                     Image(systemName: "flag")
-                        .performanceIconStyle(with: viewModel.goal.goalColor)
+                        .performanceIconStyle(with: goalColor)
                     Text(viewModel.milestoneText)
                     Spacer()
                 }
                 HStack {
                     Image(systemName: "text.badge.checkmark")
-                        .performanceIconStyle(with: viewModel.goal.goalColor)
+                        .performanceIconStyle(with: goalColor)
                     Text(viewModel.ongoingText)
                     Spacer()
                 }
@@ -63,6 +66,6 @@ struct PerformanceViewCell: View {
 
 struct PerformanceViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        PerformanceViewCell(viewModel: PerformanceCellViewModel(MocGoals.goals[1], viewType: .monthly))
+        PerformanceViewCell(viewModel: PerformanceCellViewModel(GoalModel(Goal(context: PersistenceManager.shared.viewContext)), viewType: .monthly))
     }
 }

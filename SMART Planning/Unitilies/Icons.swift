@@ -56,7 +56,7 @@ enum Illustrations: String {
     case enlightenment = "enlightenment"
     case gainMuscles = "gainMuscles"
     case gettingFit = "gettingFit"
-    case idea = "idea"
+    case idea = "ideaIllustration"
     case improveArt = "improveArt"
     case learnLanguage = "learnLanguage"
     case learnNewSkill = "learnNewSkill"

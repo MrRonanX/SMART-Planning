@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Exercise" representedClassName="Exercise" syncable="YES">
-        <attribute name="action" optional="YES" attributeType="String"/>
-        <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="isCompleted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="parent" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="resultAfterTraining" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="resultBeforeTraining" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="taskID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="trainingAmount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="units" optional="YES" attributeType="String"/>
         <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="tasks" inverseEntity="Goal"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="taskID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Goal" representedClassName="Goal" syncable="YES">
-        <attribute name="action" optional="YES" attributeType="String"/>
-        <attribute name="baseProgress" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="color" optional="YES" attributeType="String"/>
-        <attribute name="currentProgress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="daysOfPracticeAWeek" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="deadline" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="desiredResult" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="goalDescription" optional="YES" attributeType="String"/>
-        <attribute name="icon" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="notificationHour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="notificationMinute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="title" optional="YES" attributeType="String"/>
-        <attribute name="units" optional="YES" attributeType="String"/>
+        <attribute name="action" attributeType="String"/>
+        <attribute name="allowNotifications" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="baseProgress" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="color" attributeType="String"/>
+        <attribute name="currentProgress" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="daysOfPracticeAWeek" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="deadline" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="desiredResult" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="goalDescription" attributeType="String"/>
+        <attribute name="icon" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="startDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="trainingDays" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int16]"/>
+        <attribute name="units" attributeType="String"/>
+        <relationship name="notification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotificationTime" inverseName="goal" inverseEntity="NotificationTime"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="goal" inverseEntity="Exercise"/>
-        <relationship name="trainingDays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TrainingDays" inverseName="goal" inverseEntity="TrainingDays"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
-    <entity name="TrainingDays" representedClassName="TrainingDays" syncable="YES">
-        <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="trainingDays" inverseEntity="Goal"/>
+    <entity name="NotificationTime" representedClassName="NotificationTime" syncable="YES">
+        <attribute name="hour" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="minute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Goal" inverseName="notification" inverseEntity="Goal"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="NotificationTime"/>
+        </fetchedProperty>
     </entity>
     <elements>
-        <element name="Goal" positionX="-63" positionY="-18" width="128" height="284"/>
-        <element name="TrainingDays" positionX="-54" positionY="63" width="128" height="74"/>
-        <element name="Exercise" positionX="-54" positionY="108" width="128" height="14"/>
+        <element name="Exercise" positionX="308.02734375" positionY="-4.34375" width="128" height="134"/>
+        <element name="Goal" positionX="-67.92578125" positionY="-164.85546875" width="128" height="298"/>
+        <element name="NotificationTime" positionX="126" positionY="-9" width="128" height="95"/>
     </elements>
 </model>

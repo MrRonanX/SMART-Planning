@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PerformanceView: View {
-    
+    @EnvironmentObject var brain: GoalsManager
     @StateObject var viewModel = PerformanceViewModel()
     
     var body: some View {
@@ -32,6 +32,7 @@ struct PerformanceView: View {
             }
             .navigationTitle("Progress")
         }
+        .onAppear { viewModel.loadGoals(from: brain)}
         .environmentObject(viewModel)
     }
 }

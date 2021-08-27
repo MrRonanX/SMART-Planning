@@ -11,7 +11,7 @@ import UserNotifications
 final class NotificationManager {
 
     static let shared = NotificationManager()
-    var notifications = [GoalModel]()
+    var notifications = [ScheduledNotification]()
     
     private init() {}
     
@@ -53,10 +53,10 @@ final class NotificationManager {
     private func scheduleNotification() {
         for notification in notifications {
             let content = UNMutableNotificationContent()
-            content.title = notification.name
-            content.body = "Did you \(notification.practiceAction.lowercased()) \(notification.dailyGoal.roundToDecimal(2)) \(notification.measurableUnits.lowercased()) today?"
+            content.title = notification.title
+            content.body = "Did you \(notification.action) \(notification.goal) \(notification.units) today?"
             content.categoryIdentifier = "SMART Planning"
-            // TODO: - encode actual task
+   
             let taskData = try? JSONEncoder().encode(notification)
             if let taskData = taskData {
                 content.userInfo = ["Goal": taskData]
@@ -78,10 +78,10 @@ final class NotificationManager {
     }
     
     
-    private func notificationDate(for goal: GoalModel) -> DateComponents {
+    private func notificationDate(for goal: ScheduledNotification) -> DateComponents {
         var correctDate = Date()
         
-        if correctDate.hour() >= goal.notificationHour && correctDate.minute() >= goal.notificationMinute {
+        if correctDate.hour() >= goal.hour && correctDate.minute() >= goal.minute {
             correctDate = correctDate.adding(days: 1)
         }
         
@@ -95,6 +95,18 @@ final class NotificationManager {
         let month = correctDate.month()
         let day = correctDate.day()
         
-        return DateComponents(calendar: .current, timeZone: .current, year: year, month: month, day: day, hour: goal.notificationHour, minute: goal.notificationMinute)
+        return DateComponents(calendar: .current, timeZone: .current, year: year, month: month, day: day, hour: goal.hour, minute: goal.minute)
     }
+}
+
+
+struct ScheduledNotification: Codable {
+    var id          : UUID
+    var title       : String
+    var action      : String
+    var goal        : Double
+    var units       : String
+    var trainingDays: [Int]
+    var hour        : Int
+    var minute      : Int
 }

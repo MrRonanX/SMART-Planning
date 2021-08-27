@@ -21,7 +21,7 @@ struct RectangleProgressView: View {
                     .cornerRadius(20)
                 
                 ZStack(alignment: .leading) {
-                    Color(viewModel.goal.goalColor)
+                    Color(viewModel.goal.goal.wrappedColor)
                         .frame(width: geo.size.width * completionCoef, alignment: .leading)
                         .cornerRadius(20)
                 }
@@ -72,6 +72,6 @@ struct ProgressLabels: View {
 
 struct RectangleProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        RectangleProgressView(viewModel: PerformanceCellViewModel(MocGoals.goals[1], viewType: .monthly))
+        RectangleProgressView(viewModel: PerformanceCellViewModel(GoalModel(Goal(context: PersistenceManager.shared.viewContext)), viewType: .monthly))
     }
 }

@@ -30,10 +30,6 @@
 		34612810268C65930035AF81 /* PlanningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280F268C65930035AF81 /* PlanningTabView.swift */; };
 		346407ED26C13F7100B8506A /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407EC26C13F7100B8506A /* StepperView.swift */; };
 		346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 346407F226C53C1C00B8506A /* Goal.xcdatamodeld */; };
-		346407F926C5409B00B8506A /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F526C5409B00B8506A /* Goal+CoreDataClass.swift */; };
-		346407FA26C5409B00B8506A /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F626C5409B00B8506A /* Goal+CoreDataProperties.swift */; };
-		346407FB26C5409B00B8506A /* TrainingDays+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F726C5409B00B8506A /* TrainingDays+CoreDataClass.swift */; };
-		346407FC26C5409B00B8506A /* TrainingDays+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407F826C5409B00B8506A /* TrainingDays+CoreDataProperties.swift */; };
 		346407FF26C5432100B8506A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407FE26C5432100B8506A /* PersistenceManager.swift */; };
 		3464080126C6811500B8506A /* Color + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080026C6811500B8506A /* Color + ext.swift */; };
 		3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080226C6836400B8506A /* VerticalAlignment.swift */; };
@@ -59,6 +55,10 @@
 		34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275726D22C0400020CD2 /* NotificationManager.swift */; };
 		34B9275B26D3CDF700020CD2 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275926D3CDF700020CD2 /* Exercise+CoreDataClass.swift */; };
 		34B9275C26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9275A26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift */; };
+		34B9276326D4BA2E00020CD2 /* Goal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9276126D4BA2E00020CD2 /* Goal+CoreDataClass.swift */; };
+		34B9276426D4BA2E00020CD2 /* Goal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9276226D4BA2E00020CD2 /* Goal+CoreDataProperties.swift */; };
+		34B9277926D8F19800020CD2 /* NotificationTime+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9277726D8F19800020CD2 /* NotificationTime+CoreDataClass.swift */; };
+		34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */; };
 		34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */; };
 		E28260BBD401064547E5A562 /* Pods_SMART_Planning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */; };
 /* End PBXBuildFile section */
@@ -90,10 +90,6 @@
 		3461280F268C65930035AF81 /* PlanningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTabView.swift; sourceTree = "<group>"; };
 		346407EC26C13F7100B8506A /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
 		346407F326C53C1C00B8506A /* Goal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Goal.xcdatamodel; sourceTree = "<group>"; };
-		346407F526C5409B00B8506A /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Goal+CoreDataClass.swift"; path = "SMART Planning/CoreDataModels/Goal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		346407F626C5409B00B8506A /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Goal+CoreDataProperties.swift"; path = "SMART Planning/CoreDataModels/Goal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		346407F726C5409B00B8506A /* TrainingDays+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TrainingDays+CoreDataClass.swift"; path = "SMART Planning/CoreDataModels/TrainingDays+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		346407F826C5409B00B8506A /* TrainingDays+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TrainingDays+CoreDataProperties.swift"; path = "SMART Planning/CoreDataModels/TrainingDays+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		346407FE26C5432100B8506A /* PersistenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		3464080026C6811500B8506A /* Color + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + ext.swift"; sourceTree = "<group>"; };
 		3464080226C6836400B8506A /* VerticalAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignment.swift; sourceTree = "<group>"; };
@@ -119,6 +115,10 @@
 		34B9275726D22C0400020CD2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		34B9275926D3CDF700020CD2 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		34B9275A26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		34B9276126D4BA2E00020CD2 /* Goal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		34B9276226D4BA2E00020CD2 /* Goal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Goal+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		34B9277726D8F19800020CD2 /* NotificationTime+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTime+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTime+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksView.swift; sourceTree = "<group>"; };
 		9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.release.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.release.xcconfig"; sourceTree = "<group>"; };
 		F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.debug.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.debug.xcconfig"; sourceTree = "<group>"; };
@@ -297,12 +297,12 @@
 		346407FD26C540A000B8506A /* CoreDataModels */ = {
 			isa = PBXGroup;
 			children = (
+				34B9277726D8F19800020CD2 /* NotificationTime+CoreDataClass.swift */,
+				34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */,
+				34B9276126D4BA2E00020CD2 /* Goal+CoreDataClass.swift */,
+				34B9276226D4BA2E00020CD2 /* Goal+CoreDataProperties.swift */,
 				34B9275926D3CDF700020CD2 /* Exercise+CoreDataClass.swift */,
 				34B9275A26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift */,
-				346407F526C5409B00B8506A /* Goal+CoreDataClass.swift */,
-				346407F626C5409B00B8506A /* Goal+CoreDataProperties.swift */,
-				346407F726C5409B00B8506A /* TrainingDays+CoreDataClass.swift */,
-				346407F826C5409B00B8506A /* TrainingDays+CoreDataProperties.swift */,
 			);
 			path = CoreDataModels;
 			sourceTree = "<group>";
@@ -502,12 +502,9 @@
 				3464081B26C7C49000B8506A /* Colors.swift in Sources */,
 				34B9273E26D0EC3F00020CD2 /* UIApplication + ext.swift in Sources */,
 				34B9275B26D3CDF700020CD2 /* Exercise+CoreDataClass.swift in Sources */,
-				346407FC26C5409B00B8506A /* TrainingDays+CoreDataProperties.swift in Sources */,
 				3422486826CA63F3006CFC05 /* RectangleProgressView.swift in Sources */,
-				346407FB26C5409B00B8506A /* TrainingDays+CoreDataClass.swift in Sources */,
 				346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */,
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,
-				346407FA26C5409B00B8506A /* Goal+CoreDataProperties.swift in Sources */,
 				341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */,
 				34612810268C65930035AF81 /* PlanningTabView.swift in Sources */,
 				3461280D268C62140035AF81 /* PerformanceView.swift in Sources */,
@@ -516,13 +513,13 @@
 				3464080E26C68C9A00B8506A /* DismissKeyboardBackground.swift in Sources */,
 				34079AD1268AE86D00F9AC7F /* StepperTextView.swift in Sources */,
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
-				346407F926C5409B00B8506A /* Goal+CoreDataClass.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
 				34B9274F26D1710D00020CD2 /* DaySelectionCell.swift in Sources */,
 				34079AB1268740E600F9AC7F /* AddEventsSheet.swift in Sources */,
 				34B9274526D150F300020CD2 /* PerformanceViewCell.swift in Sources */,
 				34B9274026D1013900020CD2 /* Image + ext.swift in Sources */,
 				346407FF26C5432100B8506A /* PersistenceManager.swift in Sources */,
+				34B9277926D8F19800020CD2 /* NotificationTime+CoreDataClass.swift in Sources */,
 				341EEE882665124D001EFD32 /* MockData.swift in Sources */,
 				341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */,
 				34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */,
@@ -530,16 +527,19 @@
 				34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */,
 				34B9275226D1715F00020CD2 /* GoalTargetCell.swift in Sources */,
 				34079ACE2689DB9600F9AC7F /* String + ext.swift in Sources */,
+				34B9276426D4BA2E00020CD2 /* Goal+CoreDataProperties.swift in Sources */,
 				34B9274226D14D2800020CD2 /* PerformanceViewModel.swift in Sources */,
 				3464081126C6E73200B8506A /* GoalSpacing.swift in Sources */,
 				3464081526C796AB00B8506A /* Icons.swift in Sources */,
 				34079AD7268AE91F00F9AC7F /* Date + ext.swift in Sources */,
+				34B9276326D4BA2E00020CD2 /* Goal+CoreDataClass.swift in Sources */,
 				3464080B26C68BEF00B8506A /* View + ext.swift in Sources */,
 				34079AC52689B19200F9AC7F /* GoalView.swift in Sources */,
 				3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */,
 				34B9275426D2189300020CD2 /* NotificationCell.swift in Sources */,
 				34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */,
 				346407ED26C13F7100B8506A /* StepperView.swift in Sources */,
+				34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */,
 				3464080126C6811500B8506A /* Color + ext.swift in Sources */,
 				3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */,
 				3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */,

@@ -105,6 +105,7 @@ final class GoalViewModel: ObservableObject {
     
     func saveToCoreData() {
         guard let desiredResult     = Int(selectedMetric) else { return }
+        let agreeToNotifications    = notificationTime != .dontNotify
         let isDaily                 = days.filter { $0.isSelected }
         let goal                    = Goal(context: PersistenceManager.shared.viewContext)
         goal.id                     = UUID()
@@ -112,8 +113,7 @@ final class GoalViewModel: ObservableObject {
         goal.title                  = goalTitle
         goal.color                  = selectedColor
         goal.icon                   = selectedIcon
-        goal.notificationHour       = Int16(notificationTime.hour)
-        goal.notificationMinute     = Int16(Int.random(in: 1...59))
+        goal.allowNotifications     = agreeToNotifications
         goal.goalDescription        = description
         goal.baseProgress           = 0
         goal.desiredResult          = Double(desiredResult)
@@ -121,14 +121,14 @@ final class GoalViewModel: ObservableObject {
         goal.daysOfPracticeAWeek    = Int16(isDaily.count)
         goal.startDate              = Date()
         goal.deadline               = deadlineDate
+        goal.trainingDays           = isDaily.map { Int16($0.weekDay) }
         goal.currentProgress        = 0.0
         
-        for day in isDaily {
-            let trainingDay         = TrainingDays(context: PersistenceManager.shared.viewContext)
-            trainingDay.id          = UUID()
-            trainingDay.day         = Int16(day.weekDay)
-            trainingDay.goal        = goal
-            goal.addToTrainingDays(trainingDay)
+        if agreeToNotifications {
+            let notification = NotificationTime(context: PersistenceManager.shared.viewContext)
+            notification.hour       = Int16(notificationTime.hour)
+            notification.minute     = Int16(Int.random(in: 1...59))
+            goal.notification       = notification
         }
         
         PersistenceManager.shared.save()

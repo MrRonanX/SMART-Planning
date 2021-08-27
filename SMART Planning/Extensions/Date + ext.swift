@@ -71,19 +71,38 @@ extension Date {
         calendar.component(.month, from: self)
     }
     
+    
     func day(using calendar: Calendar = .current) -> Int {
         calendar.component(.day, from: self)
     }
     
+    
     func hour(using calendar: Calendar = .current) -> Int {
         calendar.component(.hour, from: self)
     }
+    
     
     func minute(using calendar: Calendar = .current) -> Int {
         calendar.component(.minute, from: self)
     }
 
     
+    func midday() -> Date {
+       Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self) ?? Date()
+    }
+    
+    
+    func datesOfMoths(of type: DateFormat) -> [String] {
+        let year = self.year()
+        let month = self.month()
+        let currentTime = Calendar.current.component(.hour, from: self)
+        let range = Calendar.current.range(of: .day, in: .month, for: self)!
+        let dates = range.compactMap { day -> String? in
+            let date = DateComponents(calendar: .current, timeZone: .current, year: year, month: month, day: day, hour: currentTime)
+            return Calendar.current.date(from: date)?.toString(type)
+        }
+        return dates
+    }
     
     func datesOfMoths() -> [Date] {
         let year = self.year()

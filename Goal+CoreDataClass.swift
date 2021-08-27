@@ -2,7 +2,7 @@
 //  Goal+CoreDataClass.swift
 //  SMART Planning
 //
-//  Created by Roman Kavinskyi on 8/12/21.
+//  Created by Roman Kavinskyi on 8/24/21.
 //
 //
 
@@ -16,12 +16,12 @@ public class Goal: NSManagedObject {
         id ?? UUID()
     }
     
-    var wrappedNotificationHour: Int {
-        Int(notificationHour)
+    var notificationHour: Int {
+        notification?.wrappedHour ?? 0
     }
     
-    var wrappedNotificationMinute: Int {
-        Int(notificationMinute)
+    var notificationMinute: Int {
+        notification?.wrappedMinute ?? 0
     }
     
     var wrappedAction: String {
@@ -61,8 +61,21 @@ public class Goal: NSManagedObject {
     }
     
     var wrappedTrainingDays: [Int] {
-        let days = trainingDays as? Set<TrainingDays> ?? []
-        
-        return days.map { $0.wrappedDay }
+        trainingDays?.compactMap { Int($0) } ?? [0]
+    }
+    
+    var wrappedTasks: [Exercise] {
+        tasks?.sorted { $0.wrappedDate < $1.wrappedDate } ?? []
+    }
+    
+    var wrappedNotification: NotificationTime {
+        notification ?? NotificationTime()
     }
 }
+
+
+public extension CodingUserInfoKey {
+    // Helper property to retrieve the context
+    static let managedObjectContext = CodingUserInfoKey(rawValue: "managedObjectContext")
+}
+

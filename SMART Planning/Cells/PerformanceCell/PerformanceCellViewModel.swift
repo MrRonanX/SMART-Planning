@@ -10,8 +10,8 @@ import SwiftUI
 final class PerformanceCellViewModel: ObservableObject {
     @Published var goal: GoalModel
     
-    @Published var goalMilestone = 1.0
-    @Published var currentProgress = 0.1
+    @Published var goalMilestone = 0.01
+    @Published var currentProgress = 0.0001
     @Published var originalProgress = 0.0
     @Published var finalProgress = 1.0
     @Published var numberOfCompletedTasks = 1
@@ -51,17 +51,17 @@ final class PerformanceCellViewModel: ObservableObject {
     }
     
     var milestoneText: LocalizedStringKey {
-        "Milestone \(goalMilestone, specifier: "%2g") \(goal.measurableUnits.lowercased())"
+        "Milestone \(goalMilestone.roundToDecimal(2), specifier: "%2g") \(goal.goal.wrappedUnits.lowercased())"
     }
     
     var ongoingText: LocalizedStringKey {
-        "Ongoing \(goalMilestone - currentProgress, specifier: "%2g") \(goal.measurableUnits.lowercased())"
+        "Ongoing \(goalMilestone - currentProgress, specifier: "%2g") \(goal.goal.wrappedUnits.lowercased())"
     }
     
     
     var goalTimeRangeTitle: String {
-        let firstDay = goal.startDate.toString(.stepper)
-        let lastDay = goal.deadline.toString(.stepper)
+        let firstDay = goal.goal.wrappedStartDate.toString(.stepper)
+        let lastDay = goal.goal.wrappedDeadline.toString(.stepper)
         
         return firstDay + " – " + lastDay
     }
