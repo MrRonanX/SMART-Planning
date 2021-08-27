@@ -41,7 +41,6 @@ final class GoalViewModel: ObservableObject {
         }
     }
     
-    
     @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations", "pounds", "pictures", "courses", "lessons", "credits"]
     
     var measurementActions = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete", "Lose", "Make", "Draw", "Do", "Find"]
@@ -106,6 +105,7 @@ final class GoalViewModel: ObservableObject {
     func saveToCoreData() {
         guard let desiredResult     = Int(selectedMetric) else { return }
         let agreeToNotifications    = notificationTime != .dontNotify
+        let shortUnit               = MeasurementUnit.measurementUnits.filter { $0.displayTitle.contains(selectedUnit) }.first?.shortTitle
         let isDaily                 = days.filter { $0.isSelected }
         let goal                    = Goal(context: PersistenceManager.shared.viewContext)
         goal.id                     = UUID()
@@ -118,6 +118,7 @@ final class GoalViewModel: ObservableObject {
         goal.baseProgress           = 0
         goal.desiredResult          = Double(desiredResult)
         goal.units                  = selectedUnit.lowercased()
+        goal.unitsShort             = shortUnit
         goal.daysOfPracticeAWeek    = Int16(isDaily.count)
         goal.startDate              = Date()
         goal.deadline               = deadlineDate
@@ -161,3 +162,4 @@ final class GoalViewModel: ObservableObject {
         isShowingGoalView   = true
     }
 }
+

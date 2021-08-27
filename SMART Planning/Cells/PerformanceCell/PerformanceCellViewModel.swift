@@ -14,8 +14,8 @@ final class PerformanceCellViewModel: ObservableObject {
     @Published var currentProgress = 0.0001
     @Published var originalProgress = 0.0
     @Published var finalProgress = 1.0
-    @Published var numberOfCompletedTasks = 1
-    @Published var numberOfTasks = 0
+    @Published var numberOfCompletedTasks = 0
+    @Published var numberOfTasks = 1
     @Published var viewType: SegmentedControlType = .weekly {
         didSet {
             switch viewType {
@@ -32,7 +32,7 @@ final class PerformanceCellViewModel: ObservableObject {
     }
     
     var completionRate: Double {
-        withAnimation { currentProgress / goalMilestone }
+        withAnimation { (currentProgress / goalMilestone).roundToDecimal(2) }
     }
     
     var currentProgressTitle: Double {

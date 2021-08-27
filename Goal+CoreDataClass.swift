@@ -71,6 +71,10 @@ public class Goal: NSManagedObject {
     var wrappedNotification: NotificationTime {
         notification ?? NotificationTime()
     }
+    
+    var wrappedUnitsShort: String {
+        unitsShort ?? "$"
+    }
 }
 
 

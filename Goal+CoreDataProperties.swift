@@ -29,6 +29,7 @@ extension Goal {
     @NSManaged public var startDate: Date?
     @NSManaged public var title: String?
     @NSManaged public var units: String?
+    @NSManaged public var unitsShort: String?
     @NSManaged public var trainingDays: [Int16]?
     @NSManaged public var allowNotifications: Bool
     @NSManaged public var tasks: Set<Exercise>?

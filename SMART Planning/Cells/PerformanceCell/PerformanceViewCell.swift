@@ -54,13 +54,14 @@ struct PerformanceViewCell: View {
             .padding(.top, 10)
             
             RectangleProgressView(viewModel: viewModel)
+                .animation(.easeOut(duration: 0.7))
             ProgressLabels(viewModel: viewModel)
+                .animation(.easeOut(duration: 0.7))
         }
         .padding([.horizontal, .bottom])
         .background(Color(viewModel.goal.complementaryColor))
-//        .padding(.horizontal, 10)
         .cornerRadius(20)
-        .animation(.easeOut(duration: 0.7))
+        
     }
 }
 

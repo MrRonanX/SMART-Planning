@@ -117,7 +117,7 @@ extension GoalModel {
         var localSteps = [Text]()
         var achievedResult = 0.0
         for _ in 0..<numberOfSteps {
-            let text = Text("\(String(format: "%g", achievedResult.roundToDecimal(1))) \(goal.wrappedUnits.lowercased())")
+            let text = Text("\(String(format: "%g", achievedResult.roundToDecimal(1))) \(goal.wrappedUnitsShort)")
             localSteps.append(text)
             achievedResult += goalPerStep
         }

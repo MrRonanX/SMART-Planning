@@ -30,7 +30,7 @@ struct GoalTargetCell: View {
             
             Picker("", selection: $viewModel.selectedUnit) {
                 ForEach(viewModel.measurementUnits, id:\.self) {
-                    Text("\($0)")
+                    Text($0)
                 }
             }
             .frame(width: size.width / 3 - 30)
