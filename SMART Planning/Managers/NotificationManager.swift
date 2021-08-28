@@ -66,7 +66,7 @@ final class NotificationManager {
             let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
             content.threadIdentifier = "CalendarBasedNotificationThreadId"
             
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: notification.id.uuidString, content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
