@@ -1,5 +1,5 @@
 //
-//  RectangleProgressView.swift
+//  LineProgressView.swift
 //  SMART Planning
 //
 //  Created by Roman Kavinskyi on 8/16/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RectangleProgressView: View {
+struct LineProgressView: View {
     
     @ObservedObject var viewModel: PerformanceCellViewModel
     var completionCoef: CGFloat {
@@ -41,18 +41,6 @@ struct ProgressLabels: View {
     
     @ObservedObject var viewModel: PerformanceCellViewModel
     
-    var textShouldHide: Bool {
-        viewModel.completionRate < 0.1 || viewModel.completionRate > 0.9
-    }
-    
-    var baseProgressShouldHide: Bool {
-        viewModel.completionRate >= 0.1 && viewModel.completionRate <= 0.2
-    }
-    
-    var completionRate: CGFloat {
-        CGFloat(viewModel.completionRate)
-    }
-    
     var body: some View {
         HStack {
             GeometryReader { geo in
@@ -62,16 +50,35 @@ struct ProgressLabels: View {
                 Text("\(viewModel.currentProgressTitle, specifier: "%2g")")
                     .frame(width: geo.size.width * completionRate, alignment: .trailing)
                     .opacity(textShouldHide ? 0 : 1)
-                Text("\(viewModel.finalProgress, specifier: "%.0f")")
+                Text(finalProgress)
                     .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
+    }
+    
+    var textShouldHide: Bool {
+        viewModel.completionRate < 0.1 || viewModel.completionRate > 0.9
+    }
+    
+    
+    var baseProgressShouldHide: Bool {
+        viewModel.completionRate >= 0.1 && viewModel.completionRate <= 0.2
+    }
+    
+    
+    var completionRate: CGFloat {
+        CGFloat(viewModel.completionRate)
+    }
+    
+    
+    var finalProgress: LocalizedStringKey {
+        "\(viewModel.finalProgress.roundToDecimal(2), specifier: "%2g")"
     }
 }
 
 
 struct RectangleProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        RectangleProgressView(viewModel: PerformanceCellViewModel(GoalModel(Goal(context: PersistenceManager.shared.viewContext)), viewType: .monthly))
+        LineProgressView(viewModel: PerformanceCellViewModel(GoalModel(Goal(context: PersistenceManager.shared.viewContext)), viewType: .monthly))
     }
 }

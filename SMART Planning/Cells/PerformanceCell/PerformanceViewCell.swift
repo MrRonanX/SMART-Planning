@@ -53,7 +53,7 @@ struct PerformanceViewCell: View {
             }
             .padding(.top, 10)
             
-            RectangleProgressView(viewModel: viewModel)
+            LineProgressView(viewModel: viewModel)
                 .animation(.easeOut(duration: 0.7))
             ProgressLabels(viewModel: viewModel)
                 .animation(.easeOut(duration: 0.7))

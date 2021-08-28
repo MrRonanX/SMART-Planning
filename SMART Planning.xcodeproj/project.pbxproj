@@ -25,7 +25,7 @@
 		341EEE8026650F19001EFD32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */; };
 		341EEE882665124D001EFD32 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* MockData.swift */; };
 		341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE8926651806001EFD32 /* RecurringEventsView.swift */; };
-		3422486826CA63F3006CFC05 /* RectangleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* RectangleProgressView.swift */; };
+		3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* LineProgressView.swift */; };
 		3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */; };
 		3461280D268C62140035AF81 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280C268C62140035AF81 /* PerformanceView.swift */; };
 		34612810268C65930035AF81 /* PlanningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280F268C65930035AF81 /* PlanningTabView.swift */; };
@@ -85,7 +85,7 @@
 		341EEE8126650F19001EFD32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		341EEE872665124D001EFD32 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		341EEE8926651806001EFD32 /* RecurringEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringEventsView.swift; sourceTree = "<group>"; };
-		3422486726CA63F3006CFC05 /* RectangleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleProgressView.swift; sourceTree = "<group>"; };
+		3422486726CA63F3006CFC05 /* LineProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
 		3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithReturnButton.swift; sourceTree = "<group>"; };
 		3461280C268C62140035AF81 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		3461280F268C65930035AF81 /* PlanningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTabView.swift; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 		3464080C26C68C7D00B8506A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3422486726CA63F3006CFC05 /* RectangleProgressView.swift */,
+				3422486726CA63F3006CFC05 /* LineProgressView.swift */,
 				346407EC26C13F7100B8506A /* StepperView.swift */,
 				3464080D26C68C9A00B8506A /* DismissKeyboardBackground.swift */,
 				3464081226C6EDA600B8506A /* IconsAndColorsView.swift */,
@@ -502,7 +502,7 @@
 				3464081B26C7C49000B8506A /* Colors.swift in Sources */,
 				34B9273E26D0EC3F00020CD2 /* UIApplication + ext.swift in Sources */,
 				34B9275B26D3CDF700020CD2 /* Exercise+CoreDataClass.swift in Sources */,
-				3422486826CA63F3006CFC05 /* RectangleProgressView.swift in Sources */,
+				3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */,
 				346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */,
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,
 				341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */,

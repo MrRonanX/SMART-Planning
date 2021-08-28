@@ -14,8 +14,8 @@ final class PerformanceCellViewModel: ObservableObject {
     @Published var currentProgress = 0.0001
     @Published var originalProgress = 0.0
     @Published var finalProgress = 1.0
-    @Published var numberOfCompletedTasks = 0
-    @Published var numberOfTasks = 1
+    @Published var numberOfCompletedTasks = Int()
+    @Published var numberOfTasks = Int()
     @Published var viewType: SegmentedControlType = .weekly {
         didSet {
             switch viewType {
