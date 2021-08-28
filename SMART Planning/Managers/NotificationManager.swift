@@ -85,10 +85,11 @@ final class NotificationManager {
             correctDate = correctDate.adding(days: 1)
         }
         
-        let weekDay = Calendar.current.component(.weekday, from: correctDate)
-        
+        var weekDay = Calendar.current.component(.weekday, from: correctDate)
+
         while !goal.trainingDays.contains(weekDay) {
             correctDate = correctDate.adding(days: 1)
+            weekDay = Calendar.current.component(.weekday, from: correctDate)
         }
         
         let year = correctDate.year()
