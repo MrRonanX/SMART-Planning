@@ -33,17 +33,13 @@ final class GoalViewModel: ObservableObject {
     @Published var selectedColor        = "brandBlue"
     @Published var selectedIcon         = "macbook"
     @Published var popOver: ViewType    = .colors
-    @Published var notificationTime     : NotificationSegmentType = .dontNotify {
-        didSet {
-            if notificationTime != .dontNotify {
-                requestAuthorization()
-            }
-        }
-    }
+    @Published var notificationTime     : NotificationSegmentType = .dontNotify
     
-    @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations", "pounds", "pictures", "courses", "lessons", "credits"]
+    @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations",
+                                           "pounds", "pictures", "courses", "lessons", "credits"]
     
-    var measurementActions = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete", "Lose", "Make", "Draw", "Do", "Find"]
+    var measurementActions              = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete",
+                                           "Lose", "Make", "Draw", "Do", "Find"]
     
     var targetTitle: String { isTargetEdited ?  selectedAction + " " + selectedMetric + " " + selectedUnit : "Your target:" }
     
@@ -82,8 +78,6 @@ final class GoalViewModel: ObservableObject {
     func requestAuthorization() {
         NotificationManager.shared.schedule()
     }
-    
-  
     
     
     func convertSingularsAndPlurals() {
@@ -152,7 +146,7 @@ final class GoalViewModel: ObservableObject {
     }
     
     
-    func showGoalView(goal: GoalCreationModel) {
+    func showGoalView(for goal: GoalCreationModel) {
         selectedUnit        = goal.unit
         selectedAction      = goal.action
         goalTitle           = goal.title

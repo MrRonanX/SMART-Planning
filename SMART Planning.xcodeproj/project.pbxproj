@@ -15,10 +15,12 @@
 		34079ACA2689C50500F9AC7F /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AC92689C50500F9AC7F /* TimelineView.swift */; };
 		34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079ACB2689C5E700F9AC7F /* GoalModel.swift */; };
 		34079ACE2689DB9600F9AC7F /* String + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079ACD2689DB9600F9AC7F /* String + ext.swift */; };
-		34079AD1268AE86D00F9AC7F /* StepperTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AD0268AE86D00F9AC7F /* StepperTextView.swift */; };
-		34079AD4268AE8A800F9AC7F /* StepperImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AD3268AE8A800F9AC7F /* StepperImageView.swift */; };
 		34079AD7268AE91F00F9AC7F /* Date + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AD6268AE91F00F9AC7F /* Date + ext.swift */; };
 		340EB2B926D9425200DF9243 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2B826D9425200DF9243 /* Helper.swift */; };
+		340EB2BB26D9E62B00DF9243 /* DailyTasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */; };
+		340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BC26DA139200DF9243 /* UIView + ext.swift */; };
+		340EB2C026DB90F800DF9243 /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BF26DB90F800DF9243 /* OffsetPageTabView.swift */; };
+		340EB2C326DBDCA900DF9243 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2C226DBDCA900DF9243 /* IntroViewModel.swift */; };
 		341EEE7926650F18001EFD32 /* SMARTPlanningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */; };
 		341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE7A26650F18001EFD32 /* IntroView.swift */; };
 		341EEE7D26650F19001EFD32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7C26650F19001EFD32 /* Assets.xcassets */; };
@@ -73,10 +75,12 @@
 		34079AC92689C50500F9AC7F /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		34079ACB2689C5E700F9AC7F /* GoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
 		34079ACD2689DB9600F9AC7F /* String + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ext.swift"; sourceTree = "<group>"; };
-		34079AD0268AE86D00F9AC7F /* StepperTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperTextView.swift; sourceTree = "<group>"; };
-		34079AD3268AE8A800F9AC7F /* StepperImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperImageView.swift; sourceTree = "<group>"; };
 		34079AD6268AE91F00F9AC7F /* Date + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + ext.swift"; sourceTree = "<group>"; };
 		340EB2B826D9425200DF9243 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksViewModel.swift; sourceTree = "<group>"; };
+		340EB2BC26DA139200DF9243 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
+		340EB2BF26DB90F800DF9243 /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
+		340EB2C226DBDCA900DF9243 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
 		341EEE7526650F18001EFD32 /* SMART Planning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SMART Planning.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMARTPlanningApp.swift; sourceTree = "<group>"; };
 		341EEE7A26650F18001EFD32 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -150,8 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				3464080C26C68C7D00B8506A /* Views */,
-				34079AD2268AE89800F9AC7F /* ImageViews */,
-				34079ACF268AE83E00F9AC7F /* Texts */,
 				34079ABA2688194E00F9AC7F /* Labels */,
 				34079AB22687466E00F9AC7F /* Buttons */,
 				3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */,
@@ -176,7 +178,7 @@
 				34079AC62689C4E100F9AC7F /* Timeline */,
 				34079ABD268819C300F9AC7F /* ChooseGoal */,
 				34079ABC2688199C00F9AC7F /* RecurringEvents */,
-				341EEE7A26650F18001EFD32 /* IntroView.swift */,
+				340EB2C126DBDC9D00DF9243 /* IntroView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -208,22 +210,6 @@
 			path = Timeline;
 			sourceTree = "<group>";
 		};
-		34079ACF268AE83E00F9AC7F /* Texts */ = {
-			isa = PBXGroup;
-			children = (
-				34079AD0268AE86D00F9AC7F /* StepperTextView.swift */,
-			);
-			path = Texts;
-			sourceTree = "<group>";
-		};
-		34079AD2268AE89800F9AC7F /* ImageViews */ = {
-			isa = PBXGroup;
-			children = (
-				34079AD3268AE8A800F9AC7F /* StepperImageView.swift */,
-			);
-			path = ImageViews;
-			sourceTree = "<group>";
-		};
 		34079AD5268AE90A00F9AC7F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,8 +220,18 @@
 				3464080A26C68BEF00B8506A /* View + ext.swift */,
 				34B9273D26D0EC3F00020CD2 /* UIApplication + ext.swift */,
 				34B9273F26D1013900020CD2 /* Image + ext.swift */,
+				340EB2BC26DA139200DF9243 /* UIView + ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		340EB2C126DBDC9D00DF9243 /* IntroView */ = {
+			isa = PBXGroup;
+			children = (
+				341EEE7A26650F18001EFD32 /* IntroView.swift */,
+				340EB2C226DBDCA900DF9243 /* IntroViewModel.swift */,
+			);
+			path = IntroView;
 			sourceTree = "<group>";
 		};
 		341EEE6C26650F18001EFD32 = {
@@ -259,8 +255,8 @@
 		341EEE7726650F18001EFD32 /* SMART Planning */ = {
 			isa = PBXGroup;
 			children = (
-				34B9275526D22BF000020CD2 /* Managers */,
 				341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */,
+				34B9275526D22BF000020CD2 /* Managers */,
 				3464080F26C6E71800B8506A /* Unitilies */,
 				3464080726C688C600B8506A /* Models */,
 				346407FD26C540A000B8506A /* CoreDataModels */,
@@ -332,6 +328,7 @@
 				3464080D26C68C9A00B8506A /* DismissKeyboardBackground.swift */,
 				3464081226C6EDA600B8506A /* IconsAndColorsView.swift */,
 				34B9274A26D151B600020CD2 /* SegmentedControl.swift */,
+				340EB2BF26DB90F800DF9243 /* OffsetPageTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -379,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */,
+				340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */,
 			);
 			path = DailyTasks;
 			sourceTree = "<group>";
@@ -506,15 +504,16 @@
 				346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */,
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,
 				341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */,
+				340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */,
 				34612810268C65930035AF81 /* PlanningTabView.swift in Sources */,
 				3461280D268C62140035AF81 /* PerformanceView.swift in Sources */,
 				34079AB82688165C00F9AC7F /* GoalLabel.swift in Sources */,
 				34079ACA2689C50500F9AC7F /* TimelineView.swift in Sources */,
 				3464080E26C68C9A00B8506A /* DismissKeyboardBackground.swift in Sources */,
-				34079AD1268AE86D00F9AC7F /* StepperTextView.swift in Sources */,
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
 				34B9274F26D1710D00020CD2 /* DaySelectionCell.swift in Sources */,
+				340EB2C326DBDCA900DF9243 /* IntroViewModel.swift in Sources */,
 				34079AB1268740E600F9AC7F /* AddEventsSheet.swift in Sources */,
 				34B9274526D150F300020CD2 /* PerformanceViewCell.swift in Sources */,
 				34B9274026D1013900020CD2 /* Image + ext.swift in Sources */,
@@ -527,6 +526,7 @@
 				3464081326C6EDA600B8506A /* IconsAndColorsView.swift in Sources */,
 				34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */,
 				34B9275226D1715F00020CD2 /* GoalTargetCell.swift in Sources */,
+				340EB2C026DB90F800DF9243 /* OffsetPageTabView.swift in Sources */,
 				34079ACE2689DB9600F9AC7F /* String + ext.swift in Sources */,
 				34B9276426D4BA2E00020CD2 /* Goal+CoreDataProperties.swift in Sources */,
 				34B9274226D14D2800020CD2 /* PerformanceViewModel.swift in Sources */,
@@ -536,6 +536,7 @@
 				3464080B26C68BEF00B8506A /* View + ext.swift in Sources */,
 				34079AC52689B19200F9AC7F /* GoalView.swift in Sources */,
 				3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */,
+				340EB2BB26D9E62B00DF9243 /* DailyTasksViewModel.swift in Sources */,
 				34B9275426D2189300020CD2 /* NotificationCell.swift in Sources */,
 				34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */,
 				346407ED26C13F7100B8506A /* StepperView.swift in Sources */,
@@ -544,7 +545,6 @@
 				3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */,
 				3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */,
 				34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */,
-				34079AD4268AE8A800F9AC7F /* StepperImageView.swift in Sources */,
 				341EEE7926650F18001EFD32 /* SMARTPlanningApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

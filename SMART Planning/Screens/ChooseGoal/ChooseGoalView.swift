@@ -10,17 +10,23 @@ import SwiftUI
 struct ChooseGoalView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settings: ViewPresenter
+    
     @StateObject var viewModel = GoalViewModel()
     
     @Binding var launchedByMainScreen: Bool
- 
+    
     var body: some View {
         NavigationView {
-        GeometryReader { geo in
-            body(for: geo.size.width)
-            Spacer()
+            GeometryReader { geo in
+                body(for: geo.size.width)
+            }
         }
-        }.accentColor(Color(viewModel.selectedColor))
+        .overlay(
+            IntroView(showOverlay: settings.isShowingIntro)
+                .transition(.move(edge: .bottom).animation(.easeInOut))
+
+        )
+        .accentColor(Color(viewModel.selectedColor))
     }
     
     
@@ -31,12 +37,11 @@ struct ChooseGoalView: View {
             LazyVGrid(columns: viewModel.columns) {
                 ForEach(viewModel.goals) { goal in
                     GoalLabel(goal: goal, size: size)
-                        .onTapGesture {
-                            viewModel.showGoalView(goal: goal)
-                        }
+                        .onTapGesture { viewModel.showGoalView(for: goal) }
                 }
             }
             NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) { EmptyView() }
+            Spacer()
         }
         .padding()
         .navigationTitle("Goals")
@@ -87,5 +92,5 @@ struct GoalCreationModel: Identifiable {
                                GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins", illustration: Illustrations.saveMoney.image),
                                GoalCreationModel(title: "Enlightenment", action: "Do", image: "idea", unit: "mediations", icon: "idea", illustration: Illustrations.enlightenment.image),
                                GoalCreationModel(title: "Learn A New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learnNewSkill.image),
-                               GoalCreationModel(title: "Set You Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.setYourGoal.image)]
+                               GoalCreationModel(title: "Create Your Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.setYourGoal.image)]
 }

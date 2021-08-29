@@ -78,6 +78,7 @@ struct NotificationCell: View {
                 ButtonForNotification(title: .dontNotify)
                     .onTapGesture { selectNotificationTime(time: .dontNotify) }
             }
+            .onChange(of: viewModel.notificationTime) { _ in viewModel.requestAuthorization() }
         }
     }
     

@@ -44,9 +44,11 @@ final class NotificationManager {
     
     func listScheduledNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
-            for notification in notifications {
-                print(notification)
-            }
+            print("😕😕😕 There are \(notifications.count) notifications")
+            
+//            for notification in notifications {
+//                print(notification)
+//            }
         }
     }
     

@@ -56,7 +56,7 @@ struct PlanningTabView: View {
             PerformanceView()
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle")
-                    Text("Weekly Tasks")
+                    Text("Progress")
                 }
         }
         .environmentObject(brain)

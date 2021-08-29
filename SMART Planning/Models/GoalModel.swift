@@ -17,6 +17,8 @@ struct GoalModel: Identifiable {
         loadTasks()
     }
     
+    
+    
     var complementaryColor: String {
         goal.wrappedColor + "Complementary"
     }
@@ -93,7 +95,7 @@ extension GoalModel {
     }
     
     var numberOfSteps: Int {
-        return min(8, max(Int(numberOfDays / 30), 4))
+        return min(8, max(Int(numberOfDays / 30), 5))
     }
     
     var goalPerStep: Double {
@@ -145,10 +147,8 @@ extension GoalModel {
             return .sevenSteps
         } else if numberOfSteps == 6 {
             return .sixSteps
-        } else if numberOfSteps == 5 {
-            return .fiveSteps
         } else {
-            return .fourSteps
+            return .fiveSteps
         }
     }
 }
@@ -195,6 +195,8 @@ extension GoalModel {
         
     }
 }
+
+
 
 
 extension Double {

@@ -88,4 +88,19 @@ extension UIColor {
             }
         }
     }
+    
+    static var systemBlack: UIColor {
+        return UIColor { (traitCollection) -> UIColor in
+            switch traitCollection.userInterfaceStyle {
+            case .unspecified:
+                return .black
+            case .light:
+                return .black
+            case .dark:
+                return .white
+            @unknown default:
+                return .black
+            }
+        }
+    }
 }

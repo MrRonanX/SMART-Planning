@@ -11,15 +11,14 @@ import SwiftUI
 struct SMARTPlanningApp: App {
     
     @StateObject var settings = ViewPresenter()
-    
     var body: some Scene {
         WindowGroup {
 //            if !settings.goalIsSet {
-//                IntroView()
-//                    .environmentObject(settings)
-//                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+            ChooseGoalView(launchedByMainScreen: .constant(false))
+                    .environmentObject(settings)
+                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
 //            } else {
-                PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+//                PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
 //            }
         }
     }
@@ -27,6 +26,7 @@ struct SMARTPlanningApp: App {
 
 final class ViewPresenter: ObservableObject {
     @Published var goalIsSet = false
+    @Published var isShowingIntro = true
 }
 
 

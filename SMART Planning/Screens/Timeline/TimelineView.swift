@@ -57,7 +57,10 @@ struct TimelineView: View {
         let notificationManager = NotificationManager.shared
         notificationManager.notifications = brain.createNotificationObjects()
         notificationManager.schedule()
-      //  notificationManager.listScheduledNotifications()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            notificationManager.listScheduledNotifications()
+        }
+       
             
     }
     
