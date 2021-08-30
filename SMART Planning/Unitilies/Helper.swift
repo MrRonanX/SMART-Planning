@@ -10,9 +10,9 @@ import UIKit
 enum Spacing: CGFloat {
     case eightSteps = 15
     case sevenSteps = 20
-    case sixSteps = 30
-    case fiveSteps = 40
-    case fourSteps = 50
+    case sixSteps   = 30
+    case fiveSteps  = 40
+    case fourSteps  = 50 
     
     var lineLength: CGFloat {
         switch self {

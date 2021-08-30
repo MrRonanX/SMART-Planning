@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChooseGoalView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var settings: ViewPresenter
+    @EnvironmentObject var settings: ViewSelector
     
     @StateObject var viewModel = GoalViewModel()
     
@@ -21,11 +21,6 @@ struct ChooseGoalView: View {
                 body(for: geo.size.width)
             }
         }
-        .overlay(
-            IntroView(showOverlay: settings.isShowingIntro)
-                .transition(.move(edge: .bottom).animation(.easeInOut))
-
-        )
         .accentColor(Color(viewModel.selectedColor))
     }
     
@@ -40,7 +35,9 @@ struct ChooseGoalView: View {
                         .onTapGesture { viewModel.showGoalView(for: goal) }
                 }
             }
-            NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) { EmptyView() }
+            NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) {
+                EmptyView() }
+                .onChange(of: viewModel.isShowingGoalView) { _ in pushMainScreen() }
             Spacer()
         }
         .padding()
@@ -58,7 +55,8 @@ struct ChooseGoalView: View {
     
     
     func pushMainScreen() {
-        if !launchedByMainScreen {
+        if !launchedByMainScreen && viewModel.isShowingGoalView == false{
+            settings.firstGoalIsSet()
             settings.goalIsSet = true
         }
     }

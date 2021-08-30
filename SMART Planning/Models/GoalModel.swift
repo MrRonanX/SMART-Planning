@@ -17,8 +17,6 @@ struct GoalModel: Identifiable {
         loadTasks()
     }
     
-    
-    
     var complementaryColor: String {
         goal.wrappedColor + "Complementary"
     }
@@ -118,8 +116,9 @@ extension GoalModel {
     var goalText: [Text] {
         var localSteps = [Text]()
         var achievedResult = 0.0
+        let decimalPoint = achievedResult > 100 ? 0 : 1
         for _ in 0..<numberOfSteps {
-            let text = Text("\(String(format: "%g", achievedResult.roundToDecimal(1))) \(goal.wrappedUnitsShort)")
+            let text = Text("\(String(format: "%g", achievedResult.roundToDecimal(decimalPoint))) \(goal.wrappedUnitsShort)")
             localSteps.append(text)
             achievedResult += goalPerStep
         }
@@ -161,8 +160,8 @@ extension GoalModel {
         let week = (0...6).map { sunday.adding(days: $0).toString(.deadlineNextYear)}
         let thisWeekTasks = tasks.filter { week.contains($0.wrappedDate.toString(.deadlineNextYear))}
         
-        let baseProgress = thisWeekTasks.min()?.resultBeforeTraining ?? 213231.0
-        let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 342433.3
+        let baseProgress = thisWeekTasks.min()?.resultBeforeTraining ?? 0
+        let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 1
         let numberOfTasks = thisWeekTasks.count
         let numberOfCompletedTasks = thisWeekTasks.filter { $0.isCompleted }.count
         let thisWeekMileStone = thisWeekTasks.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
@@ -192,16 +191,5 @@ extension GoalModel {
         let numberOfCompletedTasks = tasks.filter { $0.isCompleted }.count
         
         completed(goal.baseProgress, goal.desiredResult, numberOfTasks, numberOfCompletedTasks, goal.desiredResult, goal.currentProgress)
-        
-    }
-}
-
-
-
-
-extension Double {
-    func roundToDecimal(_ fractionDigits: Int) -> Double {
-        let multiplier = pow(10, Double(fractionDigits))
-        return Darwin.round(self * multiplier) / multiplier
     }
 }

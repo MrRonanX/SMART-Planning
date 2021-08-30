@@ -8,12 +8,12 @@
 import SwiftUI
 
 final class IntroViewModel: ObservableObject {
-    @Published var offset: CGFloat = 1
-    @Published var showOverlay = false
+    @Published var offset: CGFloat = 0
+    @Published var hasSeenIntro: Bool
     var pages = PageTextContent.pages
     
-    init(_ showOverlay: Bool) {
-        self.showOverlay = showOverlay
+    init(_ hasSeenIntro: Bool) {
+        self.hasSeenIntro = hasSeenIntro
     }
     
     
@@ -39,7 +39,7 @@ final class IntroViewModel: ObservableObject {
     func nextPage(for screenWidth: CGFloat) {
         let currentIndex = getIndex(for: screenWidth) + 1
         if currentIndex == pages.count {
-            withAnimation { showOverlay = false }
+            withAnimation { hasSeenIntro = true }
             return
         }
         let index = min(currentIndex, pages.count - 1)

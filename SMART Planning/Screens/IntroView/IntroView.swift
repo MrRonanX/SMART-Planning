@@ -10,12 +10,12 @@ import SwiftUI
 struct IntroView: View {
     @StateObject private var viewModel: IntroViewModel
     
-    init(showOverlay: Bool) {
-        _viewModel = StateObject(wrappedValue: IntroViewModel(showOverlay))
+    init(hasSeenIntro: Bool) {
+        _viewModel = StateObject(wrappedValue: IntroViewModel(hasSeenIntro))
     }
     
     var body: some View {
-        if viewModel.showOverlay {
+        if !viewModel.hasSeenIntro {
             GeometryReader { geo in
                 VStack {
                     Image(systemName: "arrow.right.circle.fill")
@@ -25,18 +25,14 @@ struct IntroView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding([.leading, .top])
                     
-                    OffsetPageTabView(offset: $viewModel.offset) {
+                    OffsetPageTabView(offset: $viewModel.offset, screenWidth: geo.size.width) {
                         ImageAndDescriptionView(screenWidth: geo.size.width)
                     }
                     
                     HStack(alignment: .bottom) {
-                        
                         MovingIndicatorView(screenWidth: geo.size.width)
-                        
                         Spacer()
-                        
                         NextButton(screenWidth: geo.size.width)
-                        
                     }
                     .padding()
                     .offset(y: -20)
@@ -45,17 +41,17 @@ struct IntroView: View {
                 .animation(.easeInOut, value: viewModel.getIndex(for: geo.size.width))
                 .environmentObject(viewModel)
             }
-            
         }
-        
     }
 }
 
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView(showOverlay: true)
+        IntroView(hasSeenIntro: false)
     }
 }
+
 
 struct NextButton: View {
     @EnvironmentObject var viewModel: IntroViewModel
@@ -105,6 +101,7 @@ struct ImageAndDescriptionView: View {
         }
     }
 }
+
 
 struct MovingIndicatorView: View {
     @EnvironmentObject var viewModel: IntroViewModel

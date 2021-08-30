@@ -10,29 +10,40 @@ import SwiftUI
 @main
 struct SMARTPlanningApp: App {
     
-    @StateObject var settings = ViewPresenter()
+    @StateObject var viewSelector = ViewSelector()
+    
     var body: some Scene {
         WindowGroup {
-//            if !settings.goalIsSet {
-            ChooseGoalView(launchedByMainScreen: .constant(false))
-                    .environmentObject(settings)
+            if !viewSelector.goalIsSet {
+                ChooseGoalView(launchedByMainScreen: .constant(false))
+                    .environmentObject(viewSelector)
                     .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
-//            } else {
-//                PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
-//            }
+                    .overlay(IntroView(hasSeenIntro: viewSelector.hasSeenIntro))
+                    .onChange(of: viewSelector.hasSeenIntro) { _ in viewSelector.introDismissed()}
+            } else {
+                PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+            }
         }
     }
 }
 
-final class ViewPresenter: ObservableObject {
-    @Published var goalIsSet = false
-    @Published var isShowingIntro = true
-}
-
-
-extension View {
-    func correctDate(strDate: String) -> String {
-        let date = strDate.toDate()!
-        return date.toString()
+final class ViewSelector: ObservableObject {
+    
+    @Published var goalIsSet    : Bool
+    @Published var hasSeenIntro : Bool
+    
+    init() {
+        goalIsSet = UserDefaults.standard.bool(forKey: "goalIsSet")
+        hasSeenIntro = UserDefaults.standard.bool(forKey: "hasSeenIntro")
+    }
+    
+    
+    func introDismissed() {
+        UserDefaults.standard.set(true, forKey: "hasSeenIntro")
+    }
+    
+    
+    func firstGoalIsSet() {
+        UserDefaults.standard.set(true, forKey: "goalIsSet")
     }
 }

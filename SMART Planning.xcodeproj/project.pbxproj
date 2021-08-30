@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34079AB1268740E600F9AC7F /* AddEventsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB0268740E600F9AC7F /* AddEventsSheet.swift */; };
 		34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB32687468B00F9AC7F /* DismissButton.swift */; };
 		34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB52688114C00F9AC7F /* ChooseGoalView.swift */; };
 		34079AB82688165C00F9AC7F /* GoalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB72688165C00F9AC7F /* GoalLabel.swift */; };
@@ -21,12 +20,12 @@
 		340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BC26DA139200DF9243 /* UIView + ext.swift */; };
 		340EB2C026DB90F800DF9243 /* OffsetPageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BF26DB90F800DF9243 /* OffsetPageTabView.swift */; };
 		340EB2C326DBDCA900DF9243 /* IntroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2C226DBDCA900DF9243 /* IntroViewModel.swift */; };
+		340EB2C526DC816B00DF9243 /* Double + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2C426DC816B00DF9243 /* Double + ext.swift */; };
 		341EEE7926650F18001EFD32 /* SMARTPlanningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */; };
 		341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE7A26650F18001EFD32 /* IntroView.swift */; };
 		341EEE7D26650F19001EFD32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7C26650F19001EFD32 /* Assets.xcassets */; };
 		341EEE8026650F19001EFD32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */; };
 		341EEE882665124D001EFD32 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* MockData.swift */; };
-		341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE8926651806001EFD32 /* RecurringEventsView.swift */; };
 		3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* LineProgressView.swift */; };
 		3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */; };
 		3461280D268C62140035AF81 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280C268C62140035AF81 /* PerformanceView.swift */; };
@@ -67,7 +66,6 @@
 
 /* Begin PBXFileReference section */
 		045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMART_Planning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		34079AB0268740E600F9AC7F /* AddEventsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventsSheet.swift; sourceTree = "<group>"; };
 		34079AB32687468B00F9AC7F /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		34079AB52688114C00F9AC7F /* ChooseGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGoalView.swift; sourceTree = "<group>"; };
 		34079AB72688165C00F9AC7F /* GoalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalLabel.swift; sourceTree = "<group>"; };
@@ -81,6 +79,7 @@
 		340EB2BC26DA139200DF9243 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
 		340EB2BF26DB90F800DF9243 /* OffsetPageTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetPageTabView.swift; sourceTree = "<group>"; };
 		340EB2C226DBDCA900DF9243 /* IntroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewModel.swift; sourceTree = "<group>"; };
+		340EB2C426DC816B00DF9243 /* Double + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + ext.swift"; sourceTree = "<group>"; };
 		341EEE7526650F18001EFD32 /* SMART Planning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SMART Planning.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMARTPlanningApp.swift; sourceTree = "<group>"; };
 		341EEE7A26650F18001EFD32 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -88,7 +87,6 @@
 		341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		341EEE8126650F19001EFD32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		341EEE872665124D001EFD32 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
-		341EEE8926651806001EFD32 /* RecurringEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurringEventsView.swift; sourceTree = "<group>"; };
 		3422486726CA63F3006CFC05 /* LineProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
 		3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithReturnButton.swift; sourceTree = "<group>"; };
 		3461280C268C62140035AF81 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
@@ -177,19 +175,9 @@
 				3461280B268C61FE0035AF81 /* PerformanceView */,
 				34079AC62689C4E100F9AC7F /* Timeline */,
 				34079ABD268819C300F9AC7F /* ChooseGoal */,
-				34079ABC2688199C00F9AC7F /* RecurringEvents */,
 				340EB2C126DBDC9D00DF9243 /* IntroView */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		34079ABC2688199C00F9AC7F /* RecurringEvents */ = {
-			isa = PBXGroup;
-			children = (
-				341EEE8926651806001EFD32 /* RecurringEventsView.swift */,
-				34079AB0268740E600F9AC7F /* AddEventsSheet.swift */,
-			);
-			path = RecurringEvents;
 			sourceTree = "<group>";
 		};
 		34079ABD268819C300F9AC7F /* ChooseGoal */ = {
@@ -221,6 +209,7 @@
 				34B9273D26D0EC3F00020CD2 /* UIApplication + ext.swift */,
 				34B9273F26D1013900020CD2 /* Image + ext.swift */,
 				340EB2BC26DA139200DF9243 /* UIView + ext.swift */,
+				340EB2C426DC816B00DF9243 /* Double + ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -493,6 +482,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				340EB2C526DC816B00DF9243 /* Double + ext.swift in Sources */,
 				3464081926C7C42000B8506A /* FormButton.swift in Sources */,
 				34B9274726D1513D00020CD2 /* PerformanceCellViewModel.swift in Sources */,
 				34B9275C26D3CDF700020CD2 /* Exercise+CoreDataProperties.swift in Sources */,
@@ -514,14 +504,12 @@
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
 				34B9274F26D1710D00020CD2 /* DaySelectionCell.swift in Sources */,
 				340EB2C326DBDCA900DF9243 /* IntroViewModel.swift in Sources */,
-				34079AB1268740E600F9AC7F /* AddEventsSheet.swift in Sources */,
 				34B9274526D150F300020CD2 /* PerformanceViewCell.swift in Sources */,
 				34B9274026D1013900020CD2 /* Image + ext.swift in Sources */,
 				340EB2B926D9425200DF9243 /* Helper.swift in Sources */,
 				346407FF26C5432100B8506A /* PersistenceManager.swift in Sources */,
 				34B9277926D8F19800020CD2 /* NotificationTime+CoreDataClass.swift in Sources */,
 				341EEE882665124D001EFD32 /* MockData.swift in Sources */,
-				341EEE8A26651806001EFD32 /* RecurringEventsView.swift in Sources */,
 				34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */,
 				3464081326C6EDA600B8506A /* IconsAndColorsView.swift in Sources */,
 				34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */,

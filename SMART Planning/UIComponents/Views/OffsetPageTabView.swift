@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct OffsetPageTabView<Content: View>: UIViewRepresentable {
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+    
+    @Binding var offset: CGFloat
+    var screenWidth: CGFloat
+    var content: Content
+    
+    init(offset: Binding<CGFloat>, screenWidth: CGFloat, @ViewBuilder content: @escaping () -> Content) {
+        self.content        = content()
+        self._offset        = offset
+        self.screenWidth    = screenWidth
     }
     
-    
-    var content: Content
-    @Binding var offset: CGFloat
-    
-    init(offset: Binding<CGFloat>, @ViewBuilder content: @escaping () -> Content) {
-        self.content = content()
-        self._offset = offset
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
     }
     
     func makeUIView(context: Context) -> UIScrollView {
@@ -36,8 +38,19 @@ struct OffsetPageTabView<Content: View>: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIScrollView, context: Context) {
-        
         let currentOffset = uiView.contentOffset.x
+        
+        if currentOffset < 0 {
+            uiView.isScrollEnabled = false
+            uiView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            uiView.isScrollEnabled = true
+        }
+
+        if currentOffset > screenWidth * 3 {
+            uiView.isScrollEnabled = false
+            uiView.setContentOffset(CGPoint(x: screenWidth * 3, y: 0), animated: true)
+            uiView.isScrollEnabled = true
+        }
         
         if currentOffset != offset {
             uiView.setContentOffset(CGPoint(x: offset, y: 0), animated: true)
