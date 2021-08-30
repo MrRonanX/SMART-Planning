@@ -21,6 +21,7 @@ struct ChooseGoalView: View {
                 body(for: geo.size.width)
             }
         }
+        .environmentObject(viewModel)
         .accentColor(Color(viewModel.selectedColor))
     }
     
@@ -35,11 +36,12 @@ struct ChooseGoalView: View {
                         .onTapGesture { viewModel.showGoalView(for: goal) }
                 }
             }
-            NavigationLink(destination: GoalView(viewModel: viewModel), isActive: $viewModel.isShowingGoalView) {
+            NavigationLink(destination: GoalView(), isActive: $viewModel.isShowingGoalView) {
                 EmptyView() }
                 .onChange(of: viewModel.isShowingGoalView) { _ in pushMainScreen() }
             Spacer()
         }
+        
         .padding()
         .navigationTitle("Goals")
         .toolbar {

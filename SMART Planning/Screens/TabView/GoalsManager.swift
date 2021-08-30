@@ -21,7 +21,6 @@ final class GoalsManager: ObservableObject {
     func createNotificationObjects() -> [ScheduledNotification] {
         var notifications = [ScheduledNotification]()
         for goal in goals {
-            print(goal.goal.allowNotifications)
             guard goal.goal.allowNotifications else { continue }
             let notification = ScheduledNotification(id: goal.goal.wrappedID,
                                                      title: goal.goal.wrappedTitle,

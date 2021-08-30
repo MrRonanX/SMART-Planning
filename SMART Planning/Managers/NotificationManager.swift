@@ -41,9 +41,14 @@ final class NotificationManager {
         }
     }
     
+    func cancelNotification(with id: UUID) {
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [id.uuidString])
+    }
+    
     
     func listScheduledNotifications() {
         UNUserNotificationCenter.current().getPendingNotificationRequests { notifications in
+            
             print("😕😕😕 There are \(notifications.count) notifications")
             
 //            for notification in notifications {
@@ -76,14 +81,16 @@ final class NotificationManager {
                 }
             }
         }
-
     }
     
     
     private func notificationDate(for goal: ScheduledNotification) -> DateComponents {
         var correctDate = Date()
         
-        if correctDate.hour() >= goal.hour && correctDate.minute() >= goal.minute {
+        if correctDate.hour() > goal.hour {
+            correctDate = correctDate.adding(days: 1)
+            
+        } else if correctDate.hour() == goal.hour && correctDate.minute() >= goal.minute {
             correctDate = correctDate.adding(days: 1)
         }
         

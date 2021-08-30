@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GoalView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: GoalViewModel
+    @EnvironmentObject var viewModel: GoalViewModel
     @State var daysTillDeadline = 0
     var body: some View {
         GeometryReader { geo in
@@ -68,9 +68,7 @@ struct GoalView: View {
                             .accentColor(Color(viewModel.selectedColor))
                     }
                 }
-
                 .zIndex(0)
-                .environmentObject(viewModel)
                 
                 if viewModel.isShowingPopOver {
                     FullScreenBlackTransparencyView()
@@ -127,7 +125,7 @@ fileprivate struct FormWithoutHeader<Content: View>: View {
 
 struct GoalView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalView(viewModel: GoalViewModel())
+        GoalView()
     }
 }
 

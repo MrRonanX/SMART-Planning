@@ -11,7 +11,7 @@ struct TimelineView: View {
     @EnvironmentObject var brain: GoalsManager
     @State private var detailView: GoalModel? = nil
     @State var showAddGoalsView = false
-    @State var showDetailView = false
+    
     var body: some View {
         NavigationView {
             ScrollViewIfNeeded(numberOfGoals: brain.goals.count) {
@@ -32,9 +32,7 @@ struct TimelineView: View {
             .navigationTitle("Goal Timelines")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showAddGoalsView = true
-                    } label: {
+                    Button(action: addGoals) {
                         Image(systemName: "plus")
                     }
                 }
@@ -43,15 +41,19 @@ struct TimelineView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
+    func addGoals() {
+        showAddGoalsView = true
+//        NotificationManager.shared.listScheduledNotifications()
+    }
     
     private func setNotifications() {
         brain.loadData()
         let notificationManager = NotificationManager.shared
         notificationManager.notifications = brain.createNotificationObjects()
         notificationManager.schedule()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            notificationManager.listScheduledNotifications()
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            notificationManager.listScheduledNotifications()
+//        }
     }
 }
 
@@ -71,13 +73,25 @@ struct GoalDetailView: View {
                 }
             }
             .navigationBarTitle(goal.goal.wrappedTitle)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done", action: dismissView)
+                }
+            }
         }
     }
     
+    
+    func dismissView() {
+        presentationMode.wrappedValue.dismiss()
+    }
+    
+    
     func deleteGoal() {
         brain.goals.removeAll(where: {$0.goal.wrappedID == goal.goal.wrappedID })
+        NotificationManager.shared.cancelNotification(with: goal.goal.wrappedID)
         PersistenceManager.shared.deleteGoal(goal.goal)
-        presentationMode.wrappedValue.dismiss()
+        dismissView()
     }
 }
 
@@ -103,7 +117,8 @@ struct ScrollViewIfNeeded<Content: View>: View {
         if numberOfGoals > 4 {
             ScrollView(showsIndicators: false) {
                 content
-            }} else {
+            }
+        } else {
                 content
             }
     }
