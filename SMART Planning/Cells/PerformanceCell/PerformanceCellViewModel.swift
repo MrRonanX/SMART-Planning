@@ -21,22 +21,22 @@ final class PerformanceCellViewModel: ObservableObject {
             switch viewType {
             case .weekly:
                 setWeeklyData()
-                
             case .monthly:
                 setMonthlyData()
-                
             case .total:
                 setTotalData()
             }
         }
     }
     
+    
     var completionRate: Double {
-        withAnimation { (currentProgress / goalMilestone).roundToDecimal(2) }
+       withAnimation { (currentProgress + 0.0001) / goalMilestone }
     }
     
+    
     var currentProgressTitle: Double {
-        (currentProgress + originalProgress).roundToDecimal(1)
+        (currentProgress + originalProgress).roundToDecimal(2)
     }
     
     
@@ -50,12 +50,14 @@ final class PerformanceCellViewModel: ObservableObject {
         return "Completed \(numberOfCompletedTasks) / \(numberOfTasks) \(plurality)"
     }
     
+    
     var milestoneText: LocalizedStringKey {
         "Milestone \(goalMilestone.roundToDecimal(2), specifier: "%2g") \(goal.goal.wrappedUnits.lowercased())"
     }
     
+    
     var ongoingText: LocalizedStringKey {
-        "Ongoing \(goalMilestone - currentProgress, specifier: "%2g") \(goal.goal.wrappedUnits.lowercased())"
+        "Ongoing \(goalMilestone.roundToDecimal(2) - currentProgress.roundToDecimal(2), specifier: "%2g") \(goal.goal.wrappedUnits.lowercased())"
     }
     
     
@@ -82,7 +84,7 @@ final class PerformanceCellViewModel: ObservableObject {
                 numberOfCompletedTasks = completedTasks
                 numberOfTasks = amountOfTasks
                 goalMilestone = milestone
-                currentProgress = progress.roundToDecimal(1)
+                currentProgress = progress
             }
         }
     }
@@ -97,7 +99,7 @@ final class PerformanceCellViewModel: ObservableObject {
                 numberOfCompletedTasks = completedTasks
                 numberOfTasks = amountOfTasks
                 goalMilestone = milestone
-                currentProgress = progress.roundToDecimal(1)
+                currentProgress = progress
             }
         
         }
@@ -113,9 +115,8 @@ final class PerformanceCellViewModel: ObservableObject {
                 numberOfCompletedTasks = completedTasks
                 numberOfTasks = amountOfTasks
                 goalMilestone = milestone
-                currentProgress = progress.roundToDecimal(1)
+                currentProgress = progress
             }
-        
         }
     }
 }

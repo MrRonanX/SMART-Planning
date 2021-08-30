@@ -32,7 +32,7 @@ extension Date {
     
     
     func days(from beginning: Date) -> Int {
-        Calendar.current.dateComponents([.day], from: beginning, to: self).day!
+        Calendar.current.dateComponents([.day], from: beginning.midday(), to: self.midday()).day!
     }
     
     

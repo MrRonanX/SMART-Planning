@@ -57,7 +57,7 @@ struct NotificationCell: View {
             Image(systemName: "chevron.down")
                 .resizable()
                 .scaledToFit()
-                .foregroundColor(.secondary)
+                .foregroundColor(Color(viewModel.selectedColor))
                 .frame(width: 15, height: 15)
                 .rotationEffect(.degrees(rotationDegrees))
         }
@@ -83,7 +83,7 @@ struct NotificationCell: View {
     }
     
     func selectNotificationTime(time: NotificationSegmentType) {
-        viewModel.notificationTime = time
+        withAnimation {  viewModel.notificationTime = time }
     }
 }
 
@@ -94,7 +94,7 @@ struct ButtonForNotification: View {
     var body: some View {
         Text(title.rawValue)
             .fontWeight(.medium)
-            .foregroundColor(Color(.label))
+            .foregroundColor(textColor)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 6)
             .background(backgroundColor.cornerRadius(13))
@@ -102,6 +102,10 @@ struct ButtonForNotification: View {
     
     var backgroundColor: some View {
         viewModel.notificationTime == title ? Color(viewModel.selectedColor) : Color(.formTabButtonColor)
+    }
+    
+    var textColor: Color {
+        viewModel.notificationTime == title ? Color(.white) : Color(.label)
     }
 }
 

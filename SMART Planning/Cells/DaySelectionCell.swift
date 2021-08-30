@@ -26,7 +26,7 @@ struct DaySelectionCell: View {
             Image(systemName: "chevron.down")
                 .resizable()
                 .scaledToFit()
-                .foregroundColor(.secondary)
+                .foregroundColor(Color(viewModel.selectedColor))
                 .frame(width: 15, height: 15)
                 .rotationEffect(.degrees(rotationDegrees))
         }

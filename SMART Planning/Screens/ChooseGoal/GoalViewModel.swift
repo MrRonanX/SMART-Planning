@@ -46,7 +46,7 @@ final class GoalViewModel: ObservableObject {
     var deadlineTitle: String {
         let isToday = Calendar.current.isDateInToday(deadlineDate)
         let title = Date().isDateThisYear(deadlineDate) ? deadlineDate.toString(.deadline) : deadlineDate.toString(.deadlineNextYear)
-        return isToday ? "Deadline is not set" : "Deadline: \(title)"
+        return isToday ? "Deadline is not set" : title
     }
     
     var dateRange: ClosedRange<Date> {
@@ -54,6 +54,11 @@ final class GoalViewModel: ObservableObject {
         let nextYear = now.adding(days: 365)
         let range = now ... nextYear
         return range
+    }
+    
+    
+    var descriptionColor: Color {
+        description == "Description (Optional)" ? .gray : Color(.label)
     }
     
     
@@ -143,6 +148,17 @@ final class GoalViewModel: ObservableObject {
             popOver = .colors
             isShowingPopOver = true
         }
+    }
+    
+    
+    var deadlineMenuTitle: String {
+        let range = deadlineDate.days(from: Date())
+        let plurality = range > 1 ? "Days" : "Day"
+        return range > 0 ? "\(range) \(plurality)" : "Set"
+    }
+    
+    func setDeadline(of days: Int) {
+        deadlineDate = Date().adding(days: days)
     }
     
     

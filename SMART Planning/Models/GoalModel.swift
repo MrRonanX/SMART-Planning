@@ -116,8 +116,8 @@ extension GoalModel {
     var goalText: [Text] {
         var localSteps = [Text]()
         var achievedResult = 0.0
-        let decimalPoint = achievedResult > 100 ? 0 : 1
         for _ in 0..<numberOfSteps {
+            let decimalPoint = achievedResult > 100 ? 0 : 1
             let text = Text("\(String(format: "%g", achievedResult.roundToDecimal(decimalPoint))) \(goal.wrappedUnitsShort)")
             localSteps.append(text)
             achievedResult += goalPerStep
@@ -179,8 +179,8 @@ extension GoalModel {
         let desiredProgress = thisMonthTasks.max()?.resultAfterTraining ?? 0
         let numberOfTasks = thisMonthTasks.count
         let numberOfCompletedTasks = thisMonthTasks.filter { $0.isCompleted }.count
-        let thisMonthMileStone = thisMonthTasks.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
-        let currentProgress = thisMonthTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+        let thisMonthMileStone = thisMonthTasks.reduce(0) { $0 + $1.trainingAmount }
+        let currentProgress = thisMonthTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }
         
         completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisMonthMileStone, currentProgress)
     }
