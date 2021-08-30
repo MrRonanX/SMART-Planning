@@ -33,13 +33,13 @@ struct GoalView: View {
                     .listRowBackground(Color(.rowBackground))
                     
                     Section {
-                        DaySelectionCell()
+                        DaySelectionView()
                         Text(viewModel.targetTitle)
-                        GoalTargetCell(size: geo.size)
+                        GoalTargetView(size: geo.size)
                     }
                     
                     Section(header: Text("")) {
-                        NotificationCell()
+                        NotificationTimeView()
                         HStack {
                             Text(viewModel.deadlineTitle)
                             Spacer()

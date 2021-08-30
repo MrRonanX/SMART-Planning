@@ -106,7 +106,7 @@ extension GoalModel {
         var time = 0.0
         for _ in 0..<numberOfSteps {
             let stepDate = goal.wrappedStartDate.adding(days: Int(time))
-            let text = Text("\(stepDate.toString())")
+            let text = Text(stepDate.toString())
             localSteps.append(text)
             time += daysPerStep
         }

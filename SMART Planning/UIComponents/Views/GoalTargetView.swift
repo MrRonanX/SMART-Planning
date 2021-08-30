@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GoalTargetCell: View {
+struct GoalTargetView: View {
     @EnvironmentObject var viewModel: GoalViewModel
     var size: CGSize
     
@@ -55,6 +55,6 @@ struct GoalTargetCell: View {
 
 struct GoalTargetCell_Previews: PreviewProvider {
     static var previews: some View {
-        GoalTargetCell(size: UIScreen.main.bounds.size).environmentObject(GoalViewModel())
+        GoalTargetView(size: UIScreen.main.bounds.size).environmentObject(GoalViewModel())
     }
 }

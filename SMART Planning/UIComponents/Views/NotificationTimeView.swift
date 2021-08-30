@@ -41,7 +41,7 @@ enum NotificationSegmentType: String, Identifiable {
     }
 }
 
-struct NotificationCell: View {
+struct NotificationTimeView: View {
     @EnvironmentObject var viewModel: GoalViewModel
     @State var isExpanded = false
     @State var rotationDegrees = 0.0
@@ -111,6 +111,6 @@ struct ButtonForNotification: View {
 
 struct NotificationCell_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationCell().environmentObject(GoalViewModel())
+        NotificationTimeView().environmentObject(GoalViewModel())
     }
 }

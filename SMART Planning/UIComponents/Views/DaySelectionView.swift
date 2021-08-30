@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DaySelectionCell: View {
+struct DaySelectionView: View {
     @EnvironmentObject var viewModel: GoalViewModel
     @State var isExpanded = false
     @State var rotationDegrees = 0.0
@@ -74,6 +74,6 @@ struct DayCircle: View {
 
 struct ExpandableCell_Previews: PreviewProvider {
     static var previews: some View {
-        DaySelectionCell().environmentObject(GoalViewModel())
+        DaySelectionView().environmentObject(GoalViewModel())
     }
 }

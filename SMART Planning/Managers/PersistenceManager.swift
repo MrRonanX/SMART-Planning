@@ -54,10 +54,10 @@ struct PersistenceManager {
         }
     }
     
-//    func getSpecificGoal(goal: GoalModel) -> Goal {
-//        let request: NSFetchRequest<Goal> = Goal.fetchRequest()
-//
-//    }
+    func deleteGoal(_ goal: Goal) {
+        viewContext.delete(goal)
+        save()
+    }
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "Goal")

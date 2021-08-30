@@ -9,48 +9,40 @@ import SwiftUI
 
 struct TimelineView: View {
     @EnvironmentObject var brain: GoalsManager
-    
+    @State private var detailView: GoalModel? = nil
     @State var showAddGoalsView = false
-    
+    @State var showDetailView = false
     var body: some View {
         NavigationView {
             ScrollViewIfNeeded(numberOfGoals: brain.goals.count) {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(brain.goals) { goalModel in
-                        HStack {
-                            Image(goalModel.goal.wrappedIcon)
-                                .iconStyle(with: 30)
-                                .foregroundColor(Color(goalModel.goal.wrappedColor))
-
-                            Text(goalModel.goal.wrappedTitle)
-                                .font(.title3)
-                                .bold()
-                        }
-                        
-                        StepperView(numberOfSteps: goalModel.numberOfSteps, topText: goalModel.dateText, completionStage: goalModel.indicators, bottomText: goalModel.goalText, itemSpacing: goalModel.spacing, itemColor: goalModel.goal.wrappedColor)
-                            .padding(.bottom)
+                        GoalViewCell(goalModel: goalModel)
+                            .onTapGesture { detailView = goalModel }
+                            
                     }
-                    
-                    
                     Spacer()
                 }
                 .padding(.horizontal)
-                .onAppear(perform: setNotifications)
-                .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }
-                .navigationTitle("Goal Timelines")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            showAddGoalsView = true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
+
+            }
+            .sheet(item: $detailView) { model in GoalDetailView(goal: model)}
+            .onAppear(perform: setNotifications)
+            .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }
+            .navigationTitle("Goal Timelines")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showAddGoalsView = true
+                    } label: {
+                        Image(systemName: "plus")
                     }
                 }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
     
     private func setNotifications() {
         brain.loadData()
@@ -60,14 +52,32 @@ struct TimelineView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             notificationManager.listScheduledNotifications()
         }
-       
-            
+    }
+}
+
+
+struct GoalDetailView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var brain: GoalsManager
+    var goal: GoalModel
+    
+    var body: some View {
+        NavigationView {
+            Form {
+                Text("This section is in development")
+                Button(action: deleteGoal) {
+                    Text("Delete")
+                        .foregroundColor(.red)
+                }
+            }
+            .navigationBarTitle(goal.goal.wrappedTitle)
+        }
     }
     
-    func loadGoals() {
-        //        goals = PersistenceController.shared.getAllGoals().map { GoalModel(id: $0.wrappedID, name: $0.wrappedTitle, daily: $0.daily, daysOfPractice: $0.wrappedDaysOfPractice, baseProgress: $0.baseProgress, desiredResult: $0.desiredResult, mesurableUnits: $0.wrappedUnits, trainingDays: $0.wrappedTrainingDays, startDate: $0.wrappedStartDate , deadline: $0.wrappedDeadline)}
-        
-        brain.loadData()
+    func deleteGoal() {
+        brain.goals.removeAll(where: {$0.goal.wrappedID == goal.goal.wrappedID })
+        PersistenceManager.shared.deleteGoal(goal.goal)
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
@@ -98,11 +108,3 @@ struct ScrollViewIfNeeded<Content: View>: View {
             }
     }
 }
-
-
-
-
-
-
-
-
