@@ -42,6 +42,9 @@ final class GoalViewModel: ObservableObject {
     var measurementActions              = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete",
                                            "Lose", "Make", "Draw", "Do", "Find"]
     
+    var goalShortcut                    = [365, 300, 250, 200, 150, 100]
+    var goalIsSet                       = false
+    
     var targetTitle: String { isTargetEdited ?  selectedAction + " " + selectedMetric + " " + selectedUnit : "Your target:" }
     
     var deadlineTitle: String {
@@ -164,7 +167,8 @@ final class GoalViewModel: ObservableObject {
         }
         
         PersistenceManager.shared.save()
-        isShowingGoalView = false
+        isShowingGoalView   = false
+        goalIsSet           = true
     }
     
     

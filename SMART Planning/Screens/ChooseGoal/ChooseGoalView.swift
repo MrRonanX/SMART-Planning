@@ -55,7 +55,6 @@ struct ChooseGoalView: View {
             NavigationLink(destination: GoalView(), isActive: $viewModel.isShowingGoalView) { EmptyView() }
                 .onChange(of: viewModel.isShowingGoalView) { _ in pushMainScreen() }
         }
-        
         .padding()
         .navigationTitle("Goals")
         .toolbar {
@@ -71,7 +70,7 @@ struct ChooseGoalView: View {
     
     
     func pushMainScreen() {
-        if !launchedByMainScreen && viewModel.isShowingGoalView == false {
+        if !launchedByMainScreen && viewModel.isShowingGoalView == false && viewModel.goalIsSet {
             settings.firstGoalIsSet()
             
         }

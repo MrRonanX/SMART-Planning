@@ -11,7 +11,7 @@ import SwiftUI
 struct GoalView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: GoalViewModel
-    @State var daysTillDeadline = 0
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -43,25 +43,7 @@ struct GoalView: View {
                         HStack {
                             Text(viewModel.deadlineTitle)
                             Spacer()
-
-                            Menu {
-                                Button("100 Days") { viewModel.setDeadline(of: 100) }
-                                Button("150 Days") { viewModel.setDeadline(of: 150) }
-                                Button("200 Days") { viewModel.setDeadline(of: 200) }
-                                Button("250 Days") { viewModel.setDeadline(of: 250) }
-                                Button("300 Days") { viewModel.setDeadline(of: 300) }
-                                Button("1 Year") { viewModel.setDeadline(of: 365) }
-
-                            } label: {
-                                Text(viewModel.deadlineMenuTitle)
-                                    .font(.subheadline.bold())
-                                    .lineLimit(2)
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 5)
-                                    .padding(.horizontal)
-                                    .background(Color(viewModel.selectedColor))
-                                    .cornerRadius(9)
-                            }
+                            DeadlineMenu()
                         }
                         DatePicker("Deadline", selection: $viewModel.deadlineDate, in: viewModel.dateRange, displayedComponents: .date)
                             .datePickerStyle(GraphicalDatePickerStyle())
@@ -108,6 +90,28 @@ fileprivate struct FormWithoutHeader<Content: View>: View {
             } else {
                 Text("Dummy").onAppear { isLoaded = true }
             }
+        }
+    }
+}
+
+
+fileprivate struct DeadlineMenu: View {
+    @EnvironmentObject var viewModel: GoalViewModel
+    
+    var body: some View {
+        Menu {
+            ForEach(viewModel.goalShortcut, id:\.self) { days in
+                Button(days == 365 ? "1 Year" : "\(days) Days") { viewModel.setDeadline(of: days)}
+            }
+        } label: {
+            Text(viewModel.deadlineMenuTitle)
+                .font(.subheadline.bold())
+                .lineLimit(2)
+                .foregroundColor(.white)
+                .padding(.vertical, 5)
+                .padding(.horizontal)
+                .background(Color(viewModel.selectedColor))
+                .cornerRadius(9)
         }
     }
 }
