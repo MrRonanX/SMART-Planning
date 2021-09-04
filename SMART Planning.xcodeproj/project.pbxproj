@@ -363,8 +363,8 @@
 		34B9275026D1712000020CD2 /* PerformanceCell */ = {
 			isa = PBXGroup;
 			children = (
-				34B9274426D150F300020CD2 /* PerformanceViewCell.swift */,
 				34B9274626D1513D00020CD2 /* PerformanceCellViewModel.swift */,
+				34B9274426D150F300020CD2 /* PerformanceViewCell.swift */,
 			);
 			path = PerformanceCell;
 			sourceTree = "<group>";

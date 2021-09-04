@@ -54,7 +54,7 @@ final class GoalViewModel: ObservableObject {
     }
     
     var dateRange: ClosedRange<Date> {
-        let now = Date().adding(days: -1)
+        let now = Date()
         let nextYear = now.adding(days: 365)
         let range = now ... nextYear
         return range
@@ -121,7 +121,7 @@ final class GoalViewModel: ObservableObject {
             return false
         }
         
-        guard deadlineDate != Date() else {
+        guard deadlineDate.midday() != Date().midday() else {
             alertItem = AlertContext.notValid("deadline")
             return false
         }
@@ -138,6 +138,7 @@ final class GoalViewModel: ObservableObject {
     func saveToCoreData() {
         guard isValid() else { return }
         guard let desiredResult     = Int(selectedMetric) else { return }
+        description                 = "\(selectedAction.capitalized) \(selectedMetric) \(selectedUnit)" 
         let agreeToNotifications    = notificationTime != .dontNotify
         let shortUnit               = MeasurementUnit.measurementUnits.filter { $0.displayTitle.contains(selectedUnit) }.first?.shortTitle
         let isDaily                 = days.filter { $0.isSelected }

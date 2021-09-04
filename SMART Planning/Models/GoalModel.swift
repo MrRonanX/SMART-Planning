@@ -161,10 +161,10 @@ extension GoalModel {
         let thisWeekTasks = tasks.filter { week.contains($0.wrappedDate.toString(.deadlineNextYear))}
         
         let baseProgress = thisWeekTasks.min()?.resultBeforeTraining ?? 0
-        let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 1
+        let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 0
         let numberOfTasks = thisWeekTasks.count
         let numberOfCompletedTasks = thisWeekTasks.filter { $0.isCompleted }.count
-        let thisWeekMileStone = thisWeekTasks.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
+        let thisWeekMileStone = thisWeekTasks.reduce(0) { $0 + $1.trainingAmount }
         let currentProgress = thisWeekTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
         
         completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisWeekMileStone, currentProgress)

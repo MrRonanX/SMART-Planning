@@ -31,7 +31,9 @@ final class PerformanceCellViewModel: ObservableObject {
     
     
     var completionRate: Double {
-       withAnimation { (currentProgress + 0.0001) / goalMilestone }
+        let localMilestone = goalMilestone == 0 ? 0.1 : goalMilestone
+        let progress =  (currentProgress + 0.0001) / localMilestone
+        return progress
     }
     
     

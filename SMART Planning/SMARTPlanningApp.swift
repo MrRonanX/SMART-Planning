@@ -39,3 +39,15 @@ final class ViewSelector: ObservableObject {
         goalIsSet = true
     }
 }
+
+struct IntroOrGoalView: View {
+    @StateObject var viewModel = IntroViewModel()
+    
+    var body: some View {
+        if viewModel.hasSeenIntro {
+            ChooseGoalView(launchedByMainScreen: .constant(false))
+        } else {
+            IntroView(viewModel: viewModel)
+        }
+    }
+}

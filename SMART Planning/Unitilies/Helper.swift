@@ -56,11 +56,11 @@ struct MeasurementUnit {
                                    MeasurementUnit(displayTitle: "kilograms", shortTitle: "kg."),
                                    MeasurementUnit(displayTitle: "kilometers", shortTitle: "km."),
                                    MeasurementUnit(displayTitle: "miles", shortTitle: "mi."),
-                                   MeasurementUnit(displayTitle: "meditations", shortTitle: "medit."),
+                                   MeasurementUnit(displayTitle: "meditations", shortTitle: "m."),
                                    MeasurementUnit(displayTitle: "pounds", shortTitle: "lb."),
                                    MeasurementUnit(displayTitle: "pictures", shortTitle: "pic."),
-                                   MeasurementUnit(displayTitle: "courses", shortTitle: "co."),
-                                   MeasurementUnit(displayTitle: "lessons", shortTitle: "les."),
+                                   MeasurementUnit(displayTitle: "courses", shortTitle: "c."),
+                                   MeasurementUnit(displayTitle: "lessons", shortTitle: "l."),
                                    MeasurementUnit(displayTitle: "credits", shortTitle: "cr.")]
 }
 

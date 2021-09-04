@@ -30,6 +30,7 @@ struct LineProgressView: View {
                     .font(.callout)
                     .foregroundColor(.white)
                     .frame(width: geo.size.width * completionCoef + 1, alignment: .trailing)
+                    .offset(x: -1, y: -1)
             }
         }
         .frame(height: 20)

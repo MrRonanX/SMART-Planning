@@ -12,14 +12,18 @@ struct GoalViewCell: View {
     var goalModel: GoalModel
     
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             Image(goalModel.goal.wrappedIcon)
-                .iconStyle(with: 30)
+                .iconStyle(with: 35)
                 .foregroundColor(Color(goalModel.goal.wrappedColor))
-
-            Text(goalModel.goal.wrappedTitle)
-                .font(.title3)
-                .bold()
+            VStack(alignment: .leading) {
+                Text(goalModel.goal.wrappedTitle)
+                    .font(.title3)
+                    .bold()
+                
+                Text(goalModel.goal.wrappedGoalDescription)
+                    .font(.subheadline)
+            }
         }
         
         StepperView(numberOfSteps: goalModel.numberOfSteps, topText: goalModel.dateText, completionStage: goalModel.indicators, bottomText: goalModel.goalText, itemSpacing: goalModel.spacing, itemColor: goalModel.goal.wrappedColor)
