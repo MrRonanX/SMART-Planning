@@ -15,7 +15,7 @@ final class GoalViewModel: ObservableObject {
     let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
     // MARK:  - Goal View
-    #warning("Make sure metric isn't 0")
+    
     @Published var selectedMetric       = "2"
     @Published var selectedUnit         = "pages"
     @Published var selectedAction       = "Read"
@@ -34,6 +34,7 @@ final class GoalViewModel: ObservableObject {
     @Published var selectedIcon         = "macbook"
     @Published var popOver: ViewType    = .colors
     @Published var notificationTime     : NotificationSegmentType = .dontNotify
+    @Published var alertItem            : AlertItem? = nil
     
     @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations",
                                            "pounds", "pictures", "courses", "lessons", "credits"]
@@ -101,7 +102,38 @@ final class GoalViewModel: ObservableObject {
     }
     
     
+    func isValid() -> Bool {
+        guard !selectedMetric.isEmpty || selectedMetric == "0" else {
+            alertItem = AlertContext.notValid("desired result")
+            return false
+        }
+        
+        guard !selectedUnit.isEmpty else {
+            alertItem = AlertContext.notValid("unit")
+            return false
+        }
+        
+        guard !selectedAction.isEmpty else {
+            alertItem = AlertContext.notValid("action")
+            return false
+        }
+        
+        guard deadlineDate != Date() else {
+            alertItem = AlertContext.notValid("deadline")
+            return false
+        }
+        
+        guard days.count > 0 else {
+            alertItem = AlertContext.notValid("practice days")
+            return false
+        }
+        
+        return true
+    }
+    
+    
     func saveToCoreData() {
+        guard isValid() else { return }
         guard let desiredResult     = Int(selectedMetric) else { return }
         let agreeToNotifications    = notificationTime != .dontNotify
         let shortUnit               = MeasurementUnit.measurementUnits.filter { $0.displayTitle.contains(selectedUnit) }.first?.shortTitle
@@ -132,6 +164,7 @@ final class GoalViewModel: ObservableObject {
         }
         
         PersistenceManager.shared.save()
+        isShowingGoalView = false
     }
     
     

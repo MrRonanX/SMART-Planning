@@ -30,6 +30,7 @@
 		341EEE882665124D001EFD32 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* MockData.swift */; };
 		3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* LineProgressView.swift */; };
 		3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */; };
+		3439FD9A26E35E8D00DD79C9 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3439FD9926E35E8D00DD79C9 /* AlertItem.swift */; };
 		3461280D268C62140035AF81 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280C268C62140035AF81 /* PerformanceView.swift */; };
 		34612810268C65930035AF81 /* PlanningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461280F268C65930035AF81 /* PlanningTabView.swift */; };
 		346407ED26C13F7100B8506A /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346407EC26C13F7100B8506A /* StepperView.swift */; };
@@ -93,6 +94,7 @@
 		341EEE872665124D001EFD32 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3422486726CA63F3006CFC05 /* LineProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
 		3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithReturnButton.swift; sourceTree = "<group>"; };
+		3439FD9926E35E8D00DD79C9 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		3461280C268C62140035AF81 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		3461280F268C65930035AF81 /* PlanningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningTabView.swift; sourceTree = "<group>"; };
 		346407EC26C13F7100B8506A /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				3464081426C796AB00B8506A /* Icons.swift */,
 				3464081A26C7C49000B8506A /* Colors.swift */,
 				340EB2B826D9425200DF9243 /* Helper.swift */,
+				3439FD9926E35E8D00DD79C9 /* AlertItem.swift */,
 			);
 			path = Unitilies;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */,
 				34B9275226D1715F00020CD2 /* GoalTargetView.swift in Sources */,
 				340EB2C026DB90F800DF9243 /* OffsetPageTabView.swift in Sources */,
+				3439FD9A26E35E8D00DD79C9 /* AlertItem.swift in Sources */,
 				34079ACE2689DB9600F9AC7F /* String + ext.swift in Sources */,
 				34B9276426D4BA2E00020CD2 /* Goal+CoreDataProperties.swift in Sources */,
 				34B9274226D14D2800020CD2 /* PerformanceViewModel.swift in Sources */,

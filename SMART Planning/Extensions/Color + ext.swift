@@ -112,7 +112,7 @@ extension UIColor {
             case .light:
                 return .systemBackground
             case .dark:
-                return UIColor(red: 33, green: 28, blue: 38, alpha: 1)
+                return UIColor(red: 33/255, green: 28/255, blue: 38/255, alpha: 1)
             @unknown default:
                 return .systemBackground
             }

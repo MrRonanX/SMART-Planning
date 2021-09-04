@@ -36,5 +36,6 @@ final class ViewSelector: ObservableObject {
     
     func firstGoalIsSet() {
         UserDefaults.standard.set(true, forKey: "goalIsSet")
+        goalIsSet = true
     }
 }

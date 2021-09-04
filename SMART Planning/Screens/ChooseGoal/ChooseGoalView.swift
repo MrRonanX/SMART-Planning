@@ -73,7 +73,7 @@ struct ChooseGoalView: View {
     func pushMainScreen() {
         if !launchedByMainScreen && viewModel.isShowingGoalView == false {
             settings.firstGoalIsSet()
-            settings.goalIsSet = true
+            
         }
     }
 }

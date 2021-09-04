@@ -76,24 +76,14 @@ struct GoalView: View {
                 }
             }
         }
+        .alert(item: $viewModel.alertItem) { $0.alert }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(viewModel.goalTitle)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: saveGoal) { Text("Save") }
+                Button(action: viewModel.saveToCoreData) { Text("Save") }
             }
         }
-    }
-    
-    
-    func saveGoal() {
-        viewModel.saveToCoreData()
-        presentationMode.wrappedValue.dismiss()
-    }
-    
-    
-    func dismissView() {
-        presentationMode.wrappedValue.dismiss()
     }
 }
 
