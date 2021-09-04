@@ -46,9 +46,9 @@ struct OffsetPageTabView<Content: View>: UIViewRepresentable {
             uiView.isScrollEnabled = true
         }
 
-        if currentOffset > screenWidth * 3 {
+        if currentOffset > screenWidth * 5 {
             uiView.isScrollEnabled = false
-            uiView.setContentOffset(CGPoint(x: screenWidth * 3, y: 0), animated: true)
+            uiView.setContentOffset(CGPoint(x: screenWidth * 5, y: 0), animated: true)
             uiView.isScrollEnabled = true
         }
         

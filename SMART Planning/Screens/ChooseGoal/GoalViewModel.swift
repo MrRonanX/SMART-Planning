@@ -12,7 +12,7 @@ final class GoalViewModel: ObservableObject {
     @Published var isShowingGoalView = false
     
     var goals = GoalCreationModel.premadeGoals
-    let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 4)
+    let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
     
     // MARK:  - Goal View
     #warning("Make sure metric isn't 0")

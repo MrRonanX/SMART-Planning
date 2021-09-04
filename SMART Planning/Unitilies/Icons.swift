@@ -52,18 +52,31 @@ enum Icons: String, CaseIterable {
 }
 
 enum Illustrations: String {
-    case becomeSmarter = "becomeSmarter"
+    case becomingSmarter = "becomingSmarter"
     case enlightenment = "enlightenment"
-    case gainMuscles = "gainMuscles"
+    case buildingMuscles = "buildingMuscles"
     case gettingFit = "gettingFit"
     case idea = "ideaIllustration"
     case improveArt = "improveArt"
-    case learnLanguage = "learnLanguage"
-    case learnNewSkill = "learnNewSkill"
-    case loseWeight = "loseWeight"
+    case learningLanguage = "learningLanguage"
+    case learningNewSkill = "learningNewSkill"
+    case losingWeight = "losingWeight"
     case reading = "reading"
-    case saveMoney = "saveMoney"
-    case setYourGoal = "setYourGoal"
+    case savingMoney = "savingMoney"
+    case createGoal = "createGoal"
+    
+    var image: String {
+        self.rawValue
+    }
+}
+
+enum IntroIllustrations: String {
+    case achievable = "achievable"
+    case intro = "intro"
+    case measurable = "measurable"
+    case relevant = "relevant"
+    case specific = "specific"
+    case timely = "timely"
     
     var image: String {
         self.rawValue

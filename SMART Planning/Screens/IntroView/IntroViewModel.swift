@@ -9,12 +9,8 @@ import SwiftUI
 
 final class IntroViewModel: ObservableObject {
     @Published var offset: CGFloat = 0
-    @Published var hasSeenIntro: Bool
+    @Published var hasSeenIntro = false
     var pages = PageTextContent.pages
-    
-    init(_ hasSeenIntro: Bool) {
-        self.hasSeenIntro = hasSeenIntro
-    }
     
     
     func width(for screenWidth: CGFloat, and position: Int) -> CGFloat {

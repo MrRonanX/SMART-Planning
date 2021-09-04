@@ -8,27 +8,14 @@
 import SwiftUI
 
 struct IntroView: View {
-    @StateObject private var viewModel: IntroViewModel
-    
-    init(hasSeenIntro: Bool) {
-        _viewModel = StateObject(wrappedValue: IntroViewModel(hasSeenIntro))
-    }
-    
+    @ObservedObject var viewModel: IntroViewModel
+
     var body: some View {
-        if !viewModel.hasSeenIntro {
             GeometryReader { geo in
                 VStack {
-                    Image(systemName: "arrow.right.circle.fill")
-                        .resizable()
-                        .foregroundColor(.brandBlue)
-                        .frame(width: 30, height: 30)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding([.leading, .top])
-                    
                     OffsetPageTabView(offset: $viewModel.offset, screenWidth: geo.size.width) {
                         ImageAndDescriptionView(screenWidth: geo.size.width)
                     }
-                    
                     HStack(alignment: .bottom) {
                         MovingIndicatorView(screenWidth: geo.size.width)
                         Spacer()
@@ -43,12 +30,12 @@ struct IntroView: View {
             }
         }
     }
-}
+
 
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView(hasSeenIntro: false)
+        IntroView(viewModel: IntroViewModel())
     }
 }
 
@@ -80,7 +67,7 @@ struct ImageAndDescriptionView: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(viewModel.pages) { page in
-                VStack(spacing: 50) {
+                VStack(spacing: dynamicSpacing) {
                     Image(page.image)
                         .resizable()
                         .scaledToFit()
@@ -88,17 +75,24 @@ struct ImageAndDescriptionView: View {
                     
                     VStack(alignment: .leading, spacing: 22) {
                         Text(page.title)
-                            .font(.largeTitle.bold())
-                        
+                            .font(.title.bold())
+                            .fixedSize(horizontal: false, vertical: true)
                         Text(page.text)
                             .fontWeight(.semibold)
                             .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+
                     }
+                    Spacer()
                 }
                 .padding()
                 .frame(width: screenWidth)
             }
-        }
+        }.padding(.top, 20)
+    }
+    
+    var dynamicSpacing: CGFloat {
+        DeviceTypes.isiPhone8Standard ? 20 : 50
     }
 }
 

@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+struct IntroOrGoalView: View {
+    @StateObject var viewModel = IntroViewModel()
+    
+    var body: some View {
+        if viewModel.hasSeenIntro {
+            ChooseGoalView(launchedByMainScreen: .constant(false))
+        } else {
+            IntroView(viewModel: viewModel)
+        }
+    }
+}
+
+
 struct ChooseGoalView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settings: ViewSelector
@@ -18,7 +31,7 @@ struct ChooseGoalView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geo in
-                body(for: geo.size.width)
+                body(for: geo.size)
             }
         }
         .environmentObject(viewModel)
@@ -26,7 +39,7 @@ struct ChooseGoalView: View {
     }
     
     
-    func body(for size: CGFloat) -> some View {
+    func body(for size: CGSize) -> some View {
         VStack {
             Text("You may choose one from the list or create your own").font(.title3)
             Divider()
@@ -57,7 +70,7 @@ struct ChooseGoalView: View {
     
     
     func pushMainScreen() {
-        if !launchedByMainScreen && viewModel.isShowingGoalView == false{
+        if !launchedByMainScreen && viewModel.isShowingGoalView == false {
             settings.firstGoalIsSet()
             settings.goalIsSet = true
         }
@@ -84,13 +97,13 @@ struct GoalCreationModel: Identifiable {
     
     static let premadeGoals = [GoalCreationModel(title: "Reading", action: "Read", image: "book", unit: "pages", icon: "book", illustration: Illustrations.reading.image),
                                GoalCreationModel(title: "Getting Fit", action: "Train", image: "gym", unit: "times", icon: "gym", illustration: Illustrations.gettingFit.image),
-                               GoalCreationModel(title: "Become Smarter", action: "Pass", image: "bookA", unit: "courses", icon: "bookA", illustration: Illustrations.becomeSmarter.image),
-                               GoalCreationModel(title: "Gain Muscles", action: "Gain", image: "weightLift", unit: "kilograms", icon: "weightLift", illustration: Illustrations.gainMuscles.image),
-                               GoalCreationModel(title: "Lose Weight", action: "Lose", image: "dumbbell", unit: "kilograms", icon: "dumbbell", illustration: Illustrations.loseWeight.image),
-                               GoalCreationModel(title: "Learn A Language", action: "Learn", image: "chats", unit: "lessons", icon: "chats", illustration: Illustrations.learnLanguage.image),
+                               GoalCreationModel(title: "Becoming Smarter", action: "Pass", image: "bookA", unit: "courses", icon: "bookA", illustration: Illustrations.becomingSmarter.image),
+                               GoalCreationModel(title: "Building Muscles", action: "Gain", image: "weightLift", unit: "kilograms", icon: "weightLift", illustration: Illustrations.buildingMuscles.image),
+                               GoalCreationModel(title: "Losing Weight", action: "Lose", image: "dumbbell", unit: "kilograms", icon: "dumbbell", illustration: Illustrations.losingWeight.image),
+                               GoalCreationModel(title: "Learning Language", action: "Learn", image: "chats", unit: "lessons", icon: "chats", illustration: Illustrations.learningLanguage.image),
                                GoalCreationModel(title: "Improve Your Art", action: "Paint", image: "paintBrush", unit: "pictures", icon: "paintBrush", illustration: Illustrations.improveArt.image),
-                               GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins", illustration: Illustrations.saveMoney.image),
+                               GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins", illustration: Illustrations.savingMoney.image),
                                GoalCreationModel(title: "Enlightenment", action: "Do", image: "idea", unit: "mediations", icon: "idea", illustration: Illustrations.enlightenment.image),
-                               GoalCreationModel(title: "Learn A New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learnNewSkill.image),
-                               GoalCreationModel(title: "Create Your Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.setYourGoal.image)]
+                               GoalCreationModel(title: "Learning New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learningNewSkill.image),
+                               GoalCreationModel(title: "Create Your Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.createGoal.image)]
 }

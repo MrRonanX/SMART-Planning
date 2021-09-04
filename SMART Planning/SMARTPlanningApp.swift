@@ -15,11 +15,9 @@ struct SMARTPlanningApp: App {
     var body: some Scene {
         WindowGroup {
             if !viewSelector.goalIsSet {
-                ChooseGoalView(launchedByMainScreen: .constant(false))
+                IntroOrGoalView()
                     .environmentObject(viewSelector)
                     .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
-                    .overlay(IntroView(hasSeenIntro: viewSelector.hasSeenIntro))
-                    .onChange(of: viewSelector.hasSeenIntro) { _ in viewSelector.introDismissed()}
             } else {
                 PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
             }
@@ -30,16 +28,9 @@ struct SMARTPlanningApp: App {
 final class ViewSelector: ObservableObject {
     
     @Published var goalIsSet    : Bool
-    @Published var hasSeenIntro : Bool
     
     init() {
         goalIsSet = UserDefaults.standard.bool(forKey: "goalIsSet")
-        hasSeenIntro = UserDefaults.standard.bool(forKey: "hasSeenIntro")
-    }
-    
-    
-    func introDismissed() {
-        UserDefaults.standard.set(true, forKey: "hasSeenIntro")
     }
     
     
