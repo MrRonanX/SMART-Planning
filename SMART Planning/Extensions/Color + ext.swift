@@ -103,4 +103,19 @@ extension UIColor {
             }
         }
     }
+    
+    static var shadowBackground: UIColor {
+        return UIColor { (traitCollection) -> UIColor in
+            switch traitCollection.userInterfaceStyle {
+            case .unspecified:
+                return .systemBackground
+            case .light:
+                return .systemBackground
+            case .dark:
+                return UIColor(red: 33, green: 28, blue: 38, alpha: 1)
+            @unknown default:
+                return .systemBackground
+            }
+        }
+    }
 }

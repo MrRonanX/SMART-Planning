@@ -13,12 +13,12 @@ struct GoalLabel: View {
     var size: CGSize
     
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
             Image(goal.illustration)
                 .resizable()
                 .scaledToFit()
-                .frame(width: size.width / 4.2)
-                .clipShape(Circle())
+                .frame(width: size.width / 4.5)
+                .padding(.top, 5)
             
             Text(goal.title)
                 .font(.headline)
@@ -26,8 +26,17 @@ struct GoalLabel: View {
                 .minimumScaleFactor(0.75)
                 .multilineTextAlignment(.center)
                 .frame(width: size.width / 4.5)
-
+            
+            Spacer()
         }
+        .frame(width: size.width / 3.7)
+        .background(
+            RoundedRectangle(cornerRadius: 15, style: .continuous)
+                .fill(Color(.shadowBackground))
+                .shadow(color: strokeColor, radius: 3, x: 1, y: 1)
+        )
+        .padding([.bottom, .horizontal], 10)
+        
         
     }
     

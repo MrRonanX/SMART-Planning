@@ -43,16 +43,17 @@ struct ChooseGoalView: View {
         VStack {
             Text("You may choose one from the list or create your own").font(.title3)
             Divider()
-            LazyVGrid(columns: viewModel.columns) {
-                ForEach(viewModel.goals) { goal in
-                    GoalLabel(goal: goal, size: size)
-                        .onTapGesture { viewModel.showGoalView(for: goal) }
-                }
+            ScrollView(showsIndicators: false) {
+                LazyVGrid(columns: viewModel.columns) {
+                    ForEach(viewModel.goals) { goal in
+                        GoalLabel(goal: goal, size: size)
+                            .onTapGesture { viewModel.showGoalView(for: goal) }
+                    }
+                }.padding(.top, 5)
             }
-            NavigationLink(destination: GoalView(), isActive: $viewModel.isShowingGoalView) {
-                EmptyView() }
+
+            NavigationLink(destination: GoalView(), isActive: $viewModel.isShowingGoalView) { EmptyView() }
                 .onChange(of: viewModel.isShowingGoalView) { _ in pushMainScreen() }
-            Spacer()
         }
         
         .padding()
