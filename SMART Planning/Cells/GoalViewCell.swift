@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct GoalViewCell: View {
-    
+
     var goalModel: GoalModel
-    
+
     var body: some View {
         HStack(alignment: .top) {
             Image(goalModel.goal.wrappedIcon)
@@ -25,8 +25,8 @@ struct GoalViewCell: View {
                     .font(.subheadline)
             }
         }
-        
-        StepperView(numberOfSteps: goalModel.numberOfSteps, topText: goalModel.dateText, completionStage: goalModel.indicators, bottomText: goalModel.goalText, itemSpacing: goalModel.spacing, itemColor: goalModel.goal.wrappedColor)
+    
+        StepperView(with: goalModel)
             .padding(.bottom)
     }
 }

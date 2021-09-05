@@ -51,7 +51,7 @@ struct TaskCellView: View {
                 .foregroundColor(task.isCompleted ? .green : .secondary)
                 .padding(.horizontal, 5)
             
-            Text("\(task.action.capitalized)  \(task.trainingAmount, specifier: "%0.2f")  \(task.units)")
+            Text("\(task.action.capitalized)  \(trainingAmount, specifier: "%2g")  \(task.units)")
                 .foregroundColor(task.isCompleted ? .secondary : Color(.label))
                 .font(task.isCompleted ? .body.italic() : .body)
             
@@ -66,6 +66,10 @@ struct TaskCellView: View {
                 .fontWeight(.semibold)
                 .foregroundColor(task.wrappedDate.toString(.list) == Date().toString(.list) ? .green : .secondary)
         }
+    }
+    
+    var trainingAmount: Double {
+        task.trainingAmount > 2 ? ceil(task.trainingAmount) : task.trainingAmount.roundToDecimal(2)
     }
 }
 

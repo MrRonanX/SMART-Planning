@@ -14,7 +14,7 @@ struct TimelineView: View {
     
     var body: some View {
         NavigationView {
-            ScrollViewIfNeeded(numberOfGoals: brain.goals.count) {
+            ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(brain.goals) { goalModel in
                         GoalViewCell(goalModel: goalModel)

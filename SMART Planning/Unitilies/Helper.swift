@@ -8,37 +8,40 @@
 import UIKit
 
 enum Spacing: CGFloat {
-    case eightSteps = 15
-    case sevenSteps = 20
+    case sevenSteps = 25
     case sixSteps   = 30
     case fiveSteps  = 40
-    case fourSteps  = 50 
+    case fourSteps  = 50
+    case threeSteps = 60
     
     var lineLength: CGFloat {
         switch self {
-        case .eightSteps, .fourSteps:
+        case .fourSteps:
             return self.rawValue
         case .sevenSteps:
-            return self.rawValue - 2
+            return self.rawValue - 5
         case .sixSteps:
             return self.rawValue - 5
         case .fiveSteps:
             return self.rawValue - 10
+        case .threeSteps:
+            return self.rawValue
         }
     }
     
     var offset: CGFloat {
         switch self {
-        case .eightSteps:
-            return self.rawValue + 7
         case .sevenSteps:
-            return self.rawValue + 5
+            return self.rawValue + 3
         case .sixSteps:
             return self.rawValue + 1
         case .fiveSteps:
             return self.rawValue - 4
         case .fourSteps:
             return self.rawValue - 3
+        case .threeSteps:
+            return self.rawValue - 5
+
         }
     }
 }
