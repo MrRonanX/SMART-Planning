@@ -66,17 +66,39 @@ struct GoalDetailView: View {
     var body: some View {
         NavigationView {
             Form {
-                Text("This section is in development")
+                Section(header: Text("Objective")) {
+                    Text(goal.goal.wrappedTitle)
+                    Text(goal.goal.wrappedGoalDescription)
+                }
+                
+                Section(header: Text("Progress")) {
+                    Text("Start with: \(goal.goal.baseProgress, specifier: "%2g") \(goal.goal.wrappedUnits)")
+                    Text("Desired result: \(goal.goal.desiredResult, specifier: "%2g") \(goal.goal.wrappedUnits)")
+                    Text("Current progress: \(goal.goal.currentProgress, specifier: "%.2f") \(goal.goal.wrappedUnits)")
+                    Text("Average training per day: \(goal.dailyGoal, specifier: "%.2f") \(goal.goal.wrappedUnits)")
+                }
+                
+                Section(header: Text("Time frame")) {
+                    Text("Start date: \(goal.goal.wrappedStartDate.toString(.deadlineNextYear))")
+                    Text("Deadline: \(goal.goal.wrappedDeadline.toString(.deadlineNextYear))")
+                }
+                
                 Button(action: deleteGoal) {
                     Text("Delete")
                         .foregroundColor(.red)
                 }
             }
             .navigationBarTitle(goal.goal.wrappedTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done", action: dismissView)
                 }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Edit", action: editButtonPressed)
+                }
+                
             }
         }
     }
@@ -84,6 +106,10 @@ struct GoalDetailView: View {
     
     func dismissView() {
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func editButtonPressed() {
+        print("Edit Pressed")
     }
     
     

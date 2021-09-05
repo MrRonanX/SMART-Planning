@@ -14,7 +14,12 @@ final class GoalsManager: ObservableObject {
     private let container = PersistenceManager.shared
     
     func loadData() {
-        goals = PersistenceManager.shared.getAllGoals().map(GoalModel.init)
+        let cdGoals = PersistenceManager.shared.getAllGoals()
+        let cdGoalsIDs = cdGoals.map { $0.wrappedID }
+        let localGoalsID = goals.map { $0.goal.wrappedID }
+        guard cdGoalsIDs != localGoalsID else { return }
+        
+        goals = cdGoals.map(GoalModel.init)
         tasks = goals.flatMap { $0.tasks }
     }
     
