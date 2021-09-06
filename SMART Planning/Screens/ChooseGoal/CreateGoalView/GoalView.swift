@@ -81,6 +81,8 @@ fileprivate struct FormWithoutHeader<Content: View>: View {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 0).isActive = true
         UITableView.appearance().tableHeaderView = view
+        UITableView.appearance().showsVerticalScrollIndicator = false
+        UIScrollView.appearance().keyboardDismissMode = .onDrag
     }
     
     var body: some View {
@@ -107,11 +109,13 @@ fileprivate struct DeadlineMenu: View {
             Text(viewModel.deadlineMenuTitle)
                 .font(.subheadline.bold())
                 .lineLimit(2)
+                .fixedSize(horizontal: true, vertical: false)
                 .foregroundColor(.white)
                 .padding(.vertical, 5)
                 .padding(.horizontal)
                 .background(Color(viewModel.selectedColor))
                 .cornerRadius(9)
+                
         }
     }
 }

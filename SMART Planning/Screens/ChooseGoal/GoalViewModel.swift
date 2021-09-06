@@ -61,6 +61,14 @@ final class GoalViewModel: ObservableObject {
     }
     
     
+    var deadlineMenuTitle: String {
+        let range = deadlineDate.days(from: Date())
+        let plurality = range > 1 ? "Days" : "Day"
+        let title = range == 365 ? "1 Year" : "\(range) \(plurality)"
+        return range > 0 ? title : "Set"
+    }
+    
+    
     var descriptionColor: Color {
         description == "Description (Optional)" ? .gray : Color(.label)
     }
@@ -188,12 +196,6 @@ final class GoalViewModel: ObservableObject {
         }
     }
     
-    
-    var deadlineMenuTitle: String {
-        let range = deadlineDate.days(from: Date())
-        let plurality = range > 1 ? "Days" : "Day"
-        return range > 0 ? "\(range) \(plurality)" : "Set"
-    }
     
     func setDeadline(of days: Int) {
         deadlineDate = Date().adding(days: days)
