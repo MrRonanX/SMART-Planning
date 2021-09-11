@@ -17,11 +17,9 @@ struct DailyTasksView: View {
             List {
                 Section(header: SectionHeader(title: "Today")) {
                     ForEach(vm.todayTasks) { task in
-                        GeometryReader { geo in
-                            TaskCellView(task: task, size: geo.size)
+                            TaskCellView(task: task)
                                 .contentShape(Rectangle())
                                 .onTapGesture { vm.taskCompleted(task) }
-                        }
                     }
                 }.id(vm.id)
                 
@@ -41,7 +39,6 @@ struct DailyTasksView: View {
 struct TaskCellView: View {
     
     let task: Exercise
-    var size: CGSize?
     
     var body: some View {
         HStack {

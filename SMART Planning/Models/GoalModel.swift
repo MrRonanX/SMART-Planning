@@ -127,3 +127,51 @@ extension GoalModel {
         completed(goal.baseProgress, goal.desiredResult, numberOfTasks, numberOfCompletedTasks, goal.desiredResult, goal.currentProgress)
     }
 }
+
+extension GoalModel: StepperData {
+    
+    var startDate: Date {
+        goal.wrappedStartDate
+    }
+    
+    
+    var baseProgress: Double {
+        goal.baseProgress
+    }
+    
+    
+    var daysPerStep: Double {
+        numberOfDays / Double(numberOfSteps - 1)
+    }
+    
+    
+    var numberOfSteps: Int {
+        return min(7, max(Int(numberOfDays / 30), 5))
+    }
+    
+    
+    var goalPerStep: Double {
+        (goal.desiredResult - goal.baseProgress) / Double(numberOfSteps - 1)
+    }
+    
+    
+    var spacing: Spacing {
+        if numberOfSteps == 7 {
+            return .sevenSteps
+        } else if numberOfSteps == 6 {
+            return .sixSteps
+        } else {
+            return .fiveSteps
+        }
+    }
+    
+    
+    var shouldExpand: Bool {
+       true
+    }
+    
+    
+    var color: String {
+        goal.wrappedColor
+    }
+}

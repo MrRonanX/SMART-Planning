@@ -15,6 +15,9 @@
 		34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079ACB2689C5E700F9AC7F /* GoalModel.swift */; };
 		34079ACE2689DB9600F9AC7F /* String + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079ACD2689DB9600F9AC7F /* String + ext.swift */; };
 		34079AD7268AE91F00F9AC7F /* Date + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AD6268AE91F00F9AC7F /* Date + ext.swift */; };
+		340E540F26EC827D005D53F5 /* StepperViewAbstraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E540E26EC827D005D53F5 /* StepperViewAbstraction.swift */; };
+		340E541226EC83AA005D53F5 /* GoalIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E541126EC83AA005D53F5 /* GoalIndicator.swift */; };
+		340E541426EC842C005D53F5 /* IndividualStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E541326EC842C005D53F5 /* IndividualStepper.swift */; };
 		340EB2B926D9425200DF9243 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2B826D9425200DF9243 /* Helper.swift */; };
 		340EB2BB26D9E62B00DF9243 /* DailyTasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */; };
 		340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BC26DA139200DF9243 /* UIView + ext.swift */; };
@@ -79,6 +82,9 @@
 		34079ACB2689C5E700F9AC7F /* GoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
 		34079ACD2689DB9600F9AC7F /* String + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ext.swift"; sourceTree = "<group>"; };
 		34079AD6268AE91F00F9AC7F /* Date + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + ext.swift"; sourceTree = "<group>"; };
+		340E540E26EC827D005D53F5 /* StepperViewAbstraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperViewAbstraction.swift; sourceTree = "<group>"; };
+		340E541126EC83AA005D53F5 /* GoalIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalIndicator.swift; sourceTree = "<group>"; };
+		340E541326EC842C005D53F5 /* IndividualStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualStepper.swift; sourceTree = "<group>"; };
 		340EB2B826D9425200DF9243 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksViewModel.swift; sourceTree = "<group>"; };
 		340EB2BC26DA139200DF9243 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
@@ -224,6 +230,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		340E541026EC8381005D53F5 /* StepperViewElements */ = {
+			isa = PBXGroup;
+			children = (
+				340E541126EC83AA005D53F5 /* GoalIndicator.swift */,
+				340E541326EC842C005D53F5 /* IndividualStepper.swift */,
+			);
+			path = StepperViewElements;
+			sourceTree = "<group>";
+		};
 		340EB2C126DBDC9D00DF9243 /* IntroView */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,8 +307,10 @@
 		3428CE9F26E4FA32009342AE /* StepperView */ = {
 			isa = PBXGroup;
 			children = (
+				340E541026EC8381005D53F5 /* StepperViewElements */,
 				346407EC26C13F7100B8506A /* StepperView.swift */,
 				3428CEA026E4FA46009342AE /* StepperViewModel.swift */,
+				340E540E26EC827D005D53F5 /* StepperViewAbstraction.swift */,
 			);
 			path = StepperView;
 			sourceTree = "<group>";
@@ -526,6 +543,7 @@
 				346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */,
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,
 				341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */,
+				340E541226EC83AA005D53F5 /* GoalIndicator.swift in Sources */,
 				340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */,
 				3428CEA326E4FA70009342AE /* SubGoalModel.swift in Sources */,
 				34612810268C65930035AF81 /* PlanningTabView.swift in Sources */,
@@ -534,6 +552,7 @@
 				34079ACA2689C50500F9AC7F /* TimelineView.swift in Sources */,
 				3464080E26C68C9A00B8506A /* DismissKeyboardBackground.swift in Sources */,
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
+				340E541426EC842C005D53F5 /* IndividualStepper.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
 				34B9274F26D1710D00020CD2 /* DaySelectionView.swift in Sources */,
 				340EB2C326DBDCA900DF9243 /* IntroViewModel.swift in Sources */,
@@ -566,6 +585,7 @@
 				346407ED26C13F7100B8506A /* StepperView.swift in Sources */,
 				34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */,
 				3464080126C6811500B8506A /* Color + ext.swift in Sources */,
+				340E540F26EC827D005D53F5 /* StepperViewAbstraction.swift in Sources */,
 				3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */,
 				3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */,
 				34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */,

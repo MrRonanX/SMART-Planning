@@ -12,36 +12,45 @@ enum Spacing: CGFloat {
     case sixSteps   = 30
     case fiveSteps  = 40
     case fourSteps  = 50
-    case threeSteps = 60
+    
+    var value: CGFloat {
+        DeviceTypes.isiPhone8Standard ? self.rawValue - 5 : self.rawValue
+    }
+    
+    var pictureSize: CGFloat {
+        switch self {
+        case .sevenSteps:
+            return value + 5
+        case .sixSteps:
+            return DeviceTypes.isiPhone8Standard ? value + 5 : value
+        case .fiveSteps:
+            return 35
+        case .fourSteps:
+            return 35
+        }
+    }
     
     var lineLength: CGFloat {
         switch self {
         case .fourSteps:
-            return self.rawValue
-        case .sevenSteps:
-            return self.rawValue - 5
-        case .sixSteps:
-            return self.rawValue - 5
+            return value - 4
+        case .sevenSteps, .sixSteps:
+            return value - 5
         case .fiveSteps:
-            return self.rawValue - 10
-        case .threeSteps:
-            return self.rawValue
+            return value - 8
         }
     }
     
     var offset: CGFloat {
         switch self {
         case .sevenSteps:
-            return self.rawValue + 3
+            return DeviceTypes.isiPhone8Standard ? value + 5 : value + 3
         case .sixSteps:
-            return self.rawValue + 1
+            return DeviceTypes.isiPhone8Standard ? value + 3 : value + 1
         case .fiveSteps:
-            return self.rawValue - 4
+            return DeviceTypes.isiPhone8Standard ? value - 2 : value - 4
         case .fourSteps:
-            return self.rawValue - 3
-        case .threeSteps:
-            return self.rawValue - 5
-
+            return DeviceTypes.isiPhone8Standard ? value - 4 : value - 3
         }
     }
 }

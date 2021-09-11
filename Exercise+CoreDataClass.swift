@@ -46,6 +46,4 @@ extension Exercise: Comparable {
     public static func < (lhs: Exercise, rhs: Exercise) -> Bool {
         lhs.wrappedDate < rhs.wrappedDate
     }
-    
-    
 }
