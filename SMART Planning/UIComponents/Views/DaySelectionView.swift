@@ -55,7 +55,7 @@ struct DaySelectionView: View {
 }
 
 
-struct DayCircle: View {
+fileprivate struct DayCircle: View {
     
     @EnvironmentObject var viewModel: GoalViewModel
     var day: DayCircleModel

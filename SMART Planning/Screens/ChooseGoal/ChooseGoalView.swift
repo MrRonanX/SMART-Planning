@@ -42,7 +42,7 @@ struct ChooseGoalView: View {
             NavigationLink(destination: GoalView(), isActive: $viewModel.isShowingGoalView) { EmptyView() }
                 .onChange(of: viewModel.isShowingGoalView) { _ in pushMainScreen() }
         }
-        .padding()
+        .padding([.top, .leading, .trailing])
         .navigationTitle("Goals")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

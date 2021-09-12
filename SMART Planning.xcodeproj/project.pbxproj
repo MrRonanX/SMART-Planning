@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		340E540F26EC827D005D53F5 /* StepperViewAbstraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E540E26EC827D005D53F5 /* StepperViewAbstraction.swift */; };
 		340E541226EC83AA005D53F5 /* GoalIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E541126EC83AA005D53F5 /* GoalIndicator.swift */; };
 		340E541426EC842C005D53F5 /* IndividualStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E541326EC842C005D53F5 /* IndividualStepper.swift */; };
+		340E541726EDD760005D53F5 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E541626EDD760005D53F5 /* CalendarView.swift */; };
 		340EB2B926D9425200DF9243 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2B826D9425200DF9243 /* Helper.swift */; };
 		340EB2BB26D9E62B00DF9243 /* DailyTasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */; };
 		340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340EB2BC26DA139200DF9243 /* UIView + ext.swift */; };
@@ -30,7 +31,7 @@
 		341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE7A26650F18001EFD32 /* IntroView.swift */; };
 		341EEE7D26650F19001EFD32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7C26650F19001EFD32 /* Assets.xcassets */; };
 		341EEE8026650F19001EFD32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */; };
-		341EEE882665124D001EFD32 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* MockData.swift */; };
+		341EEE882665124D001EFD32 /* IntoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* IntoData.swift */; };
 		3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* LineProgressView.swift */; };
 		3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */; };
 		3428CEA126E4FA46009342AE /* StepperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3428CEA026E4FA46009342AE /* StepperViewModel.swift */; };
@@ -46,7 +47,6 @@
 		3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080426C6869C00B8506A /* GoalViewModel.swift */; };
 		3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080826C688DD00B8506A /* CircleDayModel.swift */; };
 		3464080B26C68BEF00B8506A /* View + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080A26C68BEF00B8506A /* View + ext.swift */; };
-		3464080E26C68C9A00B8506A /* DismissKeyboardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080D26C68C9A00B8506A /* DismissKeyboardBackground.swift */; };
 		3464081326C6EDA600B8506A /* IconsAndColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464081226C6EDA600B8506A /* IconsAndColorsView.swift */; };
 		3464081526C796AB00B8506A /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464081426C796AB00B8506A /* Icons.swift */; };
 		3464081926C7C42000B8506A /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464081826C7C42000B8506A /* FormButton.swift */; };
@@ -85,6 +85,7 @@
 		340E540E26EC827D005D53F5 /* StepperViewAbstraction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperViewAbstraction.swift; sourceTree = "<group>"; };
 		340E541126EC83AA005D53F5 /* GoalIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalIndicator.swift; sourceTree = "<group>"; };
 		340E541326EC842C005D53F5 /* IndividualStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualStepper.swift; sourceTree = "<group>"; };
+		340E541626EDD760005D53F5 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		340EB2B826D9425200DF9243 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		340EB2BA26D9E62B00DF9243 /* DailyTasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksViewModel.swift; sourceTree = "<group>"; };
 		340EB2BC26DA139200DF9243 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
@@ -99,7 +100,7 @@
 		341EEE7C26650F19001EFD32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		341EEE8126650F19001EFD32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		341EEE872665124D001EFD32 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		341EEE872665124D001EFD32 /* IntoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoData.swift; sourceTree = "<group>"; };
 		3422486726CA63F3006CFC05 /* LineProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
 		3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithReturnButton.swift; sourceTree = "<group>"; };
 		3428CEA026E4FA46009342AE /* StepperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperViewModel.swift; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		3464080426C6869C00B8506A /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
 		3464080826C688DD00B8506A /* CircleDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDayModel.swift; sourceTree = "<group>"; };
 		3464080A26C68BEF00B8506A /* View + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + ext.swift"; sourceTree = "<group>"; };
-		3464080D26C68C9A00B8506A /* DismissKeyboardBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardBackground.swift; sourceTree = "<group>"; };
 		3464081226C6EDA600B8506A /* IconsAndColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsAndColorsView.swift; sourceTree = "<group>"; };
 		3464081426C796AB00B8506A /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		3464081826C7C42000B8506A /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
@@ -167,6 +167,7 @@
 		34079AB92688193500F9AC7F /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				34B9274326D150E500020CD2 /* Cells */,
 				3464080C26C68C7D00B8506A /* Views */,
 				34079ABA2688194E00F9AC7F /* Labels */,
 				34079AB22687466E00F9AC7F /* Buttons */,
@@ -239,9 +240,18 @@
 			path = StepperViewElements;
 			sourceTree = "<group>";
 		};
+		340E541526EDD74E005D53F5 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				340E541626EDD760005D53F5 /* CalendarView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
 		340EB2C126DBDC9D00DF9243 /* IntroView */ = {
 			isa = PBXGroup;
 			children = (
+				341EEE872665124D001EFD32 /* IntoData.swift */,
 				341EEE7A26650F18001EFD32 /* IntroView.swift */,
 				340EB2C226DBDCA900DF9243 /* IntroViewModel.swift */,
 			);
@@ -282,15 +292,11 @@
 				34B9275526D22BF000020CD2 /* Managers */,
 				3464080F26C6E71800B8506A /* Unitilies */,
 				3464080726C688C600B8506A /* Models */,
-				346407FD26C540A000B8506A /* CoreDataModels */,
-				34079AD5268AE90A00F9AC7F /* Extensions */,
 				34079AB92688193500F9AC7F /* UIComponents */,
 				34079ABB2688196500F9AC7F /* Screens */,
-				34B9274326D150E500020CD2 /* Cells */,
 				341EEE8126650F19001EFD32 /* Info.plist */,
 				341EEE7C26650F19001EFD32 /* Assets.xcassets */,
 				341EEE7E26650F19001EFD32 /* Preview Content */,
-				341EEE872665124D001EFD32 /* MockData.swift */,
 				346407F226C53C1C00B8506A /* Goal.xcdatamodeld */,
 			);
 			path = "SMART Planning";
@@ -348,6 +354,7 @@
 		3464080726C688C600B8506A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				346407FD26C540A000B8506A /* CoreDataModels */,
 				34079ACB2689C5E700F9AC7F /* GoalModel.swift */,
 				3464080826C688DD00B8506A /* CircleDayModel.swift */,
 				3428CEA226E4FA70009342AE /* SubGoalModel.swift */,
@@ -358,9 +365,9 @@
 		3464080C26C68C7D00B8506A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				340E541526EDD74E005D53F5 /* CalendarView */,
 				3428CE9F26E4FA32009342AE /* StepperView */,
 				3422486726CA63F3006CFC05 /* LineProgressView.swift */,
-				3464080D26C68C9A00B8506A /* DismissKeyboardBackground.swift */,
 				3464081226C6EDA600B8506A /* IconsAndColorsView.swift */,
 				34B9274A26D151B600020CD2 /* SegmentedControl.swift */,
 				340EB2BF26DB90F800DF9243 /* OffsetPageTabView.swift */,
@@ -374,6 +381,7 @@
 		3464080F26C6E71800B8506A /* Unitilies */ = {
 			isa = PBXGroup;
 			children = (
+				34079AD5268AE90A00F9AC7F /* Extensions */,
 				3464081426C796AB00B8506A /* Icons.swift */,
 				3464081A26C7C49000B8506A /* Colors.swift */,
 				340EB2B826D9425200DF9243 /* Helper.swift */,
@@ -446,6 +454,7 @@
 				341EEE7126650F18001EFD32 /* Sources */,
 				341EEE7226650F18001EFD32 /* Frameworks */,
 				341EEE7326650F18001EFD32 /* Resources */,
+				3DA80960BECB76BD6B1DE533 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -501,6 +510,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3DA80960BECB76BD6B1DE533 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4103BCA42D5F02C5C29F7206 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,7 +576,6 @@
 				3461280D268C62140035AF81 /* PerformanceView.swift in Sources */,
 				34079AB82688165C00F9AC7F /* GoalLabel.swift in Sources */,
 				34079ACA2689C50500F9AC7F /* TimelineView.swift in Sources */,
-				3464080E26C68C9A00B8506A /* DismissKeyboardBackground.swift in Sources */,
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
 				340E541426EC842C005D53F5 /* IndividualStepper.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
@@ -561,7 +586,7 @@
 				340EB2B926D9425200DF9243 /* Helper.swift in Sources */,
 				346407FF26C5432100B8506A /* PersistenceManager.swift in Sources */,
 				34B9277926D8F19800020CD2 /* NotificationTime+CoreDataClass.swift in Sources */,
-				341EEE882665124D001EFD32 /* MockData.swift in Sources */,
+				341EEE882665124D001EFD32 /* IntoData.swift in Sources */,
 				34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */,
 				3464081326C6EDA600B8506A /* IconsAndColorsView.swift in Sources */,
 				34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */,
@@ -581,6 +606,7 @@
 				340EB2CA26DCDCDC00DF9243 /* GoalViewCell.swift in Sources */,
 				340EB2BB26D9E62B00DF9243 /* DailyTasksViewModel.swift in Sources */,
 				34B9275426D2189300020CD2 /* NotificationTimeView.swift in Sources */,
+				340E541726EDD760005D53F5 /* CalendarView.swift in Sources */,
 				34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */,
 				346407ED26C13F7100B8506A /* StepperView.swift in Sources */,
 				34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */,
