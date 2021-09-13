@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct IndividualStepper: View {
-    @EnvironmentObject var viewModel: StepperViewModel
     var stepperData: StepperData
-        
+    var size: CGFloat
     var expandAt: Int? {
         stepperData.shouldExpand ? stepperData.indicators.firstIndex(of: false) : nil
     }
     
     var body: some View {
-        HStack(alignment: .custom, spacing: stepperData.customSpacing) {
-            ForEach(0..<stepperData.numberOfSteps, id:\.self) { step in
-                GoalIndicator(topText: stepperData.dateText[step].toString(),
-                              completionStage: stepperData.indicators[step],
-                              bottomText: stepperData.goalText[step],
-                              itemSpacing: stepperData.spacing,
-                              drawSpacer: step != stepperData.numberOfSteps - 1,
-                              itemColor: stepperData.color,
-                              shouldExpend: expandAt == step)
+        
+            HStack(alignment: .custom, spacing: 0) {
+                ForEach(0..<stepperData.numberOfSteps, id:\.self) { step in
+                    GoalIndicator(topText: stepperData.dateText[step].toString(),
+                                  completionStage: stepperData.indicators[step],
+                                  bottomText: stepperData.goalText[step],
+                                  size: size / CGFloat(stepperData.numberOfSteps),
+                                  itemSpacing: stepperData.spacing,
+                                  drawSpacer: step != stepperData.numberOfSteps - 1,
+                                  itemColor: stepperData.color,
+                                  shouldExpend: expandAt == step)
+                        
+                }
             }
-        }
+        
+      
     }
 }

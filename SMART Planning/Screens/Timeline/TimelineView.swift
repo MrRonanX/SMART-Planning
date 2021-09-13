@@ -14,18 +14,18 @@ struct TimelineView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 10) {
-                    ForEach(brain.goals) { goalModel in
-                        GoalViewCell(goalModel: goalModel)
-                            .onTapGesture { detailView = goalModel }
-                        
+            GeometryReader { geo in
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(brain.goals) { goalModel in
+                            GoalViewCell(goalModel: goalModel, size: geo.size.width)
+                                .onTapGesture { detailView = goalModel }
+                        }
+                        Spacer()
                     }
-                    Spacer()
                 }
-                .padding(.horizontal)
-                
             }
+            
             .fullScreenCover(item: $detailView) { model in GoalDetailView(goal: model)}
             .onAppear(perform: setNotifications)
             .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }

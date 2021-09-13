@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct GoalViewCell: View {
-
     var goalModel: GoalModel
+    var size: CGFloat
 
     var body: some View {
         HStack(alignment: .top) {
@@ -25,14 +25,14 @@ struct GoalViewCell: View {
                     .font(.subheadline)
             }
         }
-    
-        StepperView(with: goalModel)
+        .padding(.horizontal, 10)
+        StepperView(with: goalModel, size: size)
             .padding(.bottom)
     }
 }
 
 struct GoalViewCell_Previews: PreviewProvider {
     static var previews: some View {
-        GoalViewCell(goalModel: GoalModel(Goal(context: PersistenceManager.shared.viewContext)))
+        GoalViewCell(goalModel: GoalModel(Goal(context: PersistenceManager.shared.viewContext)), size: 375)
     }
 }

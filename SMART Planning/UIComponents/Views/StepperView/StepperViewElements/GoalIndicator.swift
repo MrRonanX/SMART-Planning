@@ -13,10 +13,20 @@ struct GoalIndicator: View {
     var topText: String
     var completionStage: Bool
     var bottomText: String
+    var size: CGFloat
     var itemSpacing: Spacing
     var drawSpacer: Bool
     var itemColor: String
     var shouldExpend: Bool
+    
+    
+    var lineWidth: CGFloat {
+        abs((size + 0.01) - itemSpacing.pictureSize - 8)
+    }
+    
+    var offset: CGFloat {
+        (size + 0.01) / 2
+    }
     
     var body: some View {
         VStack(alignment: .center) {
@@ -34,13 +44,13 @@ struct GoalIndicator: View {
                     .clipShape(Circle())
                     .frame(width: itemSpacing.pictureSize)
                     .alignmentGuide(.custom) {$0[VerticalAlignment.center] }
-                    .frame(width: itemSpacing.lineLength)
+                    .frame(maxWidth: size)
                 if drawSpacer {
                     RoundedRectangle(cornerRadius: 2)
-                        .frame(width: itemSpacing.lineLength, height: 3)
+                        .frame(width: lineWidth, height: 3)
                         .foregroundColor(completionStage ? Color(itemColor) : .secondary)
                         .alignmentGuide(.custom) {$0[VerticalAlignment.center] }
-                        .offset(x: itemSpacing.offset)
+                        .offset(x: offset)
                     
                 } else {
                     RoundedRectangle(cornerRadius: 2)
