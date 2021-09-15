@@ -25,7 +25,7 @@ struct StepperView: View {
                    // .offset(x: viewModel.goalModel.numberOfSteps == 4 ? -10 : 0)
                     .environmentObject(viewModel)
                 if viewModel.isExpanded, let subgoal = viewModel.subgoal {
-                    IndividualStepper(stepperData: subgoal, size: size)
+                    IndividualStepper(stepperData: subgoal, size: size * 0.8)
                     .frame(width: size * 0.8)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
