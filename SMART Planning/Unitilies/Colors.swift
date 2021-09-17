@@ -17,6 +17,11 @@ enum Colors: String, CaseIterable {
     case brandRed           = "brandRed"
     case brandSkyBlue       = "brandSkyBlue"
     case brandTurquoise     = "brandTurquoise"
+    case brandAmber         = "brandAmber"
+    case brandCelery        = "brandCelery"
+    case brandCoral         = "brandCoral"
+    case brandOrange        = "brandOrange"
+    case brandTan           = "brandTan"
     
     var color: String {
         self.rawValue

@@ -34,6 +34,10 @@
 		341EEE882665124D001EFD32 /* IntoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341EEE872665124D001EFD32 /* IntoData.swift */; };
 		3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486726CA63F3006CFC05 /* LineProgressView.swift */; };
 		3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */; };
+		34260D5A26F4AEFB00D523B2 /* GoalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34260D5926F4AEFB00D523B2 /* GoalDetailView.swift */; };
+		34260D5C26F4AFBA00D523B2 /* GoalDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34260D5B26F4AFBA00D523B2 /* GoalDetailViewModel.swift */; };
+		34260D6026F4B92600D523B2 /* TextFieldAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34260D5E26F4B92600D523B2 /* TextFieldAlertViewController.swift */; };
+		34260D6126F4B92600D523B2 /* TextFieldAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34260D5F26F4B92600D523B2 /* TextFieldAlert.swift */; };
 		3428CEA126E4FA46009342AE /* StepperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3428CEA026E4FA46009342AE /* StepperViewModel.swift */; };
 		3428CEA326E4FA70009342AE /* SubGoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3428CEA226E4FA70009342AE /* SubGoalModel.swift */; };
 		3439FD9A26E35E8D00DD79C9 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3439FD9926E35E8D00DD79C9 /* AlertItem.swift */; };
@@ -103,6 +107,10 @@
 		341EEE872665124D001EFD32 /* IntoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntoData.swift; sourceTree = "<group>"; };
 		3422486726CA63F3006CFC05 /* LineProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineProgressView.swift; sourceTree = "<group>"; };
 		3422486926CBF085006CFC05 /* TextFieldWithReturnButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithReturnButton.swift; sourceTree = "<group>"; };
+		34260D5926F4AEFB00D523B2 /* GoalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailView.swift; sourceTree = "<group>"; };
+		34260D5B26F4AFBA00D523B2 /* GoalDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailViewModel.swift; sourceTree = "<group>"; };
+		34260D5E26F4B92600D523B2 /* TextFieldAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlertViewController.swift; sourceTree = "<group>"; };
+		34260D5F26F4B92600D523B2 /* TextFieldAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldAlert.swift; sourceTree = "<group>"; };
 		3428CEA026E4FA46009342AE /* StepperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperViewModel.swift; sourceTree = "<group>"; };
 		3428CEA226E4FA70009342AE /* SubGoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubGoalModel.swift; sourceTree = "<group>"; };
 		3439FD9926E35E8D00DD79C9 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
@@ -167,6 +175,7 @@
 		34079AB92688193500F9AC7F /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
+				34260D5D26F4B91200D523B2 /* AlertWithTextField */,
 				34B9274326D150E500020CD2 /* Cells */,
 				3464080C26C68C7D00B8506A /* Views */,
 				34079ABA2688194E00F9AC7F /* Labels */,
@@ -187,6 +196,7 @@
 		34079ABB2688196500F9AC7F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				34260D5826F4AEEC00D523B2 /* GoalDetailView */,
 				340EB2C126DBDC9D00DF9243 /* IntroView */,
 				34079ABD268819C300F9AC7F /* ChooseGoal */,
 				340EB2C826DCD9C800DF9243 /* TabView */,
@@ -308,6 +318,24 @@
 				341EEE7F26650F19001EFD32 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		34260D5826F4AEEC00D523B2 /* GoalDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				34260D5B26F4AFBA00D523B2 /* GoalDetailViewModel.swift */,
+				34260D5926F4AEFB00D523B2 /* GoalDetailView.swift */,
+			);
+			path = GoalDetailView;
+			sourceTree = "<group>";
+		};
+		34260D5D26F4B91200D523B2 /* AlertWithTextField */ = {
+			isa = PBXGroup;
+			children = (
+				34260D5E26F4B92600D523B2 /* TextFieldAlertViewController.swift */,
+				34260D5F26F4B92600D523B2 /* TextFieldAlert.swift */,
+			);
+			path = AlertWithTextField;
 			sourceTree = "<group>";
 		};
 		3428CE9F26E4FA32009342AE /* StepperView */ = {
@@ -571,6 +599,8 @@
 				341EEE7B26650F18001EFD32 /* IntroView.swift in Sources */,
 				340E541226EC83AA005D53F5 /* GoalIndicator.swift in Sources */,
 				340EB2BD26DA139200DF9243 /* UIView + ext.swift in Sources */,
+				34260D6026F4B92600D523B2 /* TextFieldAlertViewController.swift in Sources */,
+				34260D5A26F4AEFB00D523B2 /* GoalDetailView.swift in Sources */,
 				3428CEA326E4FA70009342AE /* SubGoalModel.swift in Sources */,
 				34612810268C65930035AF81 /* PlanningTabView.swift in Sources */,
 				3461280D268C62140035AF81 /* PerformanceView.swift in Sources */,
@@ -579,6 +609,7 @@
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
 				340E541426EC842C005D53F5 /* IndividualStepper.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
+				34260D5C26F4AFBA00D523B2 /* GoalDetailViewModel.swift in Sources */,
 				34B9274F26D1710D00020CD2 /* DaySelectionView.swift in Sources */,
 				340EB2C326DBDCA900DF9243 /* IntroViewModel.swift in Sources */,
 				34B9274526D150F300020CD2 /* PerformanceViewCell.swift in Sources */,
@@ -601,6 +632,7 @@
 				34B9276326D4BA2E00020CD2 /* Goal+CoreDataClass.swift in Sources */,
 				3464080B26C68BEF00B8506A /* View + ext.swift in Sources */,
 				34079AC52689B19200F9AC7F /* GoalView.swift in Sources */,
+				34260D6126F4B92600D523B2 /* TextFieldAlert.swift in Sources */,
 				340EB2C726DCD9B500DF9243 /* GoalsManager.swift in Sources */,
 				3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */,
 				340EB2CA26DCDCDC00DF9243 /* GoalViewCell.swift in Sources */,

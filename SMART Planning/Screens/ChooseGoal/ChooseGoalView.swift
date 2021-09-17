@@ -82,15 +82,15 @@ struct GoalCreationModel: Identifiable {
     let randomColor = Colors.allCases.randomElement()?.color ?? "brandBlue"
     
     
-    static let premadeGoals = [GoalCreationModel(title: "Reading", action: "Read", image: "book", unit: "pages", icon: "book", illustration: Illustrations.reading.image),
-                               GoalCreationModel(title: "Getting Fit", action: "Train", image: "gym", unit: "times", icon: "gym", illustration: Illustrations.gettingFit.image),
-                               GoalCreationModel(title: "Becoming Smarter", action: "Pass", image: "bookA", unit: "courses", icon: "bookA", illustration: Illustrations.becomingSmarter.image),
-                               GoalCreationModel(title: "Building Muscles", action: "Gain", image: "weightLift", unit: "kilograms", icon: "weightLift", illustration: Illustrations.buildingMuscles.image),
-                               GoalCreationModel(title: "Losing Weight", action: "Lose", image: "dumbbell", unit: "kilograms", icon: "dumbbell", illustration: Illustrations.losingWeight.image),
-                               GoalCreationModel(title: "Learning Language", action: "Learn", image: "chats", unit: "lessons", icon: "chats", illustration: Illustrations.learningLanguage.image),
-                               GoalCreationModel(title: "Improve Your Art", action: "Paint", image: "paintBrush", unit: "pictures", icon: "paintBrush", illustration: Illustrations.improveArt.image),
-                               GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins", illustration: Illustrations.savingMoney.image),
-                               GoalCreationModel(title: "Enlightenment", action: "Do", image: "idea", unit: "mediations", icon: "idea", illustration: Illustrations.enlightenment.image),
-                               GoalCreationModel(title: "Learning New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learningNewSkill.image),
-                               GoalCreationModel(title: "Create Your Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.createGoal.image)]
+    static let premadeGoals = [GoalCreationModel(title: "Reading", action: "Read", image: "book", unit: "pages", icon: "book", illustration: Illustrations.reading),
+                               GoalCreationModel(title: "Getting Fit", action: "Train", image: "gym", unit: "times", icon: "gym", illustration: Illustrations.gettingFit),
+                               GoalCreationModel(title: "Becoming Smarter", action: "Pass", image: "bookA", unit: "courses", icon: "bookA", illustration: Illustrations.becomingSmarter),
+                               GoalCreationModel(title: "Building Muscles", action: "Gain", image: "weightLift", unit: "kilograms", icon: "weightLift", illustration: Illustrations.buildingMuscles),
+                               GoalCreationModel(title: "Losing Weight", action: "Lose", image: "dumbbell", unit: "kilograms", icon: "dumbbell", illustration: Illustrations.losingWeight),
+                               GoalCreationModel(title: "Learning Language", action: "Learn", image: "chats", unit: "lessons", icon: "chats", illustration: Illustrations.learningLanguage),
+                               GoalCreationModel(title: "Improve Your Art", action: "Paint", image: "paintBrush", unit: "pictures", icon: "paintBrush", illustration: Illustrations.improveArt),
+                               GoalCreationModel(title: "Saving Money", action: "Save", image: "coins", unit: "dollars", icon: "coins", illustration: Illustrations.savingMoney),
+                               GoalCreationModel(title: "Enlightenment", action: "Do", image: "idea", unit: "mediations", icon: "idea", illustration: Illustrations.enlightenment),
+                               GoalCreationModel(title: "Learning New Skill", action: "Complete", image: "graduationHat", unit: "courses", icon: "graduationHat", illustration: Illustrations.learningNewSkill),
+                               GoalCreationModel(title: "Create Your Goal", action: "", image: "award", unit: "", icon: "graduationHat", illustration: Illustrations.createGoal)]
 }

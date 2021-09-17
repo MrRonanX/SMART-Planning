@@ -44,7 +44,7 @@ struct GoalIndicator: View {
                     .clipShape(Circle())
                     .frame(width: itemSpacing.pictureSize)
                     .alignmentGuide(.custom) {$0[VerticalAlignment.center] }
-                    .frame(maxWidth: size)
+                    
                 if drawSpacer {
                     RoundedRectangle(cornerRadius: 2)
                         .frame(width: lineWidth, height: 3)
@@ -76,9 +76,10 @@ struct GoalIndicator: View {
                         .foregroundColor(Color(itemColor))
                         .rotationEffect(.degrees(rotationDegrees))
                 }
-                .offset(x: -itemSpacing.offset - 3, y: -5)
+                .offset(x: -offset, y: -5)
             }
         }
+        .frame(maxWidth: size)
     }
     
     

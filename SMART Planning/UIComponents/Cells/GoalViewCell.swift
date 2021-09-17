@@ -24,10 +24,10 @@ struct GoalViewCell: View {
                 Text(goalModel.goal.wrappedGoalDescription)
                     .font(.subheadline)
             }
-        }
-        .padding(.horizontal, 10)
+        } .padding(.horizontal, 10)
+       
         StepperView(with: goalModel, size: size)
-            .padding(.bottom)
+            .padding(.bottom, 5)
     }
 }
 

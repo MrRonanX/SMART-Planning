@@ -25,13 +25,12 @@ struct CalendarView: UIViewRepresentable {
         calendar.backgroundColor = .systemBackground
         calendar.scrollingMode = .stopAtEachCalendarFrame
         calendar.scrollDirection = .horizontal
-//        calendar.allowsSelection = false
         calendar.showsHorizontalScrollIndicator = false
-        
+        calendar.allowsMultipleSelection = true
         calendar.minimumLineSpacing = 0
         calendar.minimumInteritemSpacing = 0
-        
-        calendar.selectDates(goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday() } )
+        let dates = goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday()}
+        calendar.selectDates(dates)
         
         return calendar
     }
@@ -51,15 +50,18 @@ struct CalendarView: UIViewRepresentable {
             return ConfigurationParameters(startDate: startDate, endDate: endDate, generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow)
         }
         
+        
         func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
             configureCell(view: cell, cellState: cellState)
         }
+        
         
         func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
             let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
             self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
             return cell
         }
+        
         
         func configureCell(view: JTACDayCell?, cellState: CellState) {
             guard let cell = view as? DateCell  else { return }
@@ -68,26 +70,25 @@ struct CalendarView: UIViewRepresentable {
             handleCellSelected(cell: cell, cellState: cellState)
         }
         
+        
         func handleCellTextColor(cell: DateCell, cellState: CellState) {
             cell.isHidden = cellState.dateBelongsTo == .thisMonth ? false : true
         }
+        
         
         func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
             configureCell(view: cell, cellState: cellState)
         }
         
+        
         func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
-            parent.goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday() }.contains(date.midday()) ? true : false
+            return parent.goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday() }.contains(date.midday()) ? true : false
         }
+        
         
         func calendar(_ calendar: JTACMonthView, didHighlightDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
             print("✅ Highliting")
         }
-        
-        //        func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
-        //            configureCell(view: cell, cellState: cellState)
-        //        }
-        
 
         
         func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
@@ -108,6 +109,8 @@ struct CalendarView: UIViewRepresentable {
             if cellState.isSelected {
                 cell.selectedView.layer.cornerRadius =  20
                 cell.selectedView.isHidden = false
+                cell.dateLabel.textColor = .white
+                cell.dateLabel.font = UIFont.preferredFont(forTextStyle: .headline)
             } else {
                 cell.selectedView.isHidden = true
             }
@@ -235,48 +238,9 @@ final class DateHeader: JTACMonthReusableView {
             day5.leadingAnchor.constraint(equalTo: day4.trailingAnchor),
             day6.leadingAnchor.constraint(equalTo: day5.trailingAnchor),
             day7.leadingAnchor.constraint(equalTo: day6.trailingAnchor),
-            
         ])
     }
 }
-
-
-//class CalendarViewWithHeader: UIView {
-//
-//    var headerView: DateHeader!
-//    var goalModel: GoalModel!
-//    let calendar = JTACMonthView()
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        headerView = DateHeader(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.width * 0.16))
-//        configureConstraints()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    private func configureConstraints() {
-//        headerView.translatesAutoresizingMaskIntoConstraints = false
-//        calendar.translatesAutoresizingMaskIntoConstraints = false
-//
-//        self.addSubview(headerView)
-//        self.addSubview(calendar)
-//
-//        NSLayoutConstraint.activate([
-//            headerView.topAnchor.constraint(equalTo: self.topAnchor),
-//            headerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            headerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            headerView.heightAnchor.constraint(equalToConstant: self.frame.width * 0.16),
-//
-//            calendar.topAnchor.constraint(equalTo: headerView.bottomAnchor),
-//            calendar.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-//            calendar.widthAnchor.constraint(equalToConstant: self.bounds.width),
-//            calendar.heightAnchor.constraint(equalToConstant: self.bounds.width)
-//        ])
-//    }
-//}
 
 extension UIView {
     func addSubviews(_ views: [UIView]) {

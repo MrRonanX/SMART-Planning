@@ -16,30 +16,33 @@ final class GoalViewModel: ObservableObject {
     
     // MARK:  - Goal View
     
-    @Published var selectedMetric       = "2"
-    @Published var selectedUnit         = "pages"
-    @Published var selectedAction       = "Read"
+    @Published var selectedMetric        = "2"
+    @Published var selectedUnit          = "pages"
+    @Published var selectedAction        = "Read"
+     
+    @Published var deadlineDate          = Date()
+    @Published var days                  = Days.days
+     
+    @Published var goalTitle             = ""
+    @Published var description           = "Description (Optional)"
+    @Published var isTargetEdited        = false
+     
+    @Published var convertedToSingulars  = false
+    @Published var isShowingPopOver      = false
+    @Published var isShowingDatePicker   = false
+    @Published var selectedColor         = "brandBlue"
+    @Published var selectedIcon          = "macbook"
+    @Published var popOver: ViewType     = .colors
+    @Published var notificationTime      : NotificationSegmentType = .dontNotify
+    @Published var alertItem             : AlertItem? = nil
+    @Published var showCustomActionAlert = false
+    @Published var showCustomUnitAlert   = false
     
-    @Published var deadlineDate         = Date()
-    @Published var days                 = Days.days
     
-    @Published var goalTitle            = ""
-    @Published var description          = "Description (Optional)"
-    @Published var isTargetEdited       = false
-    
-    @Published var convertedToSingulars = false
-    @Published var isShowingPopOver     = false
-    @Published var isShowingDatePicker  = false
-    @Published var selectedColor        = "brandBlue"
-    @Published var selectedIcon         = "macbook"
-    @Published var popOver: ViewType    = .colors
-    @Published var notificationTime     : NotificationSegmentType = .dontNotify
-    @Published var alertItem            : AlertItem? = nil
-    
-    @Published var measurementUnits     = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations",
+    @Published var measurementUnits      = ["pages", "times", "minutes", "hours", "dollars", "kilograms", "kilometers", "miles", "meditations",
                                            "pounds", "pictures", "courses", "lessons", "credits"]
     
-    var measurementActions              = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete",
+    @Published var measurementActions    = ["Read", "Drink", "Save", "Train", "Run", "Learn", "Pass", "Jog", "Exercise", "Paint", "Gain", "Complete",
                                            "Lose", "Make", "Draw", "Do", "Find"]
     
     var goalShortcut                    = [365, 300, 250, 200, 150, 100]
@@ -199,6 +202,19 @@ final class GoalViewModel: ObservableObject {
     
     func setDeadline(of days: Int) {
         deadlineDate = Date().adding(days: days)
+    }
+    
+    
+    func actionAlertDismissed() {
+        if !measurementActions.contains(selectedAction) && !selectedAction.isEmpty {
+            withAnimation { measurementActions.append(selectedAction) }
+        }
+    }
+    
+    func unitAlertDismissed() {
+        if !measurementUnits.contains(selectedUnit) && !selectedUnit.isEmpty {
+            withAnimation { measurementUnits.append(selectedUnit) }
+        }
     }
     
     

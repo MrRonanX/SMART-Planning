@@ -175,3 +175,4 @@ extension GoalModel: StepperData {
         goal.wrappedColor
     }
 }
+

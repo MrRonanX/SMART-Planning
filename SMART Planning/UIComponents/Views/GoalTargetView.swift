@@ -9,6 +9,9 @@ import SwiftUI
 
 struct GoalTargetView: View {
     @EnvironmentObject var viewModel: GoalViewModel
+    @State var isExpanded = false
+    @State var rotationDegrees = 0.0
+
     var size: CGSize
     
     var body: some View {
@@ -37,11 +40,38 @@ struct GoalTargetView: View {
             .colorMultiply(Color(viewModel.selectedColor))
             .clipped()
             .onChange(of: viewModel.selectedUnit) { _ in viewModel.isTargetEdited = true}
-            
         }
         .pickerStyle(WheelPickerStyle())
+        
+        HStack {
+            Text("Custom actions")
+            Spacer()
+            ChevronIcon()
+                .foregroundColor(Color(viewModel.selectedColor))
+                .rotationEffect(.degrees(rotationDegrees))
+        }
+        .contentShape(Rectangle())
+        .onTapGesture { withAnimation { isExpanded.toggle() } }
+        .animation(.linear(duration: 0.3))
+        .onChange(of: isExpanded, perform: { _ in rotationDegrees += 180 })
+        
+        if isExpanded {
+            HStack {
+                CreateAlertButton(title: "Add Action", buttonAction: addActionPressed)
+                CreateAlertButton(title: "Add Units", buttonAction: addUnitsPressed)
+            }
+        } 
     }
     
+    func addActionPressed() {
+        viewModel.showCustomActionAlert = true
+    }
+    
+    func addUnitsPressed() {
+        viewModel.showCustomUnitAlert = true
+    }
+    
+
     
     var textFieldBorder: some View {
         VStack {
@@ -56,5 +86,32 @@ struct GoalTargetView: View {
 struct GoalTargetCell_Previews: PreviewProvider {
     static var previews: some View {
         GoalTargetView(size: UIScreen.main.bounds.size).environmentObject(GoalViewModel())
+    }
+}
+
+struct ChevronIcon: View {
+    
+    var body: some View {
+        Image(systemName: "chevron.down")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 15, height: 15)
+    }
+}
+
+struct CreateAlertButton: View {
+    @EnvironmentObject var viewModel: GoalViewModel
+    var title: String
+    var buttonAction: () -> Void
+    
+    var body: some View {
+            Text(title)
+                .fontWeight(.medium)
+                .foregroundColor(Color(.white))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 6)
+                .background(Color(viewModel.selectedColor).cornerRadius(13))
+                .onTapGesture(perform: buttonAction)
+                .buttonStyle(PlainButtonStyle())
     }
 }

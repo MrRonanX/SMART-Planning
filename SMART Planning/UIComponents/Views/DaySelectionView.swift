@@ -23,11 +23,8 @@ struct DaySelectionView: View {
             
             Spacer()
             
-            Image(systemName: "chevron.down")
-                .resizable()
-                .scaledToFit()
+            ChevronIcon()
                 .foregroundColor(Color(viewModel.selectedColor))
-                .frame(width: 15, height: 15)
                 .rotationEffect(.degrees(rotationDegrees))
         }
         .contentShape(Rectangle())

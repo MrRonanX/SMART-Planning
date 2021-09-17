@@ -19,18 +19,17 @@ struct StepperView: View {
     
     
     var body: some View {
-            VStack(alignment: .leading, spacing: 5) {
-                IndividualStepper(stepperData: viewModel.goalModel, size: size)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                   // .offset(x: viewModel.goalModel.numberOfSteps == 4 ? -10 : 0)
-                    .environmentObject(viewModel)
-                if viewModel.isExpanded, let subgoal = viewModel.subgoal {
-                    IndividualStepper(stepperData: subgoal, size: size * 0.8)
-                    .frame(width: size * 0.8)
-                    .frame(maxWidth: .infinity)
-                    .padding(.horizontal)
-                }
-            }
+        IndividualStepper(stepperData: viewModel.goalModel, size: size)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .offset(x: viewModel.goalModel.numberOfSteps == 5 ? -5 : 0)
+            .environmentObject(viewModel)
+        if viewModel.isExpanded, let subgoal = viewModel.subgoal {
+            IndividualStepper(stepperData: subgoal, size: size * 0.9)
+                .frame(width: size * 0.9)
+                .frame(maxWidth: .infinity)
+                .offset(x: 0, y: -10)
+            
+        }
     }
 }
 

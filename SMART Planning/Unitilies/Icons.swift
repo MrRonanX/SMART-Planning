@@ -45,40 +45,42 @@ enum Icons: String, CaseIterable {
     case eat = "eat"
     case communication = "communication"
     case cocktail = "cocktail"
+    case notification = "notification"
     
     var icon: String {
         self.rawValue
     }
 }
 
-enum Illustrations: String {
-    case becomingSmarter = "becomingSmarter"
-    case enlightenment = "enlightenment"
-    case buildingMuscles = "buildingMuscles"
-    case gettingFit = "gettingFit"
-    case idea = "ideaIllustration"
-    case improveArt = "improveArt"
-    case learningLanguage = "learningLanguage"
-    case learningNewSkill = "learningNewSkill"
-    case losingWeight = "losingWeight"
-    case reading = "reading"
-    case savingMoney = "savingMoney"
-    case createGoal = "createGoal"
-    
-    var image: String {
-        self.rawValue
-    }
+enum Illustrations {
+    static let becomingSmarter = "becomingSmarter"
+    static let enlightenment = "enlightenment"
+    static let buildingMuscles = "buildingMuscles"
+    static let gettingFit = "gettingFit"
+    static let idea = "ideaIllustration"
+    static let improveArt = "improveArt"
+    static let learningLanguage = "learningLanguage"
+    static let learningNewSkill = "learningNewSkill"
+    static let losingWeight = "losingWeight"
+    static let reading = "reading"
+    static let savingMoney = "savingMoney"
+    static let createGoal = "createGoal"
 }
 
-enum IntroIllustrations: String {
-    case achievable = "achievable"
-    case intro = "intro"
-    case measurable = "measurable"
-    case relevant = "relevant"
-    case specific = "specific"
-    case timely = "timely"
-    
-    var image: String {
-        self.rawValue
-    }
+enum IntroIllustrations {
+    static let achievable = "achievable"
+    static let intro = "intro"
+    static let measurable = "measurable"
+    static let relevant = "relevant"
+    static let specific = "specific"
+    static let timely = "timely"
+}
+
+enum GoalDetails {
+    static let baseProgress = "baseProgress"
+    static let currentProgress = "currentProgress"
+    static let deadline = "deadline"
+    static let desiredResult = "desiredResult"
+    static let startDate = "startDate"
+    static let trainingPerDay = "trainingPerDay"
 }

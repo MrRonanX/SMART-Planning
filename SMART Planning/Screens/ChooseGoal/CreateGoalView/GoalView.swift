@@ -59,6 +59,12 @@ struct GoalView: View {
             }
         }
         .alert(item: $viewModel.alertItem) { $0.alert }
+        .textFieldAlert(isPresented: $viewModel.showCustomActionAlert, onDismiss: viewModel.actionAlertDismissed) {
+            TextFieldAlert(title: "Enter Your Action", message: nil, text: $viewModel.selectedAction)
+        }
+        .textFieldAlert(isPresented: $viewModel.showCustomUnitAlert, onDismiss: viewModel.unitAlertDismissed) {
+            TextFieldAlert(title: "Enter Your Units", message: nil, text: $viewModel.selectedUnit)
+        }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(viewModel.goalTitle)
         .toolbar {
