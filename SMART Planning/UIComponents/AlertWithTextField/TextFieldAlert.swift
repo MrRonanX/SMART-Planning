@@ -13,11 +13,12 @@ struct TextFieldAlert {
     let title: String
     let message: String?
     @Binding var text: String
+    let placeholder: String
     var isPresented: Binding<Bool>? = nil
     
     // MARK: Modifiers
     func dismissable(_ isPresented: Binding<Bool>) -> TextFieldAlert {
-        TextFieldAlert(title: title, message: message, text: $text, isPresented: isPresented)
+        TextFieldAlert(title: title, message: message, text: $text, placeholder: placeholder, isPresented: isPresented)
     }
 }
 
@@ -26,14 +27,13 @@ extension TextFieldAlert: UIViewControllerRepresentable {
     typealias UIViewControllerType = TextFieldAlertViewController
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<TextFieldAlert>) -> UIViewControllerType {
-        TextFieldAlertViewController(title: title, message: message, text: $text, isPresented: isPresented)
+        TextFieldAlertViewController(title: title, message: message, text: $text, placeholder: placeholder, isPresented: isPresented)
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType,
-                                context: UIViewControllerRepresentableContext<TextFieldAlert>) {
-        // no update needed
-    }
+                                context: UIViewControllerRepresentableContext<TextFieldAlert>) {}
 }
+
 
 struct TextFieldWrapper<PresentingView: View>: View {
     
@@ -44,21 +44,15 @@ struct TextFieldWrapper<PresentingView: View>: View {
     
     var body: some View {
         ZStack {
-            if (isPresented) { content().dismissable($isPresented) }
+            if isPresented { content().dismissable($isPresented) }
             presentingView
             
-        }.onChange(of: isPresented, perform: { value in
-            switch value {
-            case true:
-                break
-            case false:
-                dismissAction()
-            }
-        })
+        }.onChange(of: isPresented) { value in
+            if !value { dismissAction() }
+        }
     }
-    
-    
 }
+
 
 extension View {
     func textFieldAlert(isPresented: Binding<Bool>,
@@ -69,3 +63,5 @@ extension View {
                          content: content, dismissAction: onDismiss)
     }
 }
+
+

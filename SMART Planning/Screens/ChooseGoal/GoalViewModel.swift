@@ -207,13 +207,16 @@ final class GoalViewModel: ObservableObject {
     
     func actionAlertDismissed() {
         if !measurementActions.contains(selectedAction) && !selectedAction.isEmpty {
-            withAnimation { measurementActions.append(selectedAction) }
+            selectedAction = selectedAction.capitalized
+            withAnimation { measurementActions.append(selectedAction.capitalized) }
         }
     }
     
+    
     func unitAlertDismissed() {
         if !measurementUnits.contains(selectedUnit) && !selectedUnit.isEmpty {
-            withAnimation { measurementUnits.append(selectedUnit) }
+            selectedUnit = selectedUnit.lowercased()
+            withAnimation { measurementUnits.append(selectedUnit.lowercased()) }
         }
     }
     

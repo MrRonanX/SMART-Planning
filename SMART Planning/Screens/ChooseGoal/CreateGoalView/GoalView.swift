@@ -60,10 +60,10 @@ struct GoalView: View {
         }
         .alert(item: $viewModel.alertItem) { $0.alert }
         .textFieldAlert(isPresented: $viewModel.showCustomActionAlert, onDismiss: viewModel.actionAlertDismissed) {
-            TextFieldAlert(title: "Enter Your Action", message: nil, text: $viewModel.selectedAction)
+            TextFieldAlert(title: "Enter Custom Action", message: nil, text: $viewModel.selectedAction, placeholder: "e.i. Create")
         }
         .textFieldAlert(isPresented: $viewModel.showCustomUnitAlert, onDismiss: viewModel.unitAlertDismissed) {
-            TextFieldAlert(title: "Enter Your Units", message: nil, text: $viewModel.selectedUnit)
+            TextFieldAlert(title: "Enter Custom Units", message: nil, text: $viewModel.selectedUnit, placeholder: "e.i. Days")
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(viewModel.goalTitle)

@@ -58,6 +58,7 @@ struct GoalTargetView: View {
         if isExpanded {
             HStack {
                 CreateAlertButton(title: "Add Action", buttonAction: addActionPressed)
+
                 CreateAlertButton(title: "Add Units", buttonAction: addUnitsPressed)
             }
         } 
