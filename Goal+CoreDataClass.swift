@@ -73,7 +73,11 @@ public class Goal: NSManagedObject {
     }
     
     var wrappedUnitsShort: String {
-        unitsShort ?? "$"
+        unitsShort ?? wrappedUnits.prefix(1).lowercased() + "."
+    }
+    
+    var wrappedUserDescription: String {
+        userDescription ?? "Unavailable"
     }
 }
 

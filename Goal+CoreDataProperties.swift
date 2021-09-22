@@ -2,7 +2,7 @@
 //  Goal+CoreDataProperties.swift
 //  SMART Planning
 //
-//  Created by Roman Kavinskyi on 8/27/21.
+//  Created by Roman Kavinskyi on 9/22/21.
 //
 //
 
@@ -32,6 +32,7 @@ extension Goal {
     @NSManaged public var unitsShort: String?
     @NSManaged public var trainingDays: [Int16]?
     @NSManaged public var allowNotifications: Bool
+    @NSManaged public var userDescription: String?
     @NSManaged public var tasks: Set<Exercise>?
     @NSManaged public var notification: NotificationTime?
 
@@ -47,10 +48,10 @@ extension Goal {
     @NSManaged public func removeFromTasks(_ value: Exercise)
 
     @objc(addTasks:)
-    @NSManaged public func addToTasks(_ values: NSSet)
+    @NSManaged public func addToTasks(_ values: Set<Exercise>)
 
     @objc(removeTasks:)
-    @NSManaged public func removeFromTasks(_ values: NSSet)
+    @NSManaged public func removeFromTasks(_ values: Set<Exercise>)
 
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3404868626FB548B00439093 /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404868526FB548B00439093 /* NotificationSettings.swift */; };
+		3404868826FB54F600439093 /* NotificationSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404868726FB54F600439093 /* NotificationSettingsViewModel.swift */; };
 		34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB32687468B00F9AC7F /* DismissButton.swift */; };
 		34079AB62688114C00F9AC7F /* ChooseGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB52688114C00F9AC7F /* ChooseGoalView.swift */; };
 		34079AB82688165C00F9AC7F /* GoalLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34079AB72688165C00F9AC7F /* GoalLabel.swift */; };
@@ -78,6 +80,8 @@
 
 /* Begin PBXFileReference section */
 		045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMART_Planning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3404868526FB548B00439093 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
+		3404868726FB54F600439093 /* NotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		34079AB32687468B00F9AC7F /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		34079AB52688114C00F9AC7F /* ChooseGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGoalView.swift; sourceTree = "<group>"; };
 		34079AB72688165C00F9AC7F /* GoalLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalLabel.swift; sourceTree = "<group>"; };
@@ -162,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3404868426FB546600439093 /* EditNotificationsView */ = {
+			isa = PBXGroup;
+			children = (
+				3404868526FB548B00439093 /* NotificationSettings.swift */,
+				3404868726FB54F600439093 /* NotificationSettingsViewModel.swift */,
+			);
+			path = EditNotificationsView;
+			sourceTree = "<group>";
+		};
 		34079AB22687466E00F9AC7F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +209,7 @@
 		34079ABB2688196500F9AC7F /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				3404868426FB546600439093 /* EditNotificationsView */,
 				34260D5826F4AEEC00D523B2 /* GoalDetailView */,
 				340EB2C126DBDC9D00DF9243 /* IntroView */,
 				34079ABD268819C300F9AC7F /* ChooseGoal */,
@@ -593,6 +607,7 @@
 				34B9273E26D0EC3F00020CD2 /* UIApplication + ext.swift in Sources */,
 				34B9275B26D3CDF700020CD2 /* Exercise+CoreDataClass.swift in Sources */,
 				3428CEA126E4FA46009342AE /* StepperViewModel.swift in Sources */,
+				3404868626FB548B00439093 /* NotificationSettings.swift in Sources */,
 				3422486826CA63F3006CFC05 /* LineProgressView.swift in Sources */,
 				346407F426C53C1C00B8506A /* Goal.xcdatamodeld in Sources */,
 				34079AB42687468B00F9AC7F /* DismissButton.swift in Sources */,
@@ -639,6 +654,7 @@
 				340EB2BB26D9E62B00DF9243 /* DailyTasksViewModel.swift in Sources */,
 				34B9275426D2189300020CD2 /* NotificationTimeView.swift in Sources */,
 				340E541726EDD760005D53F5 /* CalendarView.swift in Sources */,
+				3404868826FB54F600439093 /* NotificationSettingsViewModel.swift in Sources */,
 				34079ACC2689C5E700F9AC7F /* GoalModel.swift in Sources */,
 				346407ED26C13F7100B8506A /* StepperView.swift in Sources */,
 				34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */,

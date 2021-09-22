@@ -8,6 +8,7 @@
 import SwiftUI
 
 final class GoalViewModel: ObservableObject {
+    enum Mode { case creating, editing }
     // MARK:  - Choose Goal View
     @Published var isShowingGoalView = false
     
@@ -47,7 +48,8 @@ final class GoalViewModel: ObservableObject {
     
     var goalShortcut                    = [365, 300, 250, 200, 150, 100]
     var goalIsSet                       = false
-    
+    var mode: Mode                      = .creating
+    var selectedGoal                    : Goal?
     var targetTitle: String { isTargetEdited ?  selectedAction + " " + selectedMetric + " " + selectedUnit : "Your target:" }
     
     var deadlineTitle: String {
@@ -148,35 +150,7 @@ final class GoalViewModel: ObservableObject {
     
     func saveToCoreData() {
         guard isValid() else { return }
-        guard let desiredResult     = Int(selectedMetric) else { return }
-        description                 = "\(selectedAction.capitalized) \(selectedMetric) \(selectedUnit)" 
-        let agreeToNotifications    = notificationTime != .dontNotify
-        let shortUnit               = MeasurementUnit.measurementUnits.filter { $0.displayTitle.contains(selectedUnit) }.first?.shortTitle
-        let isDaily                 = days.filter { $0.isSelected }
-        let goal                    = Goal(context: PersistenceManager.shared.viewContext)
-        goal.id                     = UUID()
-        goal.action                 = selectedAction.lowercased()
-        goal.title                  = goalTitle
-        goal.color                  = selectedColor
-        goal.icon                   = selectedIcon
-        goal.allowNotifications     = agreeToNotifications
-        goal.goalDescription        = description
-        goal.baseProgress           = 0
-        goal.desiredResult          = Double(desiredResult)
-        goal.units                  = selectedUnit.lowercased()
-        goal.unitsShort             = shortUnit
-        goal.daysOfPracticeAWeek    = Int16(isDaily.count)
-        goal.startDate              = Date()
-        goal.deadline               = deadlineDate
-        goal.trainingDays           = isDaily.map { Int16($0.weekDay) }
-        goal.currentProgress        = 0.0
-        
-        if agreeToNotifications {
-            let notification = NotificationTime(context: PersistenceManager.shared.viewContext)
-            notification.hour       = Int16(notificationTime.hour)
-            notification.minute     = Int16(Int.random(in: 1...59))
-            goal.notification       = notification
-        }
+        mode == .creating ? createCoreDataObject() : updateGoal()
         
         PersistenceManager.shared.save()
         isShowingGoalView   = false
@@ -226,9 +200,92 @@ final class GoalViewModel: ObservableObject {
         selectedAction      = goal.action
         goalTitle           = goal.title
         selectedColor       = goal.randomColor
-        
+        days                = Days.days
+        mode                = .creating
         isTargetEdited      = goal.action == "" ? false : true
         isShowingGoalView   = true
+    }
+    
+    
+    func setupEditingView(with goalModel: GoalModel) {
+        selectedUnit        = goalModel.goal.wrappedUnits
+        selectedAction      = goalModel.goal.wrappedAction.capitalized
+        goalTitle           = goalModel.goal.wrappedTitle
+        selectedColor       = goalModel.goal.wrappedColor
+        selectedMetric      = String(Int(goalModel.goal.desiredResult))
+        selectedIcon        = goalModel.goal.wrappedIcon
+        description         = goalModel.goal.wrappedGoalDescription
+        deadlineDate        = goalModel.goal.wrappedDeadline
+        mode                = .editing
+        selectedGoal        = goalModel.goal
+        
+        for (index, day) in days.enumerated() {
+            if !goalModel.goal.wrappedTrainingDays.contains(day.weekDay) {
+                days[index].isSelected = false
+            }
+        }
+        
+        isTargetEdited      = true
+        isShowingGoalView   = true
+    }
+    
+    
+    private func updateGoal() {
+        guard let desiredResult     = Int(selectedMetric) else { return }
+        let goalDescription         = "\(selectedAction.capitalized) \(selectedMetric) \(selectedUnit)"
+        let agreeToNotifications    = notificationTime != .dontNotify
+        let shortUnit               = MeasurementUnit.measurementUnits.filter { $0.displayTitle.contains(selectedUnit) }.first?.shortTitle ?? selectedUnit.prefix(1).lowercased()
+        let isDaily                 = days.filter { $0.isSelected }
+        
+        guard let goal              = selectedGoal else { return }
+        goal.action                 = selectedAction.lowercased()
+        goal.title                  = goalTitle
+        goal.color                  = selectedColor
+        goal.icon                   = selectedIcon
+        goal.allowNotifications     = agreeToNotifications
+        goal.goalDescription        = goalDescription
+        goal.userDescription        = description
+        goal.desiredResult          = Double(desiredResult)
+        goal.units                  = selectedUnit.lowercased()
+        goal.unitsShort             = shortUnit
+        goal.daysOfPracticeAWeek    = Int16(isDaily.count)
+        goal.deadline               = deadlineDate
+        goal.trainingDays           = isDaily.map { Int16($0.weekDay) }
+    }
+    
+    
+    private func createCoreDataObject() {
+        guard let desiredResult     = Int(selectedMetric) else { return }
+        let goalDescription         = "\(selectedAction.capitalized) \(selectedMetric) \(selectedUnit)"
+        let agreeToNotifications    = notificationTime != .dontNotify
+        let shortUnit               = MeasurementUnit.measurementUnits.filter { $0.displayTitle.contains(selectedUnit) }.first?.shortTitle ?? selectedUnit.prefix(1).lowercased()
+        let isDaily                 = days.filter { $0.isSelected }
+        
+        let goal                    = Goal(context: PersistenceManager.shared.viewContext)
+        goal.id                     = UUID()
+        goal.action                 = selectedAction.lowercased()
+        goal.title                  = goalTitle
+        goal.color                  = selectedColor
+        goal.icon                   = selectedIcon
+        goal.allowNotifications     = agreeToNotifications
+        goal.goalDescription        = goalDescription
+        goal.userDescription        = description
+        goal.baseProgress           = 0
+        goal.desiredResult          = Double(desiredResult)
+        goal.units                  = selectedUnit.lowercased()
+        goal.unitsShort             = shortUnit
+        goal.daysOfPracticeAWeek    = Int16(isDaily.count)
+        goal.startDate              = Date()
+        goal.deadline               = deadlineDate
+        goal.trainingDays           = isDaily.map { Int16($0.weekDay) }
+        goal.currentProgress        = 0.0
+        
+        if agreeToNotifications {
+            let notification = NotificationTime(context: PersistenceManager.shared.viewContext)
+            notification.hour       = Int16(notificationTime.hour)
+            notification.minute     = Int16(Int.random(in: 1...59))
+            goal.notification       = notification
+        }
     }
 }
 

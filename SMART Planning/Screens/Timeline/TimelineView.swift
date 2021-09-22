@@ -25,7 +25,6 @@ struct TimelineView: View {
                     }
                 }
             }
-            
             .fullScreenCover(item: $detailView) { model in GoalDetailView(goal: model)}
             .onAppear(perform: setNotifications)
             .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }
@@ -85,6 +84,8 @@ struct ScrollViewIfNeeded<Content: View>: View {
         }
     }
 }
+
+
 
 
 

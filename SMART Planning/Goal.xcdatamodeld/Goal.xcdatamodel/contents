@@ -31,6 +31,7 @@
         <attribute name="trainingDays" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[Int16]"/>
         <attribute name="units" attributeType="String"/>
         <attribute name="unitsShort" optional="YES" attributeType="String"/>
+        <attribute name="userDescription" optional="YES" attributeType="String"/>
         <relationship name="notification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="NotificationTime" inverseName="goal" inverseEntity="NotificationTime"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="goal" inverseEntity="Exercise"/>
         <uniquenessConstraints>
@@ -49,7 +50,7 @@
     </entity>
     <elements>
         <element name="Exercise" positionX="308.02734375" positionY="-4.34375" width="128" height="134"/>
-        <element name="Goal" positionX="-67.92578125" positionY="-164.85546875" width="128" height="313"/>
+        <element name="Goal" positionX="-67.92578125" positionY="-164.85546875" width="128" height="314"/>
         <element name="NotificationTime" positionX="126" positionY="-9" width="128" height="95"/>
     </elements>
 </model>

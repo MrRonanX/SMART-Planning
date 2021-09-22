@@ -11,6 +11,7 @@ struct GoalDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var brain: GoalsManager
     @StateObject var viewModel: GoalDetailsViewModel
+    @StateObject var editGoalViewModel = GoalViewModel()
     
     init(goal: GoalModel) {
         _viewModel = StateObject(wrappedValue: GoalDetailsViewModel(goal: goal))
@@ -37,6 +38,7 @@ struct GoalDetailView: View {
                     }
                 }
             }
+            .alert(item: $viewModel.alertItem) { $0.alertWithSecondaryButton }
             .padding([.top, .leading, .trailing])
             .navigationBarTitle(viewModel.goal.goal.wrappedTitle)
             .navigationBarTitleDisplayMode(.inline)
@@ -44,8 +46,18 @@ struct GoalDetailView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done", action: dismissView)
                 }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Delete")
+                        .foregroundColor(.red)
+                        .onTapGesture(perform: deletionAlert)
+                    
+                    
+                }
             }
         }
+        .environmentObject(editGoalViewModel)
+        .accentColor(Color(viewModel.goal.color))
+        
     }
     
     
@@ -53,8 +65,9 @@ struct GoalDetailView: View {
         presentationMode.wrappedValue.dismiss()
     }
     
-    func editButtonPressed() {
-        print("Edit Pressed")
+    
+    func deletionAlert() {
+        viewModel.alertItem = AlertContext.deleteConfirmation(action: deleteGoal)
     }
     
     
@@ -74,7 +87,8 @@ struct GoalDetailView_Previews: PreviewProvider {
 }
 
 
-fileprivate struct TitleView: View {
+struct TitleView: View {
+    @EnvironmentObject var editGoalViewModel: GoalViewModel
     var goal: GoalModel
     
     var body: some View {
@@ -90,6 +104,8 @@ fileprivate struct TitleView: View {
                     Image(Icons.pen.icon)
                         .iconStyle(with: 20)
                         .foregroundColor(Color(goal.color))
+                        .onTapGesture(perform: showEditGoal)
+                    NavigationLink(destination: GoalView(), isActive: $editGoalViewModel.isShowingGoalView) { EmptyView() }
                 }
                 
                 Text(trainingDays)
@@ -107,6 +123,12 @@ fileprivate struct TitleView: View {
     var selectedDays: String {
         goal.goal.wrappedTrainingDays.map { Calendar.current.shortWeekdaySymbols[$0 - 1] }.joined(separator: ", ")
     }
+    
+    
+    func showEditGoal() {
+        editGoalViewModel.setupEditingView(with: goal)
+        editGoalViewModel.isShowingGoalView = true
+    }
 }
 
 
@@ -119,7 +141,7 @@ fileprivate struct NotificationsView: View {
                 .iconStyle(with: 30)
                 .foregroundColor(Color(goal.color))
                 .offset(x: 8, y: 0)
-            NavigationLink(destination: Text("Edit Notifications")) {
+            NavigationLink(destination: NotificationSettings(goal)) {
                 HStack {
                     Text("Edit Notifications")
                         .font(.title3.bold())
@@ -160,4 +182,8 @@ fileprivate struct StatisticsView: View {
         .padding(.bottom)
     }
 }
+
+
+
+
 

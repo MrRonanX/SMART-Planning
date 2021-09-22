@@ -37,10 +37,9 @@ struct GoalModel: Identifiable {
         dailyGoal * Double(goal.wrappedDaysOfPractice)
     }
     
-    func createTasks() {
-        var date = goal.wrappedStartDate
-        let dailyAmountOfTraining = dailyGoal
-        var currentProgress = goal.baseProgress
+    func createTasks(startDate: Date, dailyGoal: Double, startProgress: Double) {
+        var date = startDate
+        var currentProgress = startProgress
         for _ in 0..<Int(numberOfDays) {
             for day in goal.wrappedTrainingDays {
                 if day == Calendar.current.component(.weekday, from: date) {
@@ -53,7 +52,7 @@ struct GoalModel: Identifiable {
                     task.isCompleted = false
                     goal.addToTasks(task)
                     
-                    currentProgress += dailyAmountOfTraining
+                    currentProgress += dailyGoal
                     break
                 }
             }
@@ -67,11 +66,25 @@ struct GoalModel: Identifiable {
         PersistenceManager.shared.save()
     }
     
+    
+    func updateTasks() {
+        let completedTasks = tasks.filter { $0.isCompleted }
+        let completedAmount = completedTasks.map { $0.trainingAmount }.reduce(0, +)
+        
+        let dailyGoal = (goal.desiredResult - goal.baseProgress - completedAmount) / Double(goal.wrappedDeadline.days(from: Date()))
+        let coef = 7.0 / Double(goal.wrappedDaysOfPractice)
+        let correctedGoal = coef * dailyGoal
+        
+        goal.removeFromTasks(Set(tasks))
+        goal.addToTasks(Set(completedTasks))
+        createTasks(startDate: Date(), dailyGoal: correctedGoal, startProgress: completedAmount)
+    }
+    
     mutating func loadTasks() {
         tasks = goal.wrappedTasks
         
         if tasks.isEmpty {
-            createTasks()
+            createTasks(startDate: goal.wrappedStartDate, dailyGoal: dailyGoal, startProgress: goal.baseProgress)
             tasks = goal.wrappedTasks
         }
     }

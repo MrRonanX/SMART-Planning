@@ -25,3 +25,5 @@ struct Days {
                        DayCircleModel(title: "F", longTitle: "Fri", weekDay: 6),
                        DayCircleModel(title: "S", longTitle: "Sat", weekDay: 7)]
 }
+
+
