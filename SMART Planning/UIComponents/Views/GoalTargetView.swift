@@ -30,7 +30,7 @@ struct GoalTargetView: View {
                 .keyboardType(.numberPad)
                 .overlay(textFieldBorder)
                 .onChange(of: Int(viewModel.selectedMetric)) { _ in viewModel.convertSingularsAndPlurals() }
-            
+                .zIndex(1)
             Picker("", selection: $viewModel.selectedUnit) {
                 ForEach(viewModel.measurementUnits, id:\.self) {
                     Text($0)
@@ -105,14 +105,16 @@ struct CreateAlertButton: View {
     var title: String
     var buttonAction: () -> Void
     
+    
     var body: some View {
+        Button(action:  buttonAction) {
             Text(title)
                 .fontWeight(.medium)
                 .foregroundColor(Color(.white))
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 6)
                 .background(Color(viewModel.selectedColor).cornerRadius(13))
-                .onTapGesture(perform: buttonAction)
-                .buttonStyle(PlainButtonStyle())
+        }
+        .buttonStyle(PlainButtonStyle())
     }
 }
