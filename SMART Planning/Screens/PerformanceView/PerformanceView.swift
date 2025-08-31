@@ -12,7 +12,7 @@ struct PerformanceView: View {
     @StateObject var viewModel = PerformanceViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 SegmentedControl(tab: $viewModel.currentTab, tabs: [.weekly, .monthly, .total])
                 if viewModel.currentTab != .total {

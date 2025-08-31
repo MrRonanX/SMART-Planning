@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ChooseGoalView: View {
-    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var settings: ViewSelector
     
     @StateObject var viewModel = GoalViewModel()
@@ -16,7 +15,7 @@ struct ChooseGoalView: View {
     @Binding var launchedByMainScreen: Bool
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geo in
                 body(for: geo.size)
             }
