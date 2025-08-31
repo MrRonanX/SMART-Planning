@@ -9,7 +9,10 @@ import UIKit
 
 extension UIApplication {
     func addTapGestureRecognizer() {
-        guard let window = windows.first else { return }
+        guard
+            let windowScene = connectedScenes.first as? UIWindowScene,
+            let window = windowScene.windows.first
+        else { return }
         let tapGesture = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
         tapGesture.cancelsTouchesInView = false
         tapGesture.delegate = self

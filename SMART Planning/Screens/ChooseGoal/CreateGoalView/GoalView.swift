@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct GoalView: View {
-    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var viewModel: GoalViewModel
     
     var body: some View {
