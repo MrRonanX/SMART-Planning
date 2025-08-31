@@ -15,8 +15,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: swift-actions/setup-swift@65540b95f51493d65f5e59e97dcef9629ddf11bf
-      with:
-        swift-version: "6.1"
+    - uses: swift-actions/setup-swift@v2
+    - name: Get swift version
+        run: swift --version # Swift 6.1.0
     - name: Build
       run: swift build -v
