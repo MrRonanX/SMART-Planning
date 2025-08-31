@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -75,11 +75,10 @@
 		34B9277926D8F19800020CD2 /* NotificationTime+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9277726D8F19800020CD2 /* NotificationTime+CoreDataClass.swift */; };
 		34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */; };
 		34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */; };
-		E28260BBD401064547E5A562 /* Pods_SMART_Planning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */; };
+		F9B3C90B2CBF7A1D006EF4E2 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = F9B3C90A2CBF7A1D006EF4E2 /* JTAppleCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMART_Planning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3404868526FB548B00439093 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		3404868726FB54F600439093 /* NotificationSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewModel.swift; sourceTree = "<group>"; };
 		34079AB32687468B00F9AC7F /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
@@ -150,8 +149,6 @@
 		34B9277726D8F19800020CD2 /* NotificationTime+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTime+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTime+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksView.swift; sourceTree = "<group>"; };
-		9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.release.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.release.xcconfig"; sourceTree = "<group>"; };
-		F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMART Planning.debug.xcconfig"; path = "Target Support Files/Pods-SMART Planning/Pods-SMART Planning.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E28260BBD401064547E5A562 /* Pods_SMART_Planning.framework in Frameworks */,
+				F9B3C90B2CBF7A1D006EF4E2 /* JTAppleCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,8 +293,6 @@
 			children = (
 				341EEE7726650F18001EFD32 /* SMART Planning */,
 				341EEE7626650F18001EFD32 /* Products */,
-				4E6528F13B9924FEB12EC9C6 /* Pods */,
-				CEEFF187834F46C3B76F1E59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -468,23 +463,6 @@
 			path = DailyTasks;
 			sourceTree = "<group>";
 		};
-		4E6528F13B9924FEB12EC9C6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */,
-				9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		CEEFF187834F46C3B76F1E59 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				045EAEE4C99B53D3FA61FAC6 /* Pods_SMART_Planning.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -492,17 +470,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 341EEE8426650F19001EFD32 /* Build configuration list for PBXNativeTarget "SMART Planning" */;
 			buildPhases = (
-				4103BCA42D5F02C5C29F7206 /* [CP] Check Pods Manifest.lock */,
 				341EEE7126650F18001EFD32 /* Sources */,
 				341EEE7226650F18001EFD32 /* Frameworks */,
 				341EEE7326650F18001EFD32 /* Resources */,
-				3DA80960BECB76BD6B1DE533 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "SMART Planning";
+			packageProductDependencies = (
+				F9B3C90A2CBF7A1D006EF4E2 /* JTAppleCalendar */,
+			);
 			productName = "SMART Planning";
 			productReference = 341EEE7526650F18001EFD32 /* SMART Planning.app */;
 			productType = "com.apple.product-type.application";
@@ -530,6 +509,9 @@
 				Base,
 			);
 			mainGroup = 341EEE6C26650F18001EFD32;
+			packageReferences = (
+				F9B3C9092CBF7A1D006EF4E2 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
+			);
 			productRefGroup = 341EEE7626650F18001EFD32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -550,48 +532,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3DA80960BECB76BD6B1DE533 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SMART Planning/Pods-SMART Planning-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4103BCA42D5F02C5C29F7206 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SMART Planning-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		341EEE7126650F18001EFD32 /* Sources */ = {
@@ -721,7 +661,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -776,7 +716,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -788,22 +728,21 @@
 		};
 		341EEE8526650F19001EFD32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2EBD946E161CA6466B752EB /* Pods-SMART Planning.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"SMART Planning/Preview Content\"";
 				DEVELOPMENT_TEAM = 34W5S52327;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "SMART Planning/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.kavinskyi.SMART-Planning";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -813,22 +752,21 @@
 		};
 		341EEE8626650F19001EFD32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9399593C4E51C8309A88D62E /* Pods-SMART Planning.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"SMART Planning/Preview Content\"";
 				DEVELOPMENT_TEAM = 34W5S52327;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "SMART Planning/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.kavinskyi.SMART-Planning";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -858,6 +796,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9B3C9092CBF7A1D006EF4E2 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/patchthecode/JTAppleCalendar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F9B3C90A2CBF7A1D006EF4E2 /* JTAppleCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9B3C9092CBF7A1D006EF4E2 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
+			productName = JTAppleCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		346407F226C53C1C00B8506A /* Goal.xcdatamodeld */ = {
