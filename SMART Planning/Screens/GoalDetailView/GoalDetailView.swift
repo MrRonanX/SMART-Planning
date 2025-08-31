@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GoalDetailView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var brain: GoalsManager
     @StateObject var viewModel: GoalDetailsViewModel
     @StateObject var editGoalViewModel = GoalViewModel()
@@ -18,7 +18,7 @@ struct GoalDetailView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geo in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
@@ -62,7 +62,7 @@ struct GoalDetailView: View {
     
     
     func dismissView() {
-        presentationMode.wrappedValue.dismiss()
+        dismiss()
     }
     
     

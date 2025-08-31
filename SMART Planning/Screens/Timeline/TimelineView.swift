@@ -13,7 +13,7 @@ struct TimelineView: View {
     @State var showAddGoalsView = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geo in
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 10) {
@@ -37,7 +37,6 @@ struct TimelineView: View {
                 }
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func addGoals() {

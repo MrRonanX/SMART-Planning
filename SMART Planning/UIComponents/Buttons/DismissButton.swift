@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DismissButton: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         HStack {
             Spacer()
             Button {
-                presentationMode.wrappedValue.dismiss()
+                dismiss()
             } label: {
                 Image(systemName: "xmark")
                     .foregroundColor(Color(.label))

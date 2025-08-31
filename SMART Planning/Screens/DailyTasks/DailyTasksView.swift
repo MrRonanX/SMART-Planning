@@ -13,7 +13,7 @@ struct DailyTasksView: View {
     
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 Section(header: SectionHeader(title: "Today")) {
                     ForEach(vm.todayTasks) { task in
