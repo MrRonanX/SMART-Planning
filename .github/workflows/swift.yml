@@ -22,10 +22,10 @@ jobs:
   # If your Xcode project uses SPM deps, this is helpful (adjust flags below):
     - name: Resolve packages
       run: |
-      xcodebuild \
-        -scheme "SMART Planning" \
-        -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-        -resolvePackageDependencies
+        xcodebuild \
+          -scheme "SMART Planning" \
+          -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+          -resolvePackageDependencies
 
     - name: Build (project)
       run: |
