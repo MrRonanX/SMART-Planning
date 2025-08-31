@@ -1,7 +1,7 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: Swift
+name: iOS Build
 
 on:
   push:
@@ -13,23 +13,25 @@ jobs:
   build:
     runs-on: macos-latest
 
-  steps:
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: '16.4.0'
+    steps:
+      - uses: actions/checkout@v4
 
-  # If your Xcode project uses SPM deps, this is helpful (adjust flags below):
-    - name: Resolve packages
-      run: |
-        xcodebuild \
-          -scheme "SMART Planning" \
-          -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-          -resolvePackageDependencies
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '16.4.0'   # matches iPhone 16 simulator
 
-    - name: Build (project)
-      run: |
-        xcodebuild \
-          -project "SMART Planning.xcodeproj" \
-          -scheme "SMART Planning" \
-          -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
-          build
+      - name: Resolve packages
+        run: |
+          xcodebuild \
+            -project "SMART Planning.xcodeproj" \
+            -scheme "SMART Planning" \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            -resolvePackageDependencies
+
+      - name: Build (project)
+        run: |
+          xcodebuild \
+            -project "SMART Planning.xcodeproj" \
+            -scheme "SMART Planning" \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            build
