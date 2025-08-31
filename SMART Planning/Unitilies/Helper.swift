@@ -59,8 +59,8 @@ enum Spacing: CGFloat {
 struct MeasurementUnit {
     let displayTitle: String
     let shortTitle: String
-    
-    static var measurementUnits = [MeasurementUnit(displayTitle: "pages", shortTitle: "p."),
+
+    static let measurementUnits: [MeasurementUnit] = [MeasurementUnit(displayTitle: "pages", shortTitle: "p."),
                                    MeasurementUnit(displayTitle: "times", shortTitle: "t."),
                                    MeasurementUnit(displayTitle: "minutes", shortTitle: "min."),
                                    MeasurementUnit(displayTitle: "hours", shortTitle: "h."),
@@ -76,6 +76,7 @@ struct MeasurementUnit {
                                    MeasurementUnit(displayTitle: "credits", shortTitle: "cr.")]
 }
 
+@MainActor
 enum DeviceTypes {
     enum ScreenSize {
         static let width         = UIScreen.main.bounds.size.width
