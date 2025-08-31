@@ -20,6 +20,9 @@ jobs:
         with:
           xcode-version: '16.4.0'   # matches iPhone 16 simulator
 
+      - name: Check Swift version
+        run: swift --version
+
       - name: Resolve packages
         run: |
           xcodebuild \
