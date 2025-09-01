@@ -29,8 +29,8 @@ struct DaySelectionView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture { withAnimation { isExpanded.toggle() } }
-        .animation(.linear(duration: 0.3))
-        .onChange(of: isExpanded, perform: { _ in rotationDegrees += 180 })
+        .animation(.linear(duration: 0.3), value: isExpanded)
+        .onChange(of: isExpanded) { _, _ in rotationDegrees += 180 }
         
         if isExpanded {
             HStack {

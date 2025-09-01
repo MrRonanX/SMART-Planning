@@ -47,8 +47,8 @@ struct TextFieldWrapper<PresentingView: View>: View {
             if isPresented { content().dismissable($isPresented) }
             presentingView
             
-        }.onChange(of: isPresented) { value in
-            if !value { dismissAction() }
+        }.onChange(of: isPresented) { _, newValue in
+            if !newValue { dismissAction() }
         }
     }
 }
@@ -63,5 +63,4 @@ extension View {
                          content: content, dismissAction: onDismiss)
     }
 }
-
 

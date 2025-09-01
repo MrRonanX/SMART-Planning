@@ -75,9 +75,7 @@ struct IconsAndColorsView: View {
         .contentShape(Rectangle())
         .onTapGesture(perform: dismissView)
         .transition(AnyTransition.move(edge: .bottom) )
-
-//        .transition(.move(edge: .bottom).combined(with: .opacity))
-        .animation(.easeInOut(duration: 0.7))
+        .animation(.easeInOut(duration: 0.7), value: viewModel.isShowingPopOver)
         .zIndex(2)
     }
     

@@ -24,12 +24,12 @@ struct GoalTargetView: View {
             .frame(width: size.width / 3 - 30)
             .colorMultiply(Color(viewModel.selectedColor))
             .clipped()
-            .onChange(of: viewModel.selectedAction) { _ in viewModel.isTargetEdited = true}
+            .onChange(of: viewModel.selectedAction) { _, _ in viewModel.isTargetEdited = true}
             
             TextField("Target", text: $viewModel.selectedMetric)
                 .keyboardType(.numberPad)
                 .overlay(textFieldBorder)
-                .onChange(of: Int(viewModel.selectedMetric)) { _ in viewModel.convertSingularsAndPlurals() }
+                .onChange(of: Int(viewModel.selectedMetric)) { _, _ in viewModel.convertSingularsAndPlurals() }
                 .zIndex(1)
             Picker("", selection: $viewModel.selectedUnit) {
                 ForEach(viewModel.measurementUnits, id:\.self) {
@@ -39,7 +39,7 @@ struct GoalTargetView: View {
             .frame(width: size.width / 3 - 30)
             .colorMultiply(Color(viewModel.selectedColor))
             .clipped()
-            .onChange(of: viewModel.selectedUnit) { _ in viewModel.isTargetEdited = true}
+            .onChange(of: viewModel.selectedUnit) { _, _ in viewModel.isTargetEdited = true}
         }
         .pickerStyle(WheelPickerStyle())
         
@@ -52,8 +52,8 @@ struct GoalTargetView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture { withAnimation { isExpanded.toggle() } }
-        .animation(.linear(duration: 0.3))
-        .onChange(of: isExpanded, perform: { _ in rotationDegrees += 180 })
+        .animation(.linear(duration: 0.3), value: isExpanded)
+        .onChange(of: isExpanded) { _, _ in rotationDegrees += 180 }
         
         if isExpanded {
             HStack {
