@@ -21,7 +21,7 @@ struct ChooseGoalView: View {
             }
         }
         .environmentObject(viewModel)
-        .accentColor(Color(viewModel.selectedColor))
+        .tint(Color(viewModel.selectedColor))
     }
     
     

@@ -56,7 +56,7 @@ struct GoalDetailView: View {
             }
         }
         .environmentObject(editGoalViewModel)
-        .accentColor(Color(viewModel.goal.color))
+        .tint(Color(viewModel.goal.color))
         
     }
     
@@ -105,8 +105,8 @@ struct TitleView: View {
                         .iconStyle(with: 20)
                         .foregroundColor(Color(goal.color))
                         .onTapGesture(perform: showEditGoal)
-                    NavigationLink(destination: GoalView(), isActive: $editGoalViewModel.isShowingGoalView) { EmptyView() }
                 }
+                .navigationDestination(isPresented: $editGoalViewModel.isShowingGoalView) { GoalView() }
                 
                 Text(trainingDays)
                     .foregroundColor(.secondary)
@@ -182,8 +182,6 @@ fileprivate struct StatisticsView: View {
         .padding(.bottom)
     }
 }
-
-
 
 
 

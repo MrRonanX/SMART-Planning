@@ -46,7 +46,7 @@ struct GoalView: View {
                         }
                         DatePicker("Deadline", selection: $viewModel.deadlineDate, in: viewModel.dateRange, displayedComponents: .date)
                             .datePickerStyle(GraphicalDatePickerStyle())
-                            .accentColor(Color(viewModel.selectedColor))
+                            .tint(Color(viewModel.selectedColor))
                     }
                 }
                 .zIndex(0)
@@ -131,5 +131,4 @@ struct GoalView_Previews: PreviewProvider {
         GoalView()
     }
 }
-
 
