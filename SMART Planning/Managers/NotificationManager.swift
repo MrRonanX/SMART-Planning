@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 
+@MainActor
 final class NotificationManager {
 
     static let shared = NotificationManager()
@@ -19,10 +20,11 @@ final class NotificationManager {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
             guard let self = self else { return }
             if granted == true && error == nil {
-                self.scheduleNotification()
+                // Hop to the main actor for scheduling
+                DispatchQueue.main.async {
+                    self.scheduleNotification()
+                }
             }
-           
-            
         }
     }
     
@@ -31,10 +33,14 @@ final class NotificationManager {
             guard let self = self else { return }
             switch settings.authorizationStatus {
             case .notDetermined:
-                self.requestAuthorization()
+                // Ensure main-actor isolation for subsequent actions
+                DispatchQueue.main.async {
+                    self.requestAuthorization()
+                }
             case .authorized, .provisional:
-                self.scheduleNotification()
-                break
+                DispatchQueue.main.async {
+                    self.scheduleNotification()
+                }
             default:
                 break
             }
