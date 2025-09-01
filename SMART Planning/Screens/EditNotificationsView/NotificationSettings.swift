@@ -20,7 +20,7 @@ struct NotificationSettings: View {
             Toggle(isOn: $viewModel.notificationIsOn.animation()) { Text("Notifications are \(viewModel.status)") }
             if viewModel.notificationIsOn {
                 DatePicker("Select when you want to get notifications", selection: $viewModel.notificationTime, displayedComponents: .hourAndMinute)
-                    .onChange(of: viewModel.notificationTime) { viewModel.setNotificationTime($0) }
+                    .onChange(of: viewModel.notificationTime) { _, newValue in viewModel.setNotificationTime(newValue) }
             }
             Spacer()
         }
