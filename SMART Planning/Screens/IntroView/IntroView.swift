@@ -103,7 +103,7 @@ struct MovingIndicatorView: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            ForEach(viewModel.pages.indices) { index in
+            ForEach(viewModel.pages.indices, id: \.self) { index in
                 Capsule()
                     .fill(Color(.systemBlack))
                     .frame(width: viewModel.width(for: screenWidth, and: index), height: 7)
