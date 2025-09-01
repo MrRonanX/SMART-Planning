@@ -54,9 +54,9 @@ struct PerformanceViewCell: View {
             .padding(.top, 10)
             
             LineProgressView(viewModel: viewModel)
-                .animation(.easeOut(duration: 0.7))
+                .animation(.easeOut(duration: 0.7), value: viewModel.currentProgress)
             ProgressLabels(viewModel: viewModel)
-                .animation(.easeOut(duration: 0.7))
+                .animation(.easeOut(duration: 0.7), value: viewModel.currentProgress)
         }
         .padding([.horizontal, .bottom])
         .background(Color(viewModel.goal.complementaryColor))

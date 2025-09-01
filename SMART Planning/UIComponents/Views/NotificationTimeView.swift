@@ -63,8 +63,8 @@ struct NotificationTimeView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture { withAnimation { isExpanded.toggle() } }
-        .animation(.linear(duration: 0.3))
-        .onChange(of: isExpanded, perform: { _ in rotationDegrees += 180 })
+        .animation(.linear(duration: 0.3), value: isExpanded)
+        .onChange(of: isExpanded) { _, _ in rotationDegrees += 180 }
         
         if isExpanded {
             VStack {
@@ -78,7 +78,7 @@ struct NotificationTimeView: View {
                 ButtonForNotification(title: .dontNotify)
                     .onTapGesture { selectNotificationTime(time: .dontNotify) }
             }
-            .onChange(of: viewModel.notificationTime) { _ in viewModel.requestAuthorization() }
+            .onChange(of: viewModel.notificationTime) { _, _ in viewModel.requestAuthorization() }
         }
     }
     
