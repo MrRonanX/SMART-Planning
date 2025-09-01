@@ -37,7 +37,8 @@ struct CalendarView: UIViewRepresentable {
     
     func updateUIView(_ uiView: JTACMonthView, context: Context) {}
     
-    class Coordinator: JTACMonthViewDelegate, JTACMonthViewDataSource {
+    @MainActor
+    class Coordinator: @preconcurrency JTACMonthViewDelegate, @preconcurrency JTACMonthViewDataSource {
         let formatter = DateFormatter()
         
         init(_ parent: CalendarView) {
@@ -82,23 +83,23 @@ struct CalendarView: UIViewRepresentable {
         
         
         func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
-            return parent.goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday() }.contains(date.midday()) ? true : false
+            parent.goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday() }.contains(date.midday())
         }
         
         
         func calendar(_ calendar: JTACMonthView, didHighlightDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+            // No UI changes here beyond debug logging
             print("✅ Highliting")
         }
 
         
         func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
-            return MonthSize(defaultSize: 60)
+            MonthSize(defaultSize: 60)
         }
         
         
         func calendar(_ calendar: JTACMonthView, headerViewForDateRange range: (start: Date, end: Date), at indexPath: IndexPath) -> JTACMonthReusableView {
             formatter.dateFormat = "MMMM"
-            
             let header = calendar.dequeueReusableJTAppleSupplementaryView(withReuseIdentifier: "DateHeader", for: indexPath) as! DateHeader
             header.monthTitle.text = formatter.string(from: range.start)
             return header

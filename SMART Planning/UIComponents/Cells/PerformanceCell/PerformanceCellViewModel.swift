@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class PerformanceCellViewModel: ObservableObject {
     @Published var goal: GoalModel
     
@@ -78,48 +79,46 @@ final class PerformanceCellViewModel: ObservableObject {
     
     
     func setWeeklyData() {
-        goal.weeklyPerformance { baseProgress, desiredProgress, amountOfTasks, completedTasks, milestone, progress in
-            DispatchQueue.main.async { [self] in
-                
-                originalProgress = baseProgress
-                finalProgress = desiredProgress
-                numberOfCompletedTasks = completedTasks
-                numberOfTasks = amountOfTasks
-                goalMilestone = milestone
-                currentProgress = progress
+        goal.weeklyPerformance { [weak self] baseProgress, desiredProgress, amountOfTasks, completedTasks, milestone, progress in
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                self.originalProgress = baseProgress
+                self.finalProgress = desiredProgress
+                self.numberOfCompletedTasks = completedTasks
+                self.numberOfTasks = amountOfTasks
+                self.goalMilestone = milestone
+                self.currentProgress = progress
             }
         }
     }
     
     
     func setMonthlyData() {
-        goal.monthlyPerformance {  baseProgress, desiredProgress, amountOfTasks, completedTasks, milestone, progress in
-            DispatchQueue.main.async { [self] in
-                
-                originalProgress = baseProgress
-                finalProgress = desiredProgress
-                numberOfCompletedTasks = completedTasks
-                numberOfTasks = amountOfTasks
-                goalMilestone = milestone
-                currentProgress = progress
+        goal.monthlyPerformance { [weak self] baseProgress, desiredProgress, amountOfTasks, completedTasks, milestone, progress in
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                self.originalProgress = baseProgress
+                self.finalProgress = desiredProgress
+                self.numberOfCompletedTasks = completedTasks
+                self.numberOfTasks = amountOfTasks
+                self.goalMilestone = milestone
+                self.currentProgress = progress
             }
-        
         }
     }
     
     
     func setTotalData() {
-        goal.totalPerformance {  baseProgress, desiredProgress, amountOfTasks, completedTasks, milestone, progress in
-            DispatchQueue.main.async { [self] in
-                
-                originalProgress = baseProgress
-                finalProgress = desiredProgress
-                numberOfCompletedTasks = completedTasks
-                numberOfTasks = amountOfTasks
-                goalMilestone = milestone
-                currentProgress = progress
+        goal.totalPerformance { [weak self] baseProgress, desiredProgress, amountOfTasks, completedTasks, milestone, progress in
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                self.originalProgress = baseProgress
+                self.finalProgress = desiredProgress
+                self.numberOfCompletedTasks = completedTasks
+                self.numberOfTasks = amountOfTasks
+                self.goalMilestone = milestone
+                self.currentProgress = progress
             }
         }
     }
 }
-

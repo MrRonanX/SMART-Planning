@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 final class GoalViewModel: ObservableObject {
     enum Mode { case creating, editing }
     // MARK:  - Choose Goal View
@@ -80,18 +81,24 @@ final class GoalViewModel: ObservableObject {
     
     
     func addObservers() {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { [self] _ in
-            withAnimation {
-                if description == "Description (Optional)" {
-                    description = ""
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                withAnimation {
+                    if self.description == "Description (Optional)" {
+                        self.description = ""
+                    }
                 }
             }
         }
         
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { [self] (noti) in
-            withAnimation {
-                if description == "" {
-                    description = "Description (Optional)"
+        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                guard let self = self else { return }
+                withAnimation {
+                    if self.description == "" {
+                        self.description = "Description (Optional)"
+                    }
                 }
             }
         }
@@ -288,4 +295,3 @@ final class GoalViewModel: ObservableObject {
         }
     }
 }
-

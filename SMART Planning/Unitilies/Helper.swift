@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 enum Spacing: CGFloat {
     case sevenSteps = 25
     case sixSteps   = 30
@@ -79,15 +80,14 @@ struct MeasurementUnit {
 @MainActor
 enum DeviceTypes {
     enum ScreenSize {
-        static let width         = UIScreen.main.bounds.size.width
-        static let height        = UIScreen.main.bounds.size.height
-        static let maxLength     = max(ScreenSize.width, ScreenSize.height)
+        @MainActor static var width: CGFloat { UIScreen.main.bounds.size.width }
+        @MainActor static var height: CGFloat { UIScreen.main.bounds.size.height }
+        @MainActor static var maxLength: CGFloat { max(ScreenSize.width, ScreenSize.height) }
     }
     
-    static let idiom             = UIDevice.current.userInterfaceIdiom
-    static let nativeScale       = UIScreen.main.nativeScale
-    static let scale             = UIScreen.main.scale
+    @MainActor static var idiom: UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    @MainActor static var nativeScale: CGFloat { UIScreen.main.nativeScale }
+    @MainActor static var scale: CGFloat { UIScreen.main.scale }
 
-    static let isiPhone8Standard = idiom == .phone && ScreenSize.maxLength == 667.0 && nativeScale == scale
+    @MainActor static var isiPhone8Standard: Bool { idiom == .phone && ScreenSize.maxLength == 667.0 && nativeScale == scale }
 }
-

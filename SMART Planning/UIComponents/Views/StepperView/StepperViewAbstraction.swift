@@ -23,6 +23,7 @@ protocol StepperData {
 
 extension StepperData {
     
+    @MainActor
     var customSpacing: CGFloat {
         spacing.value - 4
     }
