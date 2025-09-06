@@ -106,7 +106,8 @@ struct TitleView: View {
                         .foregroundColor(Color(goal.color))
                         .onTapGesture(perform: showEditGoal)
                 }
-                .navigationDestination(isPresented: $editGoalViewModel.isShowingGoalView) { GoalView() }
+                // Hidden link to trigger edit screen when binding flips
+                NavigationLink(destination: GoalView(), isActive: $editGoalViewModel.isShowingGoalView) { EmptyView() }
                 
                 Text(trainingDays)
                     .foregroundColor(.secondary)
@@ -182,6 +183,5 @@ fileprivate struct StatisticsView: View {
         .padding(.bottom)
     }
 }
-
 
 

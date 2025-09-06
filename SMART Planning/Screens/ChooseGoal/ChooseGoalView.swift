@@ -38,11 +38,8 @@ struct ChooseGoalView: View {
                 }.padding(.top, 5)
             }
 
-            // Navigate using modern API to avoid deprecated NavigationLink initializer
-            EmptyView()
-                .navigationDestination(isPresented: $viewModel.isShowingGoalView) {
-                    GoalView()
-                }
+            // Hidden link to drive navigation via binding
+            NavigationLink(destination: GoalView(), isActive: $viewModel.isShowingGoalView) { EmptyView() }
                 .onChange(of: viewModel.isShowingGoalView) { _, _ in pushMainScreen() }
         }
         .padding([.top, .leading, .trailing])
