@@ -1,5 +1,5 @@
 {
-  "originHash" : "a018617adc85c15e94d8d3e853e8919bfabbca654f781c93bfcd33523a51bbc1",
+  "originHash" : "5b627fcfa58520823fc0bf5728f018e056025bc2e860df92523ebb70e72342c6",
   "pins" : [
     {
       "identity" : "jtapplecalendar",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "718f0ab68ba0fcd2bc134f6e9d30edc1b9b038e1",
         "version" : "8.0.5"
+      }
+    },
+    {
+      "identity" : "symbolpicker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/xnth97/SymbolPicker.git",
+      "state" : {
+        "revision" : "8bb08c982235b8e601bc500a41e770d7e198759b",
+        "version" : "1.6.2"
       }
     }
   ],

@@ -15,8 +15,16 @@ final class NotificationManager {
     var notifications = [ScheduledNotification]()
     
     private init() {}
-    
-    private func requestAuthorization() {
+
+    func requestAuthorization() async {
+        do {
+            try await UNUserNotificationCenter
+                .current()
+                .requestAuthorization(options: [.alert, .sound, .badge])
+        } catch {}
+    }
+
+    func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, error in
             guard let self = self else { return }
             if granted == true && error == nil {

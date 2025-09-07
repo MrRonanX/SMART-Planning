@@ -6,57 +6,80 @@
 // //
 
 
+import SymbolPicker
 import SwiftUI
 
 struct GoalView: View {
-    @EnvironmentObject var viewModel: GoalViewModel
-    
+
+    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var settings: ViewSelector
+    @StateObject var viewModel: GoalViewModel
+    @State private var isShowingIcons = false
+
+    init(goal: GoalCreationModel) {
+        _viewModel = StateObject(wrappedValue: GoalViewModel(goal: goal))
+    }
+
+    init(goal: Goal) {
+        _viewModel = StateObject(wrappedValue: GoalViewModel(goal: goal))
+    }
+
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                FormWithoutHeader {
-                    
-                    Section {
-                        TextField("Your Goal", text:  $viewModel.goalTitle, onCommit: dismissKeyboard)
-                        TextEditor(text: $viewModel.description)
-                            .frame(height: 100, alignment: .top)
-                            .foregroundColor(viewModel.descriptionColor)
-                            .onAppear(perform: viewModel.addObservers)
-                    }
-                    
-                    HStack {
-                        FormButton(buttonType: .icons, tapAction: viewModel.iconsTapped)
-                        FormButton(buttonType: .colors, tapAction: viewModel.colorsTapped)
-                    }
-                    .padding(.leading, -20)
-                    .listRowBackground(Color(.rowBackground))
-                    
-                    Section {
-                        DaySelectionView()
-                        Text(viewModel.targetTitle)
-                        GoalTargetView(size: geo.size)
-                    }
-                    
-                    Section(header: Text("")) {
-                        NotificationTimeView()
-                        HStack {
-                            Text(viewModel.deadlineTitle)
-                            Spacer()
-                            DeadlineMenu()
-                        }
-                        DatePicker("Deadline", selection: $viewModel.deadlineDate, in: viewModel.dateRange, displayedComponents: .date)
-                            .datePickerStyle(GraphicalDatePickerStyle())
-                            .tint(Color(viewModel.selectedColor))
-                    }
-                }
-                .zIndex(0)
-                
-                if viewModel.isShowingPopOver {
-                    FullScreenBlackTransparencyView()
-                    IconsAndColorsView(viewModel, size: geo.size)
+        Form {
+            Section {
+                TextField("Your Goal", text:  $viewModel.goalTitle, onCommit: dismissKeyboard)
+                TextEditor(text: $viewModel.description)
+                    .frame(height: 100, alignment: .top)
+                    .foregroundColor(.primary)
+                    .onAppear(perform: viewModel.addObservers)
+            }
+            Section("Personalization") {
+                HStack {
+                    FormButton(buttonType: .icons, tapAction: showIcons)
+                    Divider()
+                    FormButton(buttonType: .colors)
                 }
             }
+
+            Section(header: Text("Frequency")) {
+                DaySelectionView()
+                HStack(spacing: .zero) {
+                    Text("Repeat")
+                    Spacer()
+                    Menu {
+                        ForEach(viewModel.repeatMenuSelection, id:\.self) { selection in
+                            Button(selection) { viewModel.setRepeatSelection(selection)}
+                        }
+                    } label: {
+                        Text(viewModel.repeatSelection)
+                            .font(.subheadline)
+                            .foregroundColor(.primary)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal)
+                            .background(viewModel.complimentaryColor)
+                            .cornerRadius(8)
+                    }
+                }
+            }
+
+            Section("Deadline & Notifications") {
+                DatePicker("Start Date", selection: $viewModel.startDate, displayedComponents: .date)
+                    .datePickerStyle(ColoredCompactPickerStyle(color: viewModel.complimentaryColor))
+
+                HStack {
+                    Text(viewModel.deadlineTitle)
+                    Spacer()
+                    DeadlineMenu()
+                }
+
+                DatePicker("Deadline", selection: $viewModel.deadlineDate, in: viewModel.dateRange, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+                    .tint(Color(viewModel.complimentaryColor))
+
+                NotificationSelection()
+            }
         }
+        .environmentObject(viewModel)
         .alert(item: $viewModel.alertItem) { $0.alert }
         .textFieldAlert(isPresented: $viewModel.showCustomActionAlert, onDismiss: viewModel.actionAlertDismissed) {
             TextFieldAlert(title: "Enter Custom Action", message: nil, text: $viewModel.selectedAction, placeholder: "e.i. Create")
@@ -64,13 +87,28 @@ struct GoalView: View {
         .textFieldAlert(isPresented: $viewModel.showCustomUnitAlert, onDismiss: viewModel.unitAlertDismissed) {
             TextFieldAlert(title: "Enter Custom Units", message: nil, text: $viewModel.selectedUnit, placeholder: "e.i. Days")
         }
+        .sheet(isPresented: $isShowingIcons) {
+            SymbolPicker(symbol: $viewModel.selectedIcon)
+                .tint(viewModel.complimentaryColor)
+                .foregroundStyle(viewModel.selectedColor)
+        }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(viewModel.goalTitle)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: viewModel.saveToCoreData) { Text("Save") }
+                Button(action: save) { Text("Save") }
             }
         }
+    }
+
+    func save() {
+        viewModel.saveToCoreData()
+        settings.firstGoalIsSet()
+        dismiss()
+    }
+
+    func showIcons() {
+        isShowingIcons = true
     }
 }
 
@@ -112,15 +150,13 @@ fileprivate struct DeadlineMenu: View {
             }
         } label: {
             Text(viewModel.deadlineMenuTitle)
-                .font(.subheadline.bold())
-                .lineLimit(2)
-                .fixedSize(horizontal: true, vertical: false)
-                .foregroundColor(.white)
-                .padding(.vertical, 5)
+                .font(.subheadline)
+                .foregroundColor(.primary)
+                .padding(.vertical, 8)
                 .padding(.horizontal)
-                .background(Color(viewModel.selectedColor))
-                .cornerRadius(9)
-                
+                .background(viewModel.complimentaryColor)
+                .cornerRadius(8)
+
         }
     }
 }
@@ -128,7 +164,34 @@ fileprivate struct DeadlineMenu: View {
 
 struct GoalView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalView()
+        GoalView(goal: GoalCreationModel.premadeGoals[0])
     }
 }
 
+struct ColoredCompactPickerStyle: DatePickerStyle {
+
+    var color: Color
+
+    public func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: .zero) {
+            configuration.label
+
+            Spacer()
+
+            Text(configuration.selection.formatted(date: .abbreviated, time: .omitted))
+                .padding(.vertical, 8)
+                .padding(.horizontal)
+                .background(color)
+                .cornerRadius(8)
+                .allowsHitTesting(false)
+                .overlay {
+                    DatePicker("", selection: configuration.$selection, displayedComponents: configuration.displayedComponents)
+                        .labelsHidden()
+                        .datePickerStyle(.compact)
+                        .blendMode(.destinationOver)
+                        .tint(color)
+                        .opacity(0.02)
+                }
+        }
+    }
+}

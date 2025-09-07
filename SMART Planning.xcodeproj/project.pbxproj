@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,7 +51,7 @@
 		3464080126C6811500B8506A /* Color + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080026C6811500B8506A /* Color + ext.swift */; };
 		3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080226C6836400B8506A /* VerticalAlignment.swift */; };
 		3464080526C6869C00B8506A /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080426C6869C00B8506A /* GoalViewModel.swift */; };
-		3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080826C688DD00B8506A /* CircleDayModel.swift */; };
+		3464080926C688DD00B8506A /* DayChipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080826C688DD00B8506A /* DayChipModel.swift */; };
 		3464080B26C68BEF00B8506A /* View + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464080A26C68BEF00B8506A /* View + ext.swift */; };
 		3464081326C6EDA600B8506A /* IconsAndColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464081226C6EDA600B8506A /* IconsAndColorsView.swift */; };
 		3464081526C796AB00B8506A /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3464081426C796AB00B8506A /* Icons.swift */; };
@@ -76,6 +76,8 @@
 		34B9277A26D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */; };
 		34D2E7F9269463C10021F7D5 /* DailyTasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */; };
 		F9B3C90B2CBF7A1D006EF4E2 /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = F9B3C90A2CBF7A1D006EF4E2 /* JTAppleCalendar */; };
+		F9C8955A2E6CD15200BAFD07 /* Testing New Goals.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C895592E6CD15200BAFD07 /* Testing New Goals.swift */; };
+		F9C895632E6D443E00BAFD07 /* SymbolPicker in Frameworks */ = {isa = PBXBuildFile; productRef = F9C895622E6D443E00BAFD07 /* SymbolPicker */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,7 +127,7 @@
 		3464080026C6811500B8506A /* Color + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + ext.swift"; sourceTree = "<group>"; };
 		3464080226C6836400B8506A /* VerticalAlignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalAlignment.swift; sourceTree = "<group>"; };
 		3464080426C6869C00B8506A /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
-		3464080826C688DD00B8506A /* CircleDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDayModel.swift; sourceTree = "<group>"; };
+		3464080826C688DD00B8506A /* DayChipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayChipModel.swift; sourceTree = "<group>"; };
 		3464080A26C68BEF00B8506A /* View + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + ext.swift"; sourceTree = "<group>"; };
 		3464081226C6EDA600B8506A /* IconsAndColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconsAndColorsView.swift; sourceTree = "<group>"; };
 		3464081426C796AB00B8506A /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -149,13 +151,19 @@
 		34B9277726D8F19800020CD2 /* NotificationTime+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTime+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		34B9277826D8F19800020CD2 /* NotificationTime+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTime+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		34D2E7F8269463C10021F7D5 /* DailyTasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTasksView.swift; sourceTree = "<group>"; };
+		F9C895592E6CD15200BAFD07 /* Testing New Goals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Testing New Goals.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F9C8955B2E6D23A600BAFD07 /* DesignSystem */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DesignSystem; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		341EEE7226650F18001EFD32 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C895632E6D443E00BAFD07 /* SymbolPicker in Frameworks */,
 				F9B3C90B2CBF7A1D006EF4E2 /* JTAppleCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,7 +315,9 @@
 		341EEE7726650F18001EFD32 /* SMART Planning */ = {
 			isa = PBXGroup;
 			children = (
+				F9C8955B2E6D23A600BAFD07 /* DesignSystem */,
 				341EEE7826650F18001EFD32 /* SMARTPlanningApp.swift */,
+				F9C895592E6CD15200BAFD07 /* Testing New Goals.swift */,
 				34B9275526D22BF000020CD2 /* Managers */,
 				3464080F26C6E71800B8506A /* Unitilies */,
 				3464080726C688C600B8506A /* Models */,
@@ -393,7 +403,7 @@
 			children = (
 				346407FD26C540A000B8506A /* CoreDataModels */,
 				34079ACB2689C5E700F9AC7F /* GoalModel.swift */,
-				3464080826C688DD00B8506A /* CircleDayModel.swift */,
+				3464080826C688DD00B8506A /* DayChipModel.swift */,
 				3428CEA226E4FA70009342AE /* SubGoalModel.swift */,
 			);
 			path = Models;
@@ -478,9 +488,13 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				F9C8955B2E6D23A600BAFD07 /* DesignSystem */,
+			);
 			name = "SMART Planning";
 			packageProductDependencies = (
 				F9B3C90A2CBF7A1D006EF4E2 /* JTAppleCalendar */,
+				F9C895622E6D443E00BAFD07 /* SymbolPicker */,
 			);
 			productName = "SMART Planning";
 			productReference = 341EEE7526650F18001EFD32 /* SMART Planning.app */;
@@ -511,6 +525,7 @@
 			mainGroup = 341EEE6C26650F18001EFD32;
 			packageReferences = (
 				F9B3C9092CBF7A1D006EF4E2 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
+				F9C895612E6D443E00BAFD07 /* XCRemoteSwiftPackageReference "SymbolPicker" */,
 			);
 			productRefGroup = 341EEE7626650F18001EFD32 /* Products */;
 			projectDirPath = "";
@@ -563,6 +578,7 @@
 				34079ACA2689C50500F9AC7F /* TimelineView.swift in Sources */,
 				34B9274D26D151EC00020CD2 /* TabButton.swift in Sources */,
 				340E541426EC842C005D53F5 /* IndividualStepper.swift in Sources */,
+				F9C8955A2E6CD15200BAFD07 /* Testing New Goals.swift in Sources */,
 				3422486A26CBF085006CFC05 /* TextFieldWithReturnButton.swift in Sources */,
 				34260D5C26F4AFBA00D523B2 /* GoalDetailViewModel.swift in Sources */,
 				34B9274F26D1710D00020CD2 /* DaySelectionView.swift in Sources */,
@@ -601,7 +617,7 @@
 				3464080126C6811500B8506A /* Color + ext.swift in Sources */,
 				340E540F26EC827D005D53F5 /* StepperViewAbstraction.swift in Sources */,
 				3464080326C6836400B8506A /* VerticalAlignment.swift in Sources */,
-				3464080926C688DD00B8506A /* CircleDayModel.swift in Sources */,
+				3464080926C688DD00B8506A /* DayChipModel.swift in Sources */,
 				34B9275826D22C0400020CD2 /* NotificationManager.swift in Sources */,
 				341EEE7926650F18001EFD32 /* SMARTPlanningApp.swift in Sources */,
 			);
@@ -808,6 +824,14 @@
 				minimumVersion = 8.0.5;
 			};
 		};
+		F9C895612E6D443E00BAFD07 /* XCRemoteSwiftPackageReference "SymbolPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/xnth97/SymbolPicker.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.6.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -815,6 +839,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F9B3C9092CBF7A1D006EF4E2 /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
 			productName = JTAppleCalendar;
+		};
+		F9C895622E6D443E00BAFD07 /* SymbolPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9C895612E6D443E00BAFD07 /* XCRemoteSwiftPackageReference "SymbolPicker" */;
+			productName = SymbolPicker;
 		};
 /* End XCSwiftPackageProductDependency section */
 

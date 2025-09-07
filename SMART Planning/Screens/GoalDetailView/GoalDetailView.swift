@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GoalDetailView: View {
+
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var brain: GoalsManager
     @StateObject var viewModel: GoalDetailsViewModel
@@ -96,21 +97,20 @@ struct TitleView: View {
             Image(goal.goal.wrappedIcon)
                 .iconStyle(with: 45)
                 .foregroundColor(Color(goal.color))
-            
-            VStack(alignment: .leading, spacing: 3) {
-                HStack {
-                    Text(goal.goal.wrappedTitle)
-                        .font(.title2.bold())
-                    Image(Icons.pen.icon)
-                        .iconStyle(with: 20)
-                        .foregroundColor(Color(goal.color))
-                        .onTapGesture(perform: showEditGoal)
+
+            NavigationLink(destination: GoalView(goal: goal.goal)) {
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack {
+                        Text(goal.goal.wrappedTitle)
+                            .font(.title2.bold())
+                        Image(Icons.pen.icon)
+                            .iconStyle(with: 20)
+                            .foregroundColor(Color(goal.color))
+                    }
+
+                    Text(trainingDays)
+                        .foregroundColor(.secondary)
                 }
-                // Hidden link to trigger edit screen when binding flips
-                NavigationLink(destination: GoalView(), isActive: $editGoalViewModel.isShowingGoalView) { EmptyView() }
-                
-                Text(trainingDays)
-                    .foregroundColor(.secondary)
             }
         }
     }
@@ -123,12 +123,6 @@ struct TitleView: View {
     
     var selectedDays: String {
         goal.goal.wrappedTrainingDays.map { Calendar.current.shortWeekdaySymbols[$0 - 1] }.joined(separator: ", ")
-    }
-    
-    
-    func showEditGoal() {
-        editGoalViewModel.setupEditingView(with: goal)
-        editGoalViewModel.isShowingGoalView = true
     }
 }
 

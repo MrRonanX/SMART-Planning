@@ -8,31 +8,36 @@
 import SwiftUI
 
 struct FormButton: View {
+
     @EnvironmentObject var viewModel: GoalViewModel
     var buttonType: ViewType
-    var tapAction: () -> Void
+    var tapAction: (() -> Void)?
     
-    var iconSize: CGFloat { buttonType == .colors ? 25 : 35 }
-    
+    var iconSize: CGFloat = 40
+
     var body: some View {
-        HStack {
-            Image(buttonType == .colors ? "circle" : viewModel.selectedIcon)
-                .iconStyle(with: iconSize)
-                .foregroundColor(Color(viewModel.selectedColor))
-                .padding()
-                .background(Color(.iconBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
+        if buttonType == .colors {
+            ColorPicker(selection: $viewModel.selectedColor) { EmptyView() }
+                .labelsHidden()
+                .scaleEffect(CGSize(width: 1.35, height: 1.35))
+                .frame(maxWidth: .infinity, maxHeight: iconSize)
+        } else {
+            Image(viewModel.selectedIcon)
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(viewModel.selectedColor)
+                .padding(.space8)
+                .background(viewModel.complimentaryColor)
+                .clipShape(RoundedRectangle(cornerRadius: iconSize / 2))
+                .frame(width: iconSize, height: iconSize)
+                .frame(maxWidth: .infinity)
                 .onTapGesture(perform: buttonAction)
-            
-            Text(buttonType.rawValue)
-                .font(.title3)
-            
-            Spacer()
         }
     }
     
     func buttonAction() {
-        tapAction()
+        tapAction?()
     }
 }
 

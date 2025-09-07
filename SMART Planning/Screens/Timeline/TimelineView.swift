@@ -27,7 +27,7 @@ struct TimelineView: View {
             }
             .fullScreenCover(item: $detailView) { model in GoalDetailView(goal: model)}
             .onAppear(perform: setNotifications)
-            .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView (launchedByMainScreen: $showAddGoalsView) }
+            .fullScreenCover(isPresented: $showAddGoalsView, onDismiss: setNotifications) { ChooseGoalView () }
             .navigationTitle("Goal Timelines")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -46,9 +46,9 @@ struct TimelineView: View {
     
     private func setNotifications() {
         brain.loadData()
-        let notificationManager = NotificationManager.shared
-        notificationManager.notifications = brain.createNotificationObjects()
-        notificationManager.schedule()
+//        let notificationManager = NotificationManager.shared
+//        notificationManager.notifications = brain.createNotificationObjects()
+//        notificationManager.schedule()
         //        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         //            notificationManager.listScheduledNotifications()
         //        }

@@ -20,6 +20,7 @@ struct SMARTPlanningApp: App {
                     .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
             } else {
                 PlanningTabView().onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+                    .environmentObject(viewSelector)
             }
         }
     }
@@ -27,7 +28,7 @@ struct SMARTPlanningApp: App {
 
 final class ViewSelector: ObservableObject {
     
-    @Published var goalIsSet    : Bool
+    @Published var goalIsSet: Bool
     
     init() {
         goalIsSet = UserDefaults.standard.bool(forKey: "goalIsSet")
@@ -36,7 +37,9 @@ final class ViewSelector: ObservableObject {
     
     func firstGoalIsSet() {
         UserDefaults.standard.set(true, forKey: "goalIsSet")
-        goalIsSet = true
+        if !goalIsSet {
+            goalIsSet = true
+        }
     }
 }
 
@@ -45,7 +48,7 @@ struct IntroOrGoalView: View {
     
     var body: some View {
         if viewModel.hasSeenIntro {
-            ChooseGoalView(launchedByMainScreen: .constant(false))
+            ChooseGoalView()
         } else {
             IntroView(viewModel: viewModel)
         }

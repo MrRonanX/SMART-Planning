@@ -42,6 +42,7 @@ enum NotificationSegmentType: String, Identifiable {
 }
 
 struct NotificationTimeView: View {
+
     @EnvironmentObject var viewModel: GoalViewModel
     @State var isExpanded = false
     @State var rotationDegrees = 0.0
@@ -112,5 +113,36 @@ struct ButtonForNotification: View {
 struct NotificationCell_Previews: PreviewProvider {
     static var previews: some View {
         NotificationTimeView().environmentObject(GoalViewModel())
+    }
+}
+
+struct NotificationSelection: View {
+
+    @EnvironmentObject var viewModel: GoalViewModel
+
+    @State private var isOn = false
+    @State var date: Date = Date()
+
+    var body: some View {
+        VStack(spacing: .zero) {
+            HStack(spacing: .zero) {
+                Text("Notify Me")
+                Spacer()
+                Toggle("", isOn: $isOn)
+            }
+            .padding(.bottom, .space8)
+
+            if isOn {
+                VStack {
+                    DatePicker("Time", selection: $viewModel.notificationTimeNew, displayedComponents: .hourAndMinute)
+                        .datePickerStyle(.compact)
+                }
+            }
+        }
+        .onChange(of: isOn) { _, newValue in
+            guard newValue else { return }
+
+            viewModel.requestAuthorization()
+        }
     }
 }

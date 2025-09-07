@@ -9,19 +9,19 @@ import SwiftUI
 
 @MainActor
 final class GoalViewModel: ObservableObject {
-    enum Mode { case creating, editing }
-    // MARK:  - Choose Goal View
-    @Published var isShowingGoalView = false
-    
-    var goals = GoalCreationModel.premadeGoals
-    let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 3)
+
+    enum Mode {
+        case creating
+        case editing
+    }
     
     // MARK:  - Goal View
     
     @Published var selectedMetric        = "2"
     @Published var selectedUnit          = "pages"
     @Published var selectedAction        = "Read"
-     
+
+    @Published var startDate = Date()
     @Published var deadlineDate          = Date()
     @Published var days                  = Days.days
      
@@ -32,10 +32,10 @@ final class GoalViewModel: ObservableObject {
     @Published var convertedToSingulars  = false
     @Published var isShowingPopOver      = false
     @Published var isShowingDatePicker   = false
-    @Published var selectedColor         = "brandBlue"
+    @Published var selectedColor         = Color.blue
     @Published var selectedIcon          = "macbook"
-    @Published var popOver: ViewType     = .colors
     @Published var notificationTime      : NotificationSegmentType = .dontNotify
+    @Published var notificationTimeNew   = Date()
     @Published var alertItem             : AlertItem? = nil
     @Published var showCustomActionAlert = false
     @Published var showCustomUnitAlert   = false
@@ -48,6 +48,8 @@ final class GoalViewModel: ObservableObject {
                                            "Lose", "Make", "Draw", "Do", "Find"]
     
     var goalShortcut                    = [365, 300, 250, 200, 150, 100]
+    var repeatMenuSelection = ["Weekly, Bi-weekly, Monthly"]
+    var repeatSelection = "Weekly"
     var goalIsSet                       = false
     var mode: Mode                      = .creating
     var selectedGoal                    : Goal?
@@ -78,7 +80,43 @@ final class GoalViewModel: ObservableObject {
     var descriptionColor: Color {
         description == "Description (Optional)" ? .gray : Color(.label)
     }
-    
+
+    var complimentaryColor: Color {
+        selectedColor.opacity(0.3)
+    }
+
+    init(goal: GoalCreationModel) {
+        selectedUnit = goal.unit
+        selectedAction = goal.action
+        goalTitle = goal.title
+        selectedColor = Color(goal.randomColor)
+        days = Days.days
+        mode = .creating
+        isTargetEdited = goal.action == "" ? false : true
+    }
+
+    init(goal: Goal) {
+        selectedUnit = goal.wrappedUnits
+        selectedAction = goal.wrappedAction.capitalized
+        goalTitle = goal.wrappedTitle
+        selectedColor = Color(goal.wrappedColor)
+        selectedMetric = String(Int(goal.desiredResult))
+        selectedIcon = goal.wrappedIcon
+        description = goal.wrappedGoalDescription
+        deadlineDate = goal.wrappedDeadline
+        selectedGoal = goal
+
+        for (index, day) in days.enumerated() {
+            if !goal.wrappedTrainingDays.contains(day.weekDay) {
+                days[index].isSelected = false
+            }
+        }
+
+        mode = .editing
+    }
+
+    init() {}
+
     
     func addObservers() {
         NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { [weak self] _ in
@@ -105,7 +143,9 @@ final class GoalViewModel: ObservableObject {
     }
     
     func requestAuthorization() {
-        NotificationManager.shared.schedule()
+        Task { @MainActor in
+            await NotificationManager.shared.requestAuthorization()
+        }
     }
     
     
@@ -160,31 +200,18 @@ final class GoalViewModel: ObservableObject {
         mode == .creating ? createCoreDataObject() : updateGoal()
         
         PersistenceManager.shared.save()
-        isShowingGoalView   = false
         goalIsSet           = true
-    }
-    
-    
-    func iconsTapped() {
-        withAnimation {
-            popOver = .icons
-            isShowingPopOver = true
-        }
-    }
-    
-    
-    func colorsTapped() {
-        withAnimation {
-            popOver = .colors
-            isShowingPopOver = true
-        }
     }
     
     
     func setDeadline(of days: Int) {
         deadlineDate = Date().adding(days: days)
     }
-    
+
+    func setRepeatSelection(_ selection: String) {
+        repeatSelection = selection
+    }
+
     
     func actionAlertDismissed() {
         if !measurementActions.contains(selectedAction) && !selectedAction.isEmpty {
@@ -206,11 +233,10 @@ final class GoalViewModel: ObservableObject {
         selectedUnit        = goal.unit
         selectedAction      = goal.action
         goalTitle           = goal.title
-        selectedColor       = goal.randomColor
+        selectedColor       = Color(goal.randomColor)
         days                = Days.days
         mode                = .creating
         isTargetEdited      = goal.action == "" ? false : true
-        isShowingGoalView   = true
     }
     
     
@@ -218,7 +244,7 @@ final class GoalViewModel: ObservableObject {
         selectedUnit        = goalModel.goal.wrappedUnits
         selectedAction      = goalModel.goal.wrappedAction.capitalized
         goalTitle           = goalModel.goal.wrappedTitle
-        selectedColor       = goalModel.goal.wrappedColor
+        selectedColor       = Color(goalModel.goal.wrappedColor)
         selectedMetric      = String(Int(goalModel.goal.desiredResult))
         selectedIcon        = goalModel.goal.wrappedIcon
         description         = goalModel.goal.wrappedGoalDescription
@@ -233,7 +259,6 @@ final class GoalViewModel: ObservableObject {
         }
         
         isTargetEdited      = true
-        isShowingGoalView   = true
     }
     
     
@@ -247,7 +272,7 @@ final class GoalViewModel: ObservableObject {
         guard let goal              = selectedGoal else { return }
         goal.action                 = selectedAction.lowercased()
         goal.title                  = goalTitle
-        goal.color                  = selectedColor
+        goal.color                  = selectedColor.description
         goal.icon                   = selectedIcon
         goal.allowNotifications     = agreeToNotifications
         goal.goalDescription        = goalDescription
@@ -272,7 +297,7 @@ final class GoalViewModel: ObservableObject {
         goal.id                     = UUID()
         goal.action                 = selectedAction.lowercased()
         goal.title                  = goalTitle
-        goal.color                  = selectedColor
+        goal.color                  = selectedColor.description
         goal.icon                   = selectedIcon
         goal.allowNotifications     = agreeToNotifications
         goal.goalDescription        = goalDescription
