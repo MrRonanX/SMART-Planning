@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 
 struct PlanningTabView: View {
+
     @StateObject var brain = GoalsManager()
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         TabView {
@@ -30,6 +33,7 @@ struct PlanningTabView: View {
                 }
         }
         .environmentObject(brain)
+//        .onAppear { brain.modelContext = modelContext }
         .navigationBarHidden(false)
         .navigationBarBackButtonHidden(true)
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimelineView: View {
     @EnvironmentObject var brain: GoalsManager
+    @Environment(\.modelContext) private var modelContext
     @State private var detailView: GoalModel? = nil
     @State var showAddGoalsView = false
     
@@ -45,6 +46,7 @@ struct TimelineView: View {
     }
     
     private func setNotifications() {
+        brain.modelContext = modelContext
         brain.loadData()
 //        let notificationManager = NotificationManager.shared
 //        notificationManager.notifications = brain.createNotificationObjects()
@@ -84,7 +86,6 @@ struct ScrollViewIfNeeded<Content: View>: View {
         }
     }
 }
-
 
 
 

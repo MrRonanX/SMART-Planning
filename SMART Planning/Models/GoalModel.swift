@@ -6,168 +6,156 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GoalModel: Identifiable {
+
     var id = UUID()
     var goal: Goal
-    var tasks = [Exercise]()
-    
+
     init(_ goal: Goal) {
         self.goal = goal
-        loadTasks()
     }
-    
-    var complementaryColor: String {
-        goal.wrappedColor + "Complementary"
+
+    var complementaryColor: Color {
+        Color(red: goal.color.red, green: goal.color.green, blue: goal.color.blue).opacity(0.3)
     }
-    
+
     var totalNumberOfTasks: Int {
-        let coef = Double(goal.wrappedDaysOfPractice) / 7.0
+        let coef = Double(goal.daysOfPracticeAWeek) / 7.0
         let numberOfTasks = Int(numberOfDays * coef)
         return numberOfTasks
     }
-    
+
     var dailyGoal: Double {
         let dailyGoal = (goal.desiredResult - goal.baseProgress) / numberOfDays
-        let coef = 7.0 / Double(goal.wrappedDaysOfPractice)
+        let coef = 7.0 / Double(goal.daysOfPracticeAWeek)
         return coef * dailyGoal
     }
-    
+
     var weeklyGoal: Double {
-        dailyGoal * Double(goal.wrappedDaysOfPractice)
+        dailyGoal * Double(goal.daysOfPracticeAWeek)
     }
-    
-    func createTasks(startDate: Date, dailyGoal: Double, startProgress: Double) {
+
+    func createTasks(startDate: Date, dailyGoal: Double, startProgress: Double, using modelContext: ModelContext) {
         var date = startDate
         var currentProgress = startProgress
+        var trainingDays: [Date] = []
+
         for _ in 0..<Int(numberOfDays) {
-            for day in goal.wrappedTrainingDays {
+            for day in goal.trainingDays {
                 if day == Calendar.current.component(.weekday, from: date) {
-                    let task = Exercise(context: PersistenceManager.shared.viewContext)
-                    task.taskID = UUID()
-                    task.date = date
-                    task.trainingAmount = dailyGoal
-                    task.resultBeforeTraining = currentProgress
-                    task.resultAfterTraining = currentProgress + dailyGoal
-                    task.isCompleted = false
-                    goal.addToTasks(task)
-                    
-                    currentProgress += dailyGoal
+                    trainingDays.append(date)
                     break
                 }
             }
-            
+
             date = date.adding(days: 1)
-            while !goal.wrappedTrainingDays.contains(Calendar.current.component(.weekday, from: date)) {
+
+            while !goal.trainingDays.contains(Calendar.current.component(.weekday, from: date)) {
                 date = date.adding(days: 1)
             }
         }
-        
-        PersistenceManager.shared.save()
-    }
-    
-    
-    func updateTasks() {
-        let completedTasks = tasks.filter { $0.isCompleted }
-        let completedAmount = completedTasks.map { $0.trainingAmount }.reduce(0, +)
-        
-        let dailyGoal = (goal.desiredResult - goal.baseProgress - completedAmount) / Double(goal.wrappedDeadline.days(from: Date()))
-        let coef = 7.0 / Double(goal.wrappedDaysOfPractice)
-        let correctedGoal = coef * dailyGoal
-        
-        goal.removeFromTasks(Set(tasks))
-        goal.addToTasks(Set(completedTasks))
-        createTasks(startDate: Date(), dailyGoal: correctedGoal, startProgress: completedAmount)
-    }
-    
-    mutating func loadTasks() {
-        tasks = goal.wrappedTasks
-        
-        if tasks.isEmpty {
-            createTasks(startDate: goal.wrappedStartDate, dailyGoal: dailyGoal, startProgress: goal.baseProgress)
-            tasks = goal.wrappedTasks
-        }
-    }
-    
-    var todayTask: Double {
-        tasks.filter { $0.wrappedDate.toString(.deadlineNextYear) == Date().toString(.deadlineNextYear)}.first?.trainingAmount ?? dailyGoal
-    }
-    
-    var numberOfDays: TimeInterval {
-        Double(goal.wrappedDeadline.days(from: goal.wrappedStartDate))
-    }
-}
-    
 
-    // MARK: -  Performance View
-extension GoalModel {
-    
-    func weeklyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
-        let sunday = Date().startOfWeek
-        let week = (0...6).map { sunday.adding(days: $0).toString(.deadlineNextYear)}
-        let thisWeekTasks = tasks.filter { week.contains($0.wrappedDate.toString(.deadlineNextYear))}
-        
-        let baseProgress = thisWeekTasks.min()?.resultBeforeTraining ?? 0
-        let desiredProgress = thisWeekTasks.max()?.resultAfterTraining ?? 0
-        let numberOfTasks = thisWeekTasks.count
-        let numberOfCompletedTasks = thisWeekTasks.filter { $0.isCompleted }.count
-        let thisWeekMileStone = thisWeekTasks.reduce(0) { $0 + $1.trainingAmount }
-        let currentProgress = thisWeekTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }.roundToDecimal(1)
-        
-        completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisWeekMileStone, currentProgress)
+        try? modelContext.save()
     }
-    
-    
-    func monthlyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
-        let datesOfMoths = Date().datesOfMoths(of: .deadlineNextYear)
-        let thisMonthTasks = tasks.filter { datesOfMoths.contains($0.wrappedDate.toString(.deadlineNextYear))}
-        
-        let baseProgress = thisMonthTasks.min()?.resultBeforeTraining ?? 0
-        let desiredProgress = thisMonthTasks.max()?.resultAfterTraining ?? 0
-        let numberOfTasks = thisMonthTasks.count
-        let numberOfCompletedTasks = thisMonthTasks.filter { $0.isCompleted }.count
-        let thisMonthMileStone = thisMonthTasks.reduce(0) { $0 + $1.trainingAmount }
-        let currentProgress = thisMonthTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }
-        
-        completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisMonthMileStone, currentProgress)
-    }
-    
-    
-    func totalPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
-        let numberOfTasks = tasks.count
-        let numberOfCompletedTasks = tasks.filter { $0.isCompleted }.count
-        
-        completed(goal.baseProgress, goal.desiredResult, numberOfTasks, numberOfCompletedTasks, goal.desiredResult, goal.currentProgress)
+
+    var numberOfDays: TimeInterval {
+        Double(goal.deadline.days(from: goal.startDate))
     }
 }
+
+
+//    // MARK: -  Performance View
+//extension GoalModel {
+//
+//    func weeklyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
+//        let calendar = Calendar.current
+//        let startOfWeek = Date().startOfWeek
+//        let weekDates = (0...6).map { startOfWeek.adding(days: $0) }
+//        let weekKeys = Set(weekDates.map { $0.toString(.deadlineNextYear) })
+//
+//        // Planned vs completed for this week
+//        let plannedDates = goal.exerciseDates.filter { weekKeys.contains($0.toString(.deadlineNextYear)) }
+//        let completedThisWeek = goal.completedExercises.filter { weekKeys.contains($0.date.toString(.deadlineNextYear)) }
+//
+//        // Base = earliest "before" in week (fallback: current progress)
+//        let baseProgress = completedThisWeek
+//            .min(by: { $0.progressBeforeTraining < $1.progressBeforeTraining })?
+//            .progressBeforeTraining ?? goal.currentProgress
+//
+//        // Desired = latest "after" in week if exists, otherwise base + target for planned days (capped by goal.desiredResult)
+//        let desiredFromCompletions = completedThisWeek
+//            .max(by: { $0.progressAfterTraining < $1.progressAfterTraining })?
+//            .progressAfterTraining
+//
+//        let numberOfTasks = plannedDates.count
+//        let numberOfCompletedTasks = completedThisWeek.count
+//
+//        // Weekly target/milestone derived from planned days
+//        let thisWeekMileStone = Double(numberOfTasks) * dailyGoal
+//
+//        // Sum of actual completed progress this week
+//        let currentProgress = completedThisWeek
+//            .reduce(0) { $0 + $1.progressCompleted }
+//            .roundToDecimal(1)
+//
+//        let desiredProgress = desiredFromCompletions ?? min(goal.desiredResult, baseProgress + thisWeekMileStone)
+//
+//        completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisWeekMileStone, currentProgress)
+//    }
+//
+//
+//    func monthlyPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
+//        let datesOfMoths = Date().datesOfMoths(of: .deadlineNextYear)
+//        let thisMonthTasks = tasks.filter { datesOfMoths.contains($0.wrappedDate.toString(.deadlineNextYear))}
+//
+//        let baseProgress = thisMonthTasks.min()?.resultBeforeTraining ?? 0
+//        let desiredProgress = thisMonthTasks.max()?.resultAfterTraining ?? 0
+//        let numberOfTasks = thisMonthTasks.count
+//        let numberOfCompletedTasks = thisMonthTasks.filter { $0.isCompleted }.count
+//        let thisMonthMileStone = thisMonthTasks.reduce(0) { $0 + $1.trainingAmount }
+//        let currentProgress = thisMonthTasks.filter { $0.isCompleted }.reduce(0) { $0 + $1.trainingAmount }
+//
+//        completed(baseProgress, desiredProgress, numberOfTasks, numberOfCompletedTasks, thisMonthMileStone, currentProgress)
+//    }
+//
+//
+//    func totalPerformance(completed: @escaping (Double, Double, Int, Int, Double, Double) -> Void) {
+//        let numberOfTasks = tasks.count
+//        let numberOfCompletedTasks = tasks.filter { $0.isCompleted }.count
+//
+//        completed(goal.baseProgress, goal.desiredResult, numberOfTasks, numberOfCompletedTasks, goal.desiredResult, goal.currentProgress)
+//    }
+//}
 
 extension GoalModel: StepperData {
-    
+
     var startDate: Date {
-        goal.wrappedStartDate
+        goal.startDate
     }
-    
-    
+
+
     var baseProgress: Double {
         goal.baseProgress
     }
-    
-    
+
+
     var daysPerStep: Double {
         numberOfDays / Double(numberOfSteps - 1)
     }
-    
-    
+
+
     var numberOfSteps: Int {
         return min(7, max(Int(numberOfDays / 30), 5))
     }
-    
-    
+
+
     var goalPerStep: Double {
         (goal.desiredResult - goal.baseProgress) / Double(numberOfSteps - 1)
     }
-    
-    
+
+
     var spacing: Spacing {
         if numberOfSteps == 7 {
             return .sevenSteps
@@ -177,15 +165,18 @@ extension GoalModel: StepperData {
             return .fiveSteps
         }
     }
-    
-    
+
+
     var shouldExpand: Bool {
        true
     }
-    
-    
-    var color: String {
-        goal.wrappedColor
+
+
+    var color: GoalColor {
+        goal.color
+    }
+
+    var displayUnits: String {
+        goal.unitsShort
     }
 }
-

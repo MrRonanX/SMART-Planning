@@ -22,12 +22,12 @@ extension GoalDetailView {
         
         
         private func createStatistic() {
-            let units       = goal.goal.wrappedUnits
+            let units       = goal.goal.units
             let progress    = goal.goal.currentProgress
             let result      = goal.goal.desiredResult
             let base        = goal.goal.baseProgress
-            let startDate   = goal.goal.wrappedStartDate.toString(.deadlineNextYear)
-            let deadline    = goal.goal.wrappedDeadline.toString(.deadlineNextYear)
+            let startDate   = goal.goal.startDate.toString(.deadlineNextYear)
+            let deadline    = goal.goal.deadline.toString(.deadlineNextYear)
             
             stats = [
                 Statistics(image: GoalDetails.currentProgress, color: Colors.brandMagenta.color, metrics: "\(String(format: "%.2f", progress)) \(units)", units: "Current Progress"),

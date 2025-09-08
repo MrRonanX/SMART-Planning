@@ -119,3 +119,9 @@ extension UIColor {
         }
     }
 }
+
+extension Color {
+    init(_ goalColor: GoalColor) {
+        self.init(red: Double(goalColor.red), green: Double(goalColor.green), blue: Double(goalColor.blue))
+    }
+}

@@ -13,26 +13,26 @@ struct GoalViewCell: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            Image(goalModel.goal.wrappedIcon)
+            Image(goalModel.goal.icon)
                 .iconStyle(with: 35)
-                .foregroundColor(Color(goalModel.goal.wrappedColor))
+                .foregroundColor(Color(goalModel.goal.color))
             VStack(alignment: .leading) {
-                Text(goalModel.goal.wrappedTitle)
+                Text(goalModel.goal.title)
                     .font(.title3)
                     .bold()
                 
-                Text(goalModel.goal.wrappedGoalDescription)
+                Text(goalModel.goal.goalDescription)
                     .font(.subheadline)
             }
         } .padding(.horizontal, 10)
        
-        StepperView(with: goalModel, size: size)
+        StepperView(with: goalModel.goal, size: size)
             .padding(.bottom, 5)
     }
 }
 
-struct GoalViewCell_Previews: PreviewProvider {
-    static var previews: some View {
-        GoalViewCell(goalModel: GoalModel(Goal(context: PersistenceManager.shared.viewContext)), size: 375)
-    }
-}
+//struct GoalViewCell_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GoalViewCell(goalModel: GoalModel(Goal()), size: 375)
+//    }
+//}

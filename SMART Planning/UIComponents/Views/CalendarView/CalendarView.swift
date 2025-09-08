@@ -29,7 +29,7 @@ struct CalendarView: UIViewRepresentable {
         calendar.allowsMultipleSelection = true
         calendar.minimumLineSpacing = 0
         calendar.minimumInteritemSpacing = 0
-        let dates = goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday()}
+        let dates = goalModel.goal.completedExercises.map { $0.date.midday()}
         calendar.selectDates(dates)
         
         return calendar
@@ -47,7 +47,7 @@ struct CalendarView: UIViewRepresentable {
         
         func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
             let startDate = parent.goalModel.startDate.midday()
-            let endDate = parent.goalModel.goal.wrappedDeadline.midday()
+            let endDate = parent.goalModel.goal.deadline.midday()
             return ConfigurationParameters(startDate: startDate, endDate: endDate, generateInDates: .forAllMonths, generateOutDates: .tillEndOfRow)
         }
         
@@ -83,7 +83,7 @@ struct CalendarView: UIViewRepresentable {
         
         
         func calendar(_ calendar: JTACMonthView, shouldSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) -> Bool {
-            parent.goalModel.tasks.filter { $0.isCompleted }.map { $0.wrappedDate.midday() }.contains(date.midday())
+            parent.goalModel.goal.completedExercises.map { $0.date.midday() }.contains(date.midday())
         }
         
         

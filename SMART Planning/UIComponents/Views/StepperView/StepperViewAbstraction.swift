@@ -17,8 +17,9 @@ protocol StepperData {
     var goalText: [String] { get }
     var indicators: [Bool] { get }
     var spacing: Spacing { get }
-    var color: String { get }
+    var color: GoalColor { get }
     var shouldExpand: Bool { get }
+    var displayUnits: String { get }
 }
 
 extension StepperData {

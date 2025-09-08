@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 extension NotificationSettings {
     final class NotificationSettingsViewModel: ObservableObject {
@@ -29,25 +30,21 @@ extension NotificationSettings {
             self.goal = goal
             notificationIsOn =  goal.goal.allowNotifications
             guard notificationIsOn else { return }
-            notificationTime = Calendar.current.date(from: DateComponents(hour: goal.goal.notification?.wrappedHour, minute: goal.goal.notification?.wrappedMinute)) ?? Date()
+            notificationTime = Calendar.current.date(from: DateComponents(hour: goal.goal.notification?.hour, minute: goal.goal.notification?.minute)) ?? Date()
         }
         
         
         func setNotificationTime(_ time: Date) {
-            let hour = Calendar.current.component(.hour, from: time)
-            let minute = Calendar.current.component(.minute, from: time)
-            
-            var notification = goal.goal.notification
-            if notification == nil {
-                notification = NotificationTime(context: PersistenceManager.shared.viewContext)
-            }
-            
-            notification?.hour = Int16(hour)
-            notification?.minute = Int16(minute)
-            
-            if notification?.goal == nil {
-                goal.goal.notification = notification
-            }
+//            let hour = Calendar.current.component(.hour, from: time)
+//            let minute = Calendar.current.component(.minute, from: time)
+//            
+//            var notification = goal.goal.notification
+//            if notification == nil { notification = NotificationTime() }
+//
+//            notification?.hour = Int(hour)
+//            notification?.minute = Int(minute)
+//
+//            if notification?.goal == nil { goal.goal.notification = notification }
         }
     }
 }

@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NotificationSettings: View {
     
     @StateObject var viewModel: NotificationSettingsViewModel
+    @Environment(\.modelContext) private var modelContext
     
     init(_ goal: GoalModel) {
         _viewModel = StateObject(wrappedValue: NotificationSettingsViewModel(goal: goal))
@@ -24,7 +26,7 @@ struct NotificationSettings: View {
             }
             Spacer()
         }
-        .onDisappear(perform: PersistenceManager.shared.save)
+        .onDisappear { try? modelContext.save() }
         .padding()
         .navigationTitle("Notifications")
     }

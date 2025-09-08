@@ -16,7 +16,7 @@ struct GoalIndicator: View {
     var size: CGFloat
     var itemSpacing: Spacing
     var drawSpacer: Bool
-    var itemColor: String
+    var itemColor: GoalColor
     var shouldExpend: Bool
     
     

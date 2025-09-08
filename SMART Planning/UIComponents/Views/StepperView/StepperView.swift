@@ -12,16 +12,16 @@ struct StepperView: View {
     @StateObject var viewModel: StepperViewModel
     var size: CGFloat
     
-    init(with goalModel: GoalModel, size: CGFloat) {
-        _viewModel = StateObject(wrappedValue: StepperViewModel(with: goalModel))
+    init(with goal: Goal, size: CGFloat) {
+        _viewModel = StateObject(wrappedValue: StepperViewModel(with: goal))
         self.size = size
     }
     
     
     var body: some View {
-        IndividualStepper(stepperData: viewModel.goalModel, size: size)
+        IndividualStepper(stepperData: viewModel.data, size: size)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .offset(x: viewModel.goalModel.numberOfSteps == 5 ? -5 : 0)
+            .offset(x: viewModel.data.numberOfSteps == 5 ? -5 : 0)
             .environmentObject(viewModel)
         if viewModel.isExpanded, let subgoal = viewModel.subgoal {
             IndividualStepper(stepperData: subgoal, size: size * 0.9)
@@ -33,9 +33,9 @@ struct StepperView: View {
     }
 }
 
-
-struct ProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        StepperView(with: GoalModel(Goal(context: PersistenceManager.shared.viewContext)), size: 375)
-    }
-}
+//
+//struct ProgressView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StepperView(with: Goal(), size: 375)
+//    }
+//}

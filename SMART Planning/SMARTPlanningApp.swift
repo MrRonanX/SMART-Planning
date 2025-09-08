@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SMARTPlanningApp: App {
@@ -23,6 +24,7 @@ struct SMARTPlanningApp: App {
                     .environmentObject(viewSelector)
             }
         }
+        .modelContainer(for: [Goal.self, CompletedExercise.self])
     }
 }
 

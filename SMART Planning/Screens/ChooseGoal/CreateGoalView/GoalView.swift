@@ -8,10 +8,12 @@
 
 import SymbolPicker
 import SwiftUI
+import SwiftData
 
 struct GoalView: View {
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var settings: ViewSelector
     @StateObject var viewModel: GoalViewModel
     @State private var isShowingIcons = false
@@ -99,10 +101,11 @@ struct GoalView: View {
                 Button(action: save) { Text("Save") }
             }
         }
+        .onAppear { viewModel.modelContext = modelContext }
     }
 
     func save() {
-        viewModel.saveToCoreData()
+        viewModel.saveGoal()
         settings.firstGoalIsSet()
         dismiss()
     }

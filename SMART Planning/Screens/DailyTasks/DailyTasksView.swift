@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct DailyTasksView: View {
-    @EnvironmentObject var brain: GoalsManager
-    @StateObject var vm = DailyTasksViewModel()
+//    @EnvironmentObject var brain: GoalsManager
+//    @Environment(\.modelContext) private var modelContext
+//    @StateObject var vm = DailyTasksViewModel()
     
     
     var body: some View {
         NavigationStack {
             List {
-                Section(header: SectionHeader(title: "Today")) {
-                    ForEach(vm.todayTasks) { task in
-                            TaskCellView(task: task)
-                                .contentShape(Rectangle())
-                                .onTapGesture { vm.taskCompleted(task) }
-                    }
-                }.id(vm.id)
-                
-                Section(header: SectionHeader(title: "Upcoming")) {
-                    ForEach(vm.weekTasks) { task in
-                        TaskCellView(task: task)
-                    }
-                }
+//                Section(header: SectionHeader(title: "Today")) {
+//                    ForEach(vm.todayTasks) { task in
+//                            TaskCellView(task: task)
+//                                .contentShape(Rectangle())
+//                                .onTapGesture { vm.taskCompleted(task) }
+//                    }
+//                }.id(vm.id)
+//                
+//                Section(header: SectionHeader(title: "Upcoming")) {
+//                    ForEach(vm.weekTasks) { task in
+//                        TaskCellView(task: task)
+//                    }
+//                }
             }
-            .onAppear { vm.loadTasks(from: brain)}
+//            .onAppear { vm.modelContext = modelContext; vm.loadTasks(from: brain)}
             .navigationTitle("Daily Tasks")
         }
     }
@@ -38,36 +39,36 @@ struct DailyTasksView: View {
 
 struct TaskCellView: View {
     
-    let task: Exercise
+//    let task: Exercise
     
     var body: some View {
         HStack {
-            Image(systemName: task.isCompleted ? "checkmark.circle" : "circle")
-                .font(.headline)
-                .imageScale(.large)
-                .foregroundColor(task.isCompleted ? .green : .secondary)
-                .padding(.horizontal, 5)
-            
-            Text("\(task.action.capitalized)  \(trainingAmount, specifier: "%2g")  \(task.units)")
-                .foregroundColor(task.isCompleted ? .secondary : Color(.label))
-                .font(task.isCompleted ? .body.italic() : .body)
-            
-            Spacer()
-            
-            Image(task.icon)
-                .iconStyle(with: 25)
-                .foregroundColor(Color(task.color))
-                .padding(.horizontal, 5)
-            Text(task.wrappedDate.toString(.list) == Date().toString(.list) ? "" : task.wrappedDate.toString(.list))
-                .font(.footnote)
-                .fontWeight(.semibold)
-                .foregroundColor(task.wrappedDate.toString(.list) == Date().toString(.list) ? .green : .secondary)
+//            Image(systemName: task.isCompleted ? "checkmark.circle" : "circle")
+//                .font(.headline)
+//                .imageScale(.large)
+//                .foregroundColor(task.isCompleted ? .green : .secondary)
+//                .padding(.horizontal, 5)
+//            
+//            Text("\(task.action.capitalized)  \(trainingAmount, specifier: "%2g")  \(task.units)")
+//                .foregroundColor(task.isCompleted ? .secondary : Color(.label))
+//                .font(task.isCompleted ? .body.italic() : .body)
+//            
+//            Spacer()
+//            
+//            Image(task.icon)
+//                .iconStyle(with: 25)
+//                .foregroundColor(Color(task.color))
+//                .padding(.horizontal, 5)
+//            Text(task.wrappedDate.toString(.list) == Date().toString(.list) ? "" : task.wrappedDate.toString(.list))
+//                .font(.footnote)
+//                .fontWeight(.semibold)
+//                .foregroundColor(task.wrappedDate.toString(.list) == Date().toString(.list) ? .green : .secondary)
         }
     }
     
-    var trainingAmount: Double {
-        task.trainingAmount > 2 ? ceil(task.trainingAmount) : task.trainingAmount.roundToDecimal(2)
-    }
+//    var trainingAmount: Double {
+//        task.trainingAmount > 2 ? ceil(task.trainingAmount) : task.trainingAmount.roundToDecimal(2)
+//    }
 }
 
 

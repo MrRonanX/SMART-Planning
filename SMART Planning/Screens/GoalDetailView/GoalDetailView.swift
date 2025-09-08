@@ -10,6 +10,7 @@ import SwiftUI
 struct GoalDetailView: View {
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var brain: GoalsManager
     @StateObject var viewModel: GoalDetailsViewModel
     @StateObject var editGoalViewModel = GoalViewModel()
@@ -58,6 +59,7 @@ struct GoalDetailView: View {
         }
         .environmentObject(editGoalViewModel)
         .tint(Color(viewModel.goal.color))
+        .onAppear { editGoalViewModel.modelContext = modelContext }
         
     }
     
@@ -75,7 +77,8 @@ struct GoalDetailView: View {
     func deleteGoal() {
         brain.goals.removeAll(where: {$0.goal.wrappedID == viewModel.goal.goal.wrappedID })
         NotificationManager.shared.cancelNotification(with: viewModel.goal.goal.wrappedID)
-        PersistenceManager.shared.deleteGoal(viewModel.goal.goal)
+        modelContext.delete(viewModel.goal.goal)
+        try? modelContext.save()
         dismissView()
     }
 }
@@ -83,7 +86,7 @@ struct GoalDetailView: View {
 
 struct GoalDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalDetailView(goal: GoalModel(Goal(context: PersistenceManager.shared.viewContext)))
+        GoalDetailView(goal: GoalModel(Goal()))
     }
 }
 
@@ -177,5 +180,3 @@ fileprivate struct StatisticsView: View {
         .padding(.bottom)
     }
 }
-
-

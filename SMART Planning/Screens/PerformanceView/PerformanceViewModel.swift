@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+@MainActor
 final class PerformanceViewModel: ObservableObject {
     
     @Published var goals = [GoalModel]()
@@ -39,7 +39,7 @@ final class PerformanceViewModel: ObservableObject {
         return firstDay + " – " + lastDay
     }
     
-    func loadGoals(from brain: GoalsManager) {
-        goals = brain.goals
-    }
+//    func loadGoals(from brain: GoalsManager) {
+//        goals = brain.goals
+//    }
 }

@@ -5,7 +5,7 @@
 //  Created by Roman Kavinskyi on 2025-09-06.
 //
 
-import Foundation
+import SwiftUI
 
 extension CGFloat {
     static let space2: CGFloat = 2

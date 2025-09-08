@@ -25,14 +25,14 @@ struct PerformanceView: View {
                     Spacer()
                 }
                 }
-                ForEach(viewModel.goals) { goal in
-                    let cellViewModel = PerformanceCellViewModel(goal, viewType: viewModel.currentTab)
-                    PerformanceViewCell(viewModel: cellViewModel)
-                }
+//                ForEach(viewModel.goals) { goal in
+//                    let cellViewModel = PerformanceCellViewModel(goal, viewType: viewModel.currentTab)
+//                    PerformanceViewCell(viewModel: cellViewModel)
+//                }
             }
             .navigationTitle("Progress")
         }
-        .onAppear { viewModel.loadGoals(from: brain)}
+//        .onAppear { viewModel.loadGoals(from: brain)}
         .environmentObject(viewModel)
     }
 }
